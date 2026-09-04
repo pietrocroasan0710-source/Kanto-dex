@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Avalie — Kantodex</title>
+  <meta name="description" content="Deixe sua nota e comentário sobre a Kantodex.">
+  <link rel="stylesheet" href="index.css">
+</head>
+<body>
+
+  <header class="topo-app">
+    <div class="topo-row">
+      <div class="marca">
+        <div class="lente" title="Kantodex"></div>
+        <p class="titulo-site">KANTODEX</p>
+    </div>
+    <div class="faixa">
+      <div class="barra">
+        <nav>
+          <a href="./kantodex.html">KANTODEX</a>
+          <a href="./pokemons.html">POKÉMONS</a>
+          <a href="./tms.html">TM'S</a>
+          <a href="./mapa.html">MAPA</a>
+          <a href="./avalie.html" class="ativo">AVALIE</a>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="tela">
+      <p class="eyebrow">Sua opinião importa</p>
+      <h1>Avalie a Kantodex</h1>
+      <p class="sub">
+        Obrigado por visitar a <a href="kantodex.html">Kantodex</a>! Espero que
+        tenha gostado de conhecer os <a href="pokemons.html">151 Pokémon</a> e
+        as <a href="tms.html">TM's de FireRed</a>. Dê uma nota clicando nas
+        estrelas e, se quiser, deixe um comentário abaixo.
+      </p>
+
+      <h2>Sua nota</h2>
+      <div class="estrelas" id="estrelas">
+        <input type="radio" id="e5" name="nota" value="5"><label for="e5" title="5 estrelas">★</label>
+        <input type="radio" id="e4" name="nota" value="4"><label for="e4" title="4 estrelas">★</label>
+        <input type="radio" id="e3" name="nota" value="3"><label for="e3" title="3 estrelas">★</label>
+        <input type="radio" id="e2" name="nota" value="2"><label for="e2" title="2 estrelas">★</label>
+        <input type="radio" id="e1" name="nota" value="1"><label for="e1" title="1 estrela">★</label>
+      </div>
+
+      <h2>Comentário</h2>
+      <textarea name="comentario" id="comentario" cols="40" rows="8" maxlength="400" placeholder="Escreva aqui o que achou da Kantodex…"></textarea>
+      <p class="contador-chars"><span id="contadorChars">0</span>/400 caracteres</p>
+
+      <button type="button" class="botao" id="botaoEnviar">Enviar avaliação</button>
+      <p class="confirmacao" id="confirmacao">✓ Avaliação registrada — obrigado pelo carinho, treinador(a)!</p>
+
+      <h2>Menção honrosa</h2>
+      <p class="sub">
+        Menção honrosa a essa obra-prima. Ouça a trilha de abertura enquanto
+        relembra a jornada por <a href="pokemons.html">Kanto</a>:
+      </p>
+      <div class="player-audio">
+        <audio src="./audiovideo/abertura.mp3" controls></audio>
+      </div>
+    </section>
+
+    <footer>
+      <b>Pietro Santana 2026 &copy;</b> · obrigado por jogar!
+    </footer>
+  </main>
+
+  <a href="#" class="topo-flutuante" id="botaoTopo" aria-label="Voltar ao topo">↑</a>
+
+  <script>
+    const comentario = document.getElementById('comentario');
+    const contadorChars = document.getElementById('contadorChars');
+    comentario.addEventListener('input', () => {
+      contadorChars.textContent = comentario.value.length;
+    });
+
+    const botaoEnviar = document.getElementById('botaoEnviar');
+    const confirmacao = document.getElementById('confirmacao');
+    botaoEnviar.addEventListener('click', () => {
+      confirmacao.classList.add('mostrar');
+    });
+
+    const botaoTopo = document.getElementById('botaoTopo');
+    window.addEventListener('scroll', () => {
+      botaoTopo.classList.toggle('visivel', window.scrollY > 400);
+    });
+    botaoTopo.addEventListener('click', (e) => {
+      e.preventDefault();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kantodex — Início</title>
+  <meta name="description" content="Kantodex: a Pokédex completa da região de Kanto, com os 151 Pokémon, TM's e muito mais.">
+  <link rel="stylesheet" href="index.css">
+</head>
+<body>
+
+  <header class="topo-app">
+    <div class="topo-row">
+      <div class="lente" title="Kantodex"></div>
+      <p class="titulo-site">KANTODEX</p>
+      
+    </div>
+    <div class="faixa">
+      <div class="barra">
+        <nav>
+          <a href="./kantodex.html" class="ativo">KANTODEX</a>
+          <a href="./pokemons.html">POKÉMONS</a>
+          <a href="./tms.html">TM'S</a>
+          <a href="./mapa.html">MAPA</a>
+          <a href="./avalie.html">AVALIE</a>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="tela">
+      <p class="eyebrow">Região de Kanto · Geração I</p>
+      <h1>Sua Pokédex de bolso para Kanto</h1>
+      <p class="sub">
+        Bem-vindo(a) à <strong>Kantodex</strong>! Aqui você encontra os
+        <a href="pokemons.html">151 Pokémon originais</a>, a lista completa de
+        <a href="tms.html">TM's de Pokémon FireRed</a> e um espaço para
+        <a href="avalie.html">deixar sua avaliação</a> sobre o projeto.
+        Passe o mouse pelos cartões abaixo e explore — cada palavra colorida
+        é um atalho para outra parte do site.
+      </p>
+
+      <div class="stat-strip">
+        <div class="stat-chip"><strong>151</strong><span>Pokémon</span></div>
+        <div class="stat-chip"><strong>17</strong><span>Tipos</span></div>
+        <div class="stat-chip"><strong>50</strong><span>TM's</span></div>
+        <div class="stat-chip"><strong>01</strong><span>Região</span></div>
+      </div>
+
+      <h2>Para onde vamos?</h2>
+      <div class="mosaico">
+        <a class="mosaico-item reveal" href="pokemons.html">
+          <span class="rotulo">📖 Pokémons</span>
+          <p>Navegue pela Pokédex completa, com busca por nome e filtro por tipo. Passe o mouse em cada cartão para virá-lo e ler a descrição.</p>
+        </a>
+        <a class="mosaico-item reveal" href="tms.html">
+          <span class="rotulo">💿 TM's</span>
+          <p>Consulte as 50 Máquinas de Ensino de Pokémon FireRed, com tipo e poder de cada golpe, em uma tabela pesquisável.</p>
+        </a>
+        <a class="mosaico-item reveal" href="avalie.html">
+          <span class="rotulo">⭐ Avalie</span>
+          <p>Dê uma nota ao site, deixe um comentário e ouça a trilha sonora de abertura enquanto isso.</p>
+        </a>
+      </div>
+
+      <h2>Comece pelos iniciais</h2>
+      <p class="sub">
+        Toda jornada em Kanto começa com um dos três parceiros abaixo — clique em
+        <em>"Ver ficha completa"</em> para conferir estatísticas, fraquezas e evolução de cada um.
+      </p>
+      <section class="dex-cards">
+        <div class="card reveal">
+          <img src="./pokemons/1.png" alt="Bulbasaur">
+          <h3>Bulbasaur</h3>
+          <p><span class="badge tipo-grama">Planta</span> <span class="badge tipo-veneno">Veneno</span></p>
+          <a href="pokemon-detalhes.html?n=001">Ver ficha completa</a>
+        </div>
+
+        <div class="card reveal">
+          <img src="./pokemons/4.png" alt="Charmander">
+          <h3>Charmander</h3>
+          <p><span class="badge tipo-fogo">Fogo</span></p>
+          <a href="pokemon-detalhes.html?n=004">Ver ficha completa</a>
+        </div>
+
+        <div class="card reveal">
+          <img src="./pokemons/7.png" alt="Squirtle">
+          <h3>Squirtle</h3>
+          <p><span class="badge tipo-agua">Água</span></p>
+          <a href="pokemon-detalhes.html?n=007">Ver ficha completa</a>
+        </div>
+      </section>
+
+      <h2>Sobre este projeto</h2>
+      <p class="sub reveal">
+        A Kantodex é um projeto pessoal feito por fã, para fãs, celebrando os
+        <a href="pokemons.html">151 Pokémon de Kanto</a> e a nostalgia de
+        Pokémon FireRed. Se curtiu o site, não deixe de passar na página
+        <a href="avalie.html">Avalie</a> e contar o que achou — toda opinião
+        ajuda a evoluir o projeto, como um bom uso de Pedra do Trovão.
+      </p>
+    </section>
+
+    <footer>
+      <b>Pietro Santana 2026 &copy;</b> · feito com carinho (e um pouco de nostalgia) para a comunidade Pokémon
+    </footer>
+  </main>
+
+  <a href="#" class="topo-flutuante" id="botaoTopo" aria-label="Voltar ao topo">↑</a>
+
+  <script>
+    // mostra e ativa o botão "voltar ao topo"
+    const botaoTopo = document.getElementById('botaoTopo');
+    window.addEventListener('scroll', () => {
+      botaoTopo.classList.toggle('visivel', window.scrollY > 400);
+    });
+    botaoTopo.addEventListener('click', (e) => {
+      e.preventDefault();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  </script>
+</body>
+</html>

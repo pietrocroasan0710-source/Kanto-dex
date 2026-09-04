@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mapa de Kanto — Kantodex</title>
+  <meta name="description" content="Mapa interativo de Pokémon FireRed: rota completa para zerar o jogo, com treinadores, itens, TMs e Pokémon lendários.">
+  <link rel="stylesheet" href="index.css">
+  <style>
+    /* --- estilos exclusivos do mapa com arte de fundo (sobrescrevem o pan/zoom antigo do index.css) --- */
+    #mapaViewport{
+      position:relative !important;
+      width:100% !important;
+      max-width:1000px;
+      height:auto !important;
+      margin:0 auto;
+      aspect-ratio:383 / 287;
+      overflow:hidden;
+      cursor:default !important;
+      touch-action:auto;
+    }
+    #mapaMundo{
+      position:absolute !important;
+      inset:0;
+      top:0; left:0;
+      width:100% !important;
+      height:100% !important;
+      transform:none !important;
+    }
+    .mapa-fundo{
+      position:absolute; top:0; left:0;
+      width:100%; height:100%;
+      image-rendering:pixelated; image-rendering:crisp-edges;
+      user-select:none; -webkit-user-drag:none; pointer-events:none;
+    }
+    #camadaLocais, #camadaIcones{ position:absolute; inset:0; }
+    .no-local, .icone-mapa{ transform:translate(-50%, -50%); }
+    .botao-mapa-voltar{
+      position:absolute; display:block; text-decoration:none;
+      width:8%; aspect-ratio:1/1; transform:translate(-50%,-50%);
+      border-radius:6px; cursor:pointer;
+    }
+    .botao-mapa-voltar:hover{ filter:brightness(1.35); transform:translate(-50%,-50%) scale(1.08); }
+    .ponto-extra{ z-index:3; }
+    .legenda-mapa .icone-mapa{ position:static; transform:none; }
+  </style>
+</head>
+<body>
+
+  <header class="topo-app">
+    <div class="topo-row">
+      <div class="lente" title="Kantodex"></div>
+          <p class="titulo-site">KANTODEX</p>
+          <div class="luzinhas"><span></span><span></span><span></span></div>
+        </div>
+      </div>
+    </div>
+    <div class="faixa">
+      <div class="barra">
+        <nav>
+          <a href="./kantodex.html">KANTODEX</a>
+          <a href="./pokemons.html">POKÉMONS</a>
+          <a href="./tms.html">TM'S</a>
+          <a href="./mapa.html" class="ativo">MAPA</a>
+          <a href="./avalie.html">AVALIE</a>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="tela">
+      <p class="eyebrow">Guia de progressão · Pokémon FireRed</p>
+      <h1>Mapa Interativo de Kanto</h1>
+      <p class="sub">
+        Mapa esquemático original (arte própria, desenhada do zero) mostrando a
+        <strong>ordem certa para zerar Pokémon FireRed</strong>, numerada de 1 a 12.
+        Clique em qualquer número, mercadinho ou ponto do mapa para ver o que ele significa.
+      </p>
+
+      <div class="legenda-mapa">
+        <span class="legenda-item"><span class="icone-mapa tipo-ic-ginasio">🏆</span> Ginásio</span>
+        <span class="legenda-item"><span class="icone-mapa tipo-ic-treinador">⚔️</span> Treinador</span>
+        <span class="legenda-item"><span class="icone-mapa tipo-ic-item">💿</span> Item / TM</span>
+        <span class="legenda-item"><span class="icone-mapa tipo-ic-lendario">⭐</span> Lendário</span>
+        <span class="legenda-item"><span class="icone-mapa tipo-ic-evento">💬</span> Evento / Diálogo</span>
+        <span class="legenda-item"><span class="icone-mapa tipo-ic-loja">🛒</span> Loja</span>
+      </div>
+
+      <div class="mapa-viewport" id="mapaViewport">
+        <div class="mapa-mundo" id="mapaMundo">
+          <img class="mapa-fundo" id="mapaFundo" src="./imagens/worldmap.png" alt="Ilustração do mapa de Kanto com a rota numerada de 1 a 12">
+          <div id="camadaLocais"></div>
+          <div id="camadaIcones"></div>
+          <a href="./kantodex.html" class="botao-mapa-voltar" id="botaoVoltarMapa" title="Voltar ao Kantodex"></a>
+        </div>
+      </div>
+
+      <p class="sub" style="margin-top:14px; font-size:13px;">
+        📍 Este mapa cobre a ilha principal de Kanto. O ícone verde <strong>10</strong> marca a
+        travessia de <strong>Surf</strong> até Cinnabar Island. Após virar Campeão, o jogo libera as
+        <strong>Ilhas Sevii</strong> (pós-jogo), onde fica o Moltres 🔥 — o terceiro pássaro
+        lendário — em Mt. Ember, na One Island.
+      </p>
+
+      <div class="painel-detalhe" id="painelDetalhe">
+        <button type="button" class="fechar-painel" id="fecharPainel" aria-label="Fechar">✕</button>
+        <div id="painelConteudo">
+          <p class="sub">Clique em um número, mercadinho ou ponto do mapa para ver os detalhes aqui.</p>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <b>Pietro Santana 2026 &copy;</b> · mapa de referência baseado em Pokémon FireRed/LeafGreen
+    </footer>
+  </main>
+
+  <a href="#" class="topo-flutuante" id="botaoTopo" aria-label="Voltar ao topo">↑</a>
+
+  <script>
+    // ---------- dimensões de referência (mesma escala usada para posicionar cada ponto) ----------
+    const REF_LARGURA = 1149;
+    const REF_ALTURA  = 861;
+    function pctX(x){ return (x / REF_LARGURA * 100).toFixed(3) + '%'; }
+    function pctY(y){ return (y / REF_ALTURA * 100).toFixed(3) + '%'; }
+
+    // ---------- os 11 pontos numerados + a travessia de surf, na ordem do jogo ----------
+    const LOCAIS = [
+      {id:"pallet",    numero:1,  nome:"Pallet Town",     tipo:"cidade", x:598, y:405, desc:"Sua cidade natal. O Prof. Oak te entrega o Pokémon inicial e a Pokédex."},
+      {id:"viridian",  numero:2,  nome:"Viridian City",   tipo:"cidade", x:742, y:260, desc:"Primeira grande cidade. O ginásio está fechado por enquanto."},
+      {id:"pewter",    numero:3,  nome:"Pewter City",     tipo:"cidade", x:267, y:785, desc:"Lar do Museu de Ciência e do primeiro Ginásio."},
+      {id:"cerulean",  numero:4,  nome:"Cerulean City",   tipo:"cidade", x:642, y:690, desc:"Segundo Ginásio. Também é onde fica a casa do Bill."},
+      {id:"vermilion", numero:5,  nome:"Vermilion City",  tipo:"cidade", x:172, y:262, desc:"Cidade portuária. Terceiro Ginásio e o navio S.S. Anne."},
+      {id:"lavender",  numero:6,  nome:"Lavender Town",   tipo:"cidade", x:930, y:405, desc:"Cidade pequena e sombria, lar da Torre Pokémon."},
+      {id:"celadon",   numero:7,  nome:"Celadon City",    tipo:"cidade", x:267, y:637, desc:"Maior cidade de Kanto. Loja de departamentos, Cassino e quarto Ginásio."},
+      {id:"fuchsia",   numero:8,  nome:"Fuchsia City",    tipo:"cidade", x:267, y:308, desc:"Quinto Ginásio e a Área Safari."},
+      {id:"saffron",   numero:9,  nome:"Saffron City",    tipo:"cidade", x:742, y:405, desc:"Centro de Kanto. Sexto Ginásio e a sede da Silph Co."},
+      {id:"surf",      numero:10, nome:"Travessia de Surf", tipo:"evento", x:420, y:788, desc:"Trecho de mar que precisa de HM03 (Surfar) para ser atravessado — leva até Cinnabar Island."},
+      {id:"cinnabar",  numero:11, nome:"Cinnabar Island", tipo:"cidade", x:742, y:548, desc:"Ilha vulcânica. Sétimo Ginásio e o Laboratório de Fósseis."},
+      {id:"liga",      numero:12, nome:"Liga Pokémon",    tipo:"evento", x:267, y:497, desc:"Estrada da Vitória e depois o Alto Comando — enfrente o Campeão para zerar o jogo."}
+    ];
+
+    // ---------- pontos soltos no mapa: mercadinhos e áreas de grama ----------
+    const PONTOS_EXTRA = [
+      {tipo:"loja", nome:"Poké Mart — Viridian", x:505, y:260, desc:"Compre Poké Bolas e Poções antes de seguir viagem."},
+      {tipo:"loja", nome:"Loja de suprimentos",  x:267, y:405, desc:"Mercadinho de beira de estrada — bom lugar pra reabastecer itens."},
+      {tipo:"loja", nome:"Poké Mart — Cinnabar", x:783, y:548, desc:"Última loja antes da Estrada da Vitória. Estoque bem e compre Éteres."},
+      {tipo:"rota", nome:"Grama alta — perto de Vermilion", x:172, y:308, desc:"Trecho de grama com Pokémon selvagens e treinadores de passagem."},
+      {tipo:"rota", nome:"Grama alta — perto de Fuchsia",   x:267, y:353, desc:"Trecho de grama com Pokémon selvagens e treinadores de passagem."},
+      {tipo:"rota", nome:"Grama alta — perto de Lavender",  x:930, y:258, desc:"Trecho de grama com Pokémon selvagens e treinadores de passagem."},
+      {tipo:"rota", nome:"Grama alta — perto de Lavender",  x:930, y:308, desc:"Trecho de grama com Pokémon selvagens e treinadores de passagem."}
+    ];
+
+    // ---------- ícones agrupados por cidade (conteúdo detalhado de cada etapa) ----------
+    const ICONES = [
+      // Pallet Town
+      {local:"pallet",tipo:"evento",nome:"Escolha do Inicial",desc:"O Prof. Oak te dá a escolha entre Bulbasaur, Charmander e Squirtle. Seu rival pega o que é forte contra o seu."},
+      {local:"pallet",tipo:"treinador",nome:"Rival (casa)",desc:"Primeira batalha contra seu rival, logo depois de escolher o inicial."},
+      // Viridian City
+      {local:"viridian",tipo:"ginasio",nome:"Ginásio de Viridian (fechado)",desc:"Só pode ser desafiado depois — o líder é Giovanni, tipo Terra."},
+      {local:"viridian",tipo:"treinador",nome:"Treinadores de passagem",desc:"NPCs na Rota 1 com Pidgey e Rattata — bom treino inicial."},
+      {local:"viridian",tipo:"treinador",nome:"Rival — 1º encontro no mato",desc:"Seu rival desafia você de novo antes do Portão da Liga."},
+      // Pewter City
+      {local:"pewter",tipo:"ginasio",nome:"Ginásio de Pewter — Brock",desc:"Líder tipo Pedra. Geodude e Onix. Vença e ganhe a Boulder Badge + TM39 (Rock Tomb)."},
+      {local:"pewter",tipo:"item",nome:"Museu de Ciência",desc:"Veja fósseis e a réplica de Aerodactyl. Cultura, não item de jogo."},
+      {local:"pewter",tipo:"treinador",nome:"Treinadores de Inseto",desc:"Vários Bug Catchers na Floresta de Viridian com Caterpie, Weedle e Metapod."},
+      {local:"pewter",tipo:"item",nome:"Antídoto e Poção",desc:"Itens escondidos na grama da Floresta de Viridian."},
+      // Cerulean City
+      {local:"cerulean",tipo:"ginasio",nome:"Ginásio de Cerulean — Misty",desc:"Líder tipo Água. Staryu e Starmie. Ganhe a Cascade Badge + TM03."},
+      {local:"cerulean",tipo:"evento",nome:"Casa do Bill",desc:"Ajude o Bill a voltar ao normal e ganhe acesso ao S.S. Anne mais cedo."},
+      {local:"cerulean",tipo:"item",nome:"Fósseis Helix/Dome",desc:"Escolha um dos dois fósseis encontrados dentro do Monte Moon."},
+      {local:"cerulean",tipo:"item",nome:"Pedra Lunar",desc:"Item raro do Monte Moon usado para evoluir Clefairy, Jigglypuff e outros."},
+      {local:"cerulean",tipo:"treinador",nome:"Grunt da Equipe Rocket",desc:"Tenta roubar o fóssil do cientista dentro do Monte Moon — derrote-o."},
+      {local:"cerulean",tipo:"treinador",nome:"Fila da Ponte Dourada",desc:"Vença todos em sequência na Rota 24 para ganhar um Pepitão (Nugget)."},
+      // Vermilion City
+      {local:"vermilion",tipo:"ginasio",nome:"Ginásio de Vermilion — Lt. Surge",desc:"Líder tipo Elétrico. Raichu. Resolva o quebra-cabeça dos lixos. Ganhe a Thunder Badge + TM34."},
+      {local:"vermilion",tipo:"evento",nome:"Centro de Criação (Day-Care)",desc:"Deixe Pokémon na Rota 5 para ganhar EXP e ovos passivamente."},
+      {local:"vermilion",tipo:"item",nome:"HM01 — Corte",desc:"Dado pelo capitão do S.S. Anne. Necessário para cortar árvores pequenas."},
+      {local:"vermilion",tipo:"treinador",nome:"Marinheiros e Marujas",desc:"Vários treinadores navais no S.S. Anne, com Pokémon de nível médio."},
+      {local:"vermilion",tipo:"treinador",nome:"Rival (porão do navio)",desc:"Segunda batalha contra o rival, no porão do S.S. Anne."},
+      {local:"vermilion",tipo:"item",nome:"Pérola Grande",desc:"Item valioso encontrado dentro da Caverna Diglett."},
+      // Lavender Town
+      {local:"lavender",tipo:"evento",nome:"Sr. Fuji e Cubone fantasma",desc:"Liberte o Sr. Fuji dos fantasmas na Torre Pokémon e receba a Flauta Pokémon."},
+      {local:"lavender",tipo:"treinador",nome:"Médiuns (Channelers)",desc:"Treinadoras com Pokémon do tipo Fantasma, como Gastly, na Torre Pokémon."},
+      {local:"lavender",tipo:"treinador",nome:"Escaladores e Campistas",desc:"Treinadores tipo Pedra e Terra na escuridão do Túnel da Rocha."},
+      {local:"lavender",tipo:"lendario",nome:"Zapdos ⚡",desc:"Pássaro lendário Elétrico/Voador, nível 50, na Usina Elétrica. Salve antes de batalhar!"},
+      {local:"lavender",tipo:"item",nome:"TM33 — Reflect",desc:"Máquina de ensino encontrada dentro da Usina Elétrica."},
+      // Celadon City
+      {local:"celadon",tipo:"ginasio",nome:"Ginásio de Celadon — Erika",desc:"Líder tipo Grama. Vileplume. Ganhe a Rainbow Badge + TM19 (Giga Drain)."},
+      {local:"celadon",tipo:"item",nome:"TM40 — Aerial Ace",desc:"À venda no último andar da loja de departamentos."},
+      {local:"celadon",tipo:"item",nome:"Coin Case",desc:"Ganho no Cassino — necessário para jogar nas máquinas e trocar por prêmios."},
+      {local:"celadon",tipo:"evento",nome:"Giovanni — 1º confronto",desc:"Chefe da Equipe Rocket, no esconderijo sob o Cassino. Derrote-o para libertar o dono."},
+      {local:"celadon",tipo:"item",nome:"Chave do Elevador",desc:"Precisa ser roubada de um Grunt antes de descer ao esconderijo da Rocket."},
+      // Fuchsia City
+      {local:"fuchsia",tipo:"ginasio",nome:"Ginásio de Fuchsia — Koga",desc:"Líder tipo Veneno. Usa Pokémon invisíveis (truque de labirinto). Ganhe a Soul Badge + TM06."},
+      {local:"fuchsia",tipo:"item",nome:"HM03 — Surfar",desc:"Dado pelo guarda da Área Safari ao final da zona."},
+      {local:"fuchsia",tipo:"item",nome:"HM04 — Força (Strength)",desc:"Também encontrado dentro da Área Safari."},
+      // Saffron City
+      {local:"saffron",tipo:"ginasio",nome:"Ginásio de Saffron — Sabrina",desc:"Líder tipo Psíquico. Alakazam. Ganhe a Marsh Badge + TM46 (Thief)."},
+      {local:"saffron",tipo:"evento",nome:"Snorlax bloqueando a rota",desc:"Use a Flauta Pokémon na Rota 12 para acordá-lo e batalhar/capturar."},
+      {local:"saffron",tipo:"evento",nome:"Giovanni — 2º confronto",desc:"Derrote a Equipe Rocket de vez dentro da Silph Co. e liberte a empresa."},
+      {local:"saffron",tipo:"item",nome:"Master Ball",desc:"Presente do presidente da Silph Co. por libertar a empresa — captura garantida."},
+      {local:"saffron",tipo:"treinador",nome:"Rival (Silph Co.)",desc:"Terceira batalha contra o rival, no topo do prédio da Silph Co."},
+      // Cinnabar Island
+      {local:"cinnabar",tipo:"ginasio",nome:"Ginásio de Cinnabar — Blaine",desc:"Líder tipo Fogo. Arcanine. Ganhe a Volcano Badge + TM38 (Fire Blast)."},
+      {local:"cinnabar",tipo:"evento",nome:"Laboratório de Fósseis",desc:"Reviva o fóssil que você escolheu no Monte Moon (Omanyte ou Kabuto)."},
+      {local:"cinnabar",tipo:"lendario",nome:"Articuno ❄️",desc:"Pássaro lendário Gelo/Voador, nível 50, nas Ilhas Seafoam. Precisa de Surfar + Força."},
+      // Liga Pokémon
+      {local:"liga",tipo:"treinador",nome:"Rival — antes da Estrada da Vitória",desc:"Última batalha contra o rival antes de enfrentar a Liga."},
+      {local:"liga",tipo:"treinador",nome:"Treinadores da Estrada da Vitória",desc:"Alguns dos treinadores mais fortes antes da Liga, times variados e de nível alto."},
+      {local:"liga",tipo:"item",nome:"Itens variados",desc:"Poções Máximas, Éteres e Pedras de evolução escondidos pela Estrada da Vitória."},
+      {local:"liga",tipo:"treinador",nome:"Alto Comando (Elite Four)",desc:"Lorelei (Gelo), Bruno (Lutador), Agatha (Fantasma) e Lance (Dragão), sem cura entre eles."},
+      {local:"liga",tipo:"evento",nome:"Campeão — Rival",desc:"Batalha final contra o seu rival como Campeão da Liga Pokémon. Vença e zere o jogo!"}
+    ];
+
+    const ICONE_TIPO_LOCAL = { cidade: "🏙️", evento: "🏁" };
+    const EMOJI_ICONE = { treinador: "⚔️", item: "💿", ginasio: "🏆", lendario: "⭐", evento: "💬", loja: "🛒", rota: "🌿" };
+
+    const camadaLocais = document.getElementById('camadaLocais');
+    const camadaIcones = document.getElementById('camadaIcones');
+
+    // botão de voltar posicionado sobre a seta desenhada na arte (canto inferior direito)
+    const botaoVoltar = document.getElementById('botaoVoltarMapa');
+    botaoVoltar.style.left = pctX(1080);
+    botaoVoltar.style.top  = pctY(742);
+
+    // ---------- desenha os nós numerados ----------
+    const mapaLocaisPorId = {};
+    LOCAIS.forEach(loc => {
+      mapaLocaisPorId[loc.id] = loc;
+      const el = document.createElement('div');
+      el.className = 'no-local no-tipo-' + loc.tipo;
+      el.style.left = pctX(loc.x);
+      el.style.top = pctY(loc.y);
+      el.innerHTML = `<span class="no-numero">${loc.numero}</span>`;
+      el.title = loc.nome;
+      el.addEventListener('click', (e) => { e.stopPropagation(); mostrarLocal(loc); });
+      camadaLocais.appendChild(el);
+
+      const rotulo = document.createElement('div');
+      rotulo.className = 'rotulo-local';
+      rotulo.style.left = pctX(loc.x);
+      rotulo.style.top = pctY(loc.y + 30);
+      rotulo.textContent = loc.nome;
+      camadaLocais.appendChild(rotulo);
+    });
+
+    // ---------- distribui os ícones de cada cidade em um (ou dois) anéis ----------
+    const contagemPorLocal = {};
+    ICONES.forEach(ic => { contagemPorLocal[ic.local] = (contagemPorLocal[ic.local] || 0) + 1; });
+    const indiceAtual = {};
+
+    ICONES.forEach(ic => {
+      const loc = mapaLocaisPorId[ic.local];
+      if (!loc) return;
+      const idx = indiceAtual[ic.local] || 0;
+      indiceAtual[ic.local] = idx + 1;
+      const total = contagemPorLocal[ic.local];
+      const porAnel = 6;
+      const anel = Math.floor(idx / porAnel);
+      const idxNoAnel = idx % porAnel;
+      const itensNesteAnel = Math.min(porAnel, total - anel * porAnel);
+      const raio = 44 + anel * 32;
+      const passo = 360 / Math.max(itensNesteAnel, 1);
+      const angulo = (-100 + idxNoAnel * passo) * Math.PI / 180;
+      const ix = loc.x + Math.cos(angulo) * raio;
+      const iy = loc.y + Math.sin(angulo) * raio;
+
+      const el = document.createElement('div');
+      el.className = 'icone-mapa icone-tipo-' + ic.tipo;
+      el.style.left = pctX(ix);
+      el.style.top = pctY(iy);
+      el.textContent = EMOJI_ICONE[ic.tipo] || '❓';
+      el.title = ic.nome;
+      el.addEventListener('click', (e) => { e.stopPropagation(); mostrarIcone(ic, loc); });
+      camadaIcones.appendChild(el);
+    });
+
+    // ---------- pontos soltos: mercadinhos e trechos de grama ----------
+    PONTOS_EXTRA.forEach(pt => {
+      const el = document.createElement('div');
+      el.className = 'icone-mapa icone-tipo-' + pt.tipo + ' ponto-extra';
+      el.style.left = pctX(pt.x);
+      el.style.top = pctY(pt.y);
+      el.textContent = EMOJI_ICONE[pt.tipo] || '❓';
+      el.title = pt.nome;
+      el.addEventListener('click', (e) => { e.stopPropagation(); mostrarPonto(pt); });
+      camadaIcones.appendChild(el);
+    });
+
+    function mostrarLocal(loc){
+      const painel = document.getElementById('painelDetalhe');
+      const conteudo = document.getElementById('painelConteudo');
+      conteudo.innerHTML = `
+        <p class="eyebrow">${ICONE_TIPO_LOCAL[loc.tipo] || '📍'} PARADA ${loc.numero}</p>
+        <h2 style="margin-top:0;">${loc.nome}</h2>
+        <p class="sub">${loc.desc}</p>`;
+      painel.classList.add('aberto');
+    }
+
+    function mostrarIcone(ic, loc){
+      const painel = document.getElementById('painelDetalhe');
+      const conteudo = document.getElementById('painelConteudo');
+      conteudo.innerHTML = `
+        <p class="eyebrow">${EMOJI_ICONE[ic.tipo]} ${ic.tipo.toUpperCase()} · ${loc.nome}</p>
+        <h2 style="margin-top:0;">${ic.nome}</h2>
+        <p class="sub">${ic.desc}</p>`;
+      painel.classList.add('aberto');
+    }
+
+    function mostrarPonto(pt){
+      const painel = document.getElementById('painelDetalhe');
+      const conteudo = document.getElementById('painelConteudo');
+      conteudo.innerHTML = `
+        <p class="eyebrow">${EMOJI_ICONE[pt.tipo]} ${pt.tipo.toUpperCase()}</p>
+        <h2 style="margin-top:0;">${pt.nome}</h2>
+        <p class="sub">${pt.desc}</p>`;
+      painel.classList.add('aberto');
+    }
+
+    document.getElementById('fecharPainel').addEventListener('click', () => {
+      document.getElementById('painelDetalhe').classList.remove('aberto');
+    });
+
+    const botaoTopo = document.getElementById('botaoTopo');
+    window.addEventListener('scroll', () => {
+      botaoTopo.classList.toggle('visivel', window.scrollY > 400);
+    });
+    botaoTopo.addEventListener('click', (e) => {
+      e.preventDefault();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  </script>
+</body>
+</html>

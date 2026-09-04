@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title id="tituloPagina">Pokémon — Kantodex</title>
+  <meta name="description" content="Ficha completa do Pokémon: estatísticas, fraquezas, evoluções e golpes.">
+  <link rel="stylesheet" href="index.css">
+</head>
+<body>
+
+  <header class="topo-app">
+    <div class="topo-row">
+      <div class="marca">
+        <div class="lente" title="Kantodex"></div>
+        <p class="titulo-site">KANTODEX</p>
+    </div>
+    <div class="faixa">
+      <div class="barra">
+        <nav>
+          <a href="./kantodex.html">KANTODEX</a>
+          <a href="./pokemons.html" class="ativo">POKÉMONS</a>
+          <a href="./tms.html">TM'S</a>
+          <a href="./mapa.html">MAPA</a>
+          <a href="./avalie.html">AVALIE</a>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="tela" id="conteudoFicha">
+      <p class="sub">Carregando dados do Pokémon…</p>
+    </section>
+
+    <footer>
+      <b>Pietro Santana 2026 &copy;</b> · dados de referência dos jogos clássicos de Kanto
+    </footer>
+  </main>
+
+  <a href="#" class="topo-flutuante" id="botaoTopo" aria-label="Voltar ao topo">↑</a>
+
+  <script>
+const DADOS = {
+"001":{nome:"Bulbasaur",tipos:["grama", "veneno"],desc:"Uma semente cresce em suas costas desde o nascimento.",img:"./pokemons/1.png",hp:45,atk:49,def:49,esp:65,spd:45,total:253,fracas:["fogo", "gelo", "voador", "psiquico"],resiste:["agua", "eletrico", "fada", "grama", "lutador"],imune:[],cadeia:["001", "002", "003"]},
+"002":{nome:"Ivysaur",tipos:["grama", "veneno"],desc:"O broto em suas costas cresce absorvendo energia.",img:"./pokemons/2.png",hp:60,atk:62,def:63,esp:80,spd:60,total:325,fracas:["fogo", "gelo", "voador", "psiquico"],resiste:["agua", "eletrico", "fada", "grama", "lutador"],imune:[],cadeia:["001", "002", "003"]},
+"003":{nome:"Venusaur",tipos:["grama", "veneno"],desc:"A planta floresce totalmente após absorver energia solar.",img:"./pokemons/3.png",hp:80,atk:82,def:83,esp:100,spd:80,total:425,fracas:["fogo", "gelo", "voador", "psiquico"],resiste:["agua", "eletrico", "fada", "grama", "lutador"],imune:[],cadeia:["001", "002", "003"]},
+"004":{nome:"Charmander",tipos:["fogo"],desc:"A chama em sua cauda indica sua saúde.",img:"./pokemons/4.png",hp:39,atk:52,def:43,esp:50,spd:65,total:249,fracas:["agua", "terra", "pedra"],resiste:["aco", "fada", "fogo", "gelo", "grama", "inseto"],imune:[],cadeia:["004", "005", "006"]},
+"005":{nome:"Charmeleon",tipos:["fogo"],desc:"Extremamente agressivo, cospe chamas intensas.",img:"./pokemons/5.png",hp:58,atk:64,def:58,esp:65,spd:80,total:325,fracas:["agua", "terra", "pedra"],resiste:["aco", "fada", "fogo", "gelo", "grama", "inseto"],imune:[],cadeia:["004", "005", "006"]},
+"006":{nome:"Charizard",tipos:["fogo", "voador"],desc:"Cospe fogo capaz de derreter qualquer coisa.",img:"./pokemons/6.png",hp:78,atk:84,def:78,esp:85,spd:100,total:425,fracas:["pedra", "agua", "eletrico"],resiste:["aco", "fada", "fogo", "grama", "inseto", "lutador"],imune:["terra"],cadeia:["004", "005", "006"]},
+"007":{nome:"Squirtle",tipos:["agua"],desc:"Se protege dentro de sua concha resistente.",img:"./pokemons/7.png",hp:44,atk:48,def:65,esp:50,spd:43,total:250,fracas:["eletrico", "grama"],resiste:["aco", "agua", "fogo", "gelo"],imune:[],cadeia:["007", "008", "009"]},
+"008":{nome:"Wartortle",tipos:["agua"],desc:"Sua cauda peluda simboliza longevidade.",img:"./pokemons/8.png",hp:59,atk:63,def:80,esp:65,spd:58,total:325,fracas:["eletrico", "grama"],resiste:["aco", "agua", "fogo", "gelo"],imune:[],cadeia:["007", "008", "009"]},
+"009":{nome:"Blastoise",tipos:["agua"],desc:"Possui canhões de água poderosos em sua concha.",img:"./pokemons/9.png",hp:79,atk:83,def:100,esp:85,spd:78,total:425,fracas:["eletrico", "grama"],resiste:["aco", "agua", "fogo", "gelo"],imune:[],cadeia:["007", "008", "009"]},
+"010":{nome:"Caterpie",tipos:["inseto"],desc:"Libera um cheiro ruim para afastar inimigos.",img:"./pokemons/10.png",hp:45,atk:30,def:35,esp:20,spd:45,total:175,fracas:["fogo", "voador", "pedra"],resiste:["grama", "lutador", "terra"],imune:[],cadeia:["010", "011", "012"]},
+"011":{nome:"Metapod",tipos:["inseto"],desc:"Endurece sua casca enquanto evolui.",img:"./pokemons/11.png",hp:50,atk:20,def:55,esp:25,spd:30,total:180,fracas:["fogo", "voador", "pedra"],resiste:["grama", "lutador", "terra"],imune:[],cadeia:["010", "011", "012"]},
+"012":{nome:"Butterfree",tipos:["inseto", "voador"],desc:"Suas asas liberam pó tóxico.",img:"./pokemons/12.png",hp:60,atk:45,def:50,esp:80,spd:70,total:305,fracas:["pedra", "fogo", "eletrico", "gelo", "voador"],resiste:["grama", "inseto", "lutador"],imune:["terra"],cadeia:["010", "011", "012"]},
+"013":{nome:"Weedle",tipos:["inseto", "veneno"],desc:"Possui um ferrão venenoso na cabeça.",img:"./pokemons/13.png",hp:40,atk:35,def:30,esp:20,spd:50,total:175,fracas:["fogo", "voador", "psiquico", "pedra"],resiste:["fada", "grama", "inseto", "lutador", "veneno"],imune:[],cadeia:["013", "014", "015"]},
+"014":{nome:"Kakuna",tipos:["inseto", "veneno"],desc:"Quase imóvel enquanto evolui.",img:"./pokemons/14.png",hp:45,atk:25,def:50,esp:25,spd:35,total:180,fracas:["fogo", "voador", "psiquico", "pedra"],resiste:["fada", "grama", "inseto", "lutador", "veneno"],imune:[],cadeia:["013", "014", "015"]},
+"015":{nome:"Beedrill",tipos:["inseto", "veneno"],desc:"Ataca com ferrões extremamente rápidos.",img:"./pokemons/15.png",hp:65,atk:80,def:40,esp:45,spd:75,total:305,fracas:["fogo", "voador", "psiquico", "pedra"],resiste:["fada", "grama", "inseto", "lutador", "veneno"],imune:[],cadeia:["013", "014", "015"]},
+"016":{nome:"Pidgey",tipos:["normal", "voador"],desc:"Pokémon comum em florestas.",img:"./pokemons/16.png",hp:40,atk:45,def:40,esp:35,spd:56,total:216,fracas:["eletrico", "gelo", "pedra"],resiste:["grama", "inseto"],imune:["terra"],cadeia:["016", "017", "018"]},
+"017":{nome:"Pidgeotto",tipos:["normal", "voador"],desc:"Defende território ferozmente.",img:"./pokemons/17.png",hp:63,atk:60,def:55,esp:50,spd:71,total:299,fracas:["eletrico", "gelo", "pedra"],resiste:["grama", "inseto"],imune:["terra"],cadeia:["016", "017", "018"]},
+"018":{nome:"Pidgeot",tipos:["normal", "voador"],desc:"Voa a velocidades altíssimas.",img:"./pokemons/18.png",hp:83,atk:80,def:75,esp:70,spd:91,total:399,fracas:["eletrico", "gelo", "pedra"],resiste:["grama", "inseto"],imune:["terra"],cadeia:["016", "017", "018"]},
+"019":{nome:"Rattata",tipos:["normal"],desc:"Morde qualquer coisa ao seu alcance.",img:"./pokemons/19.png",hp:30,atk:56,def:35,esp:25,spd:72,total:218,fracas:["lutador"],resiste:[],imune:[],cadeia:["019", "020"]},
+"020":{nome:"Raticate",tipos:["normal"],desc:"Dentes fortes capazes de destruir metal.",img:"./pokemons/20.png",hp:55,atk:81,def:60,esp:50,spd:97,total:343,fracas:["lutador"],resiste:[],imune:[],cadeia:["019", "020"]},
+"021":{nome:"Spearow",tipos:["normal", "voador"],desc:"Pequeno, mas muito barulhento.",img:"./pokemons/21.png",hp:40,atk:60,def:30,esp:31,spd:70,total:231,fracas:["eletrico", "gelo", "pedra"],resiste:["grama", "inseto"],imune:["terra"],cadeia:["021", "022"]},
+"022":{nome:"Fearow",tipos:["normal", "voador"],desc:"Voa por longas distâncias sem parar.",img:"./pokemons/22.png",hp:65,atk:90,def:65,esp:61,spd:100,total:381,fracas:["eletrico", "gelo", "pedra"],resiste:["grama", "inseto"],imune:["terra"],cadeia:["021", "022"]},
+"023":{nome:"Ekans",tipos:["veneno"],desc:"Se move silenciosamente pelo chão.",img:"./pokemons/23.png",hp:35,atk:60,def:44,esp:40,spd:55,total:234,fracas:["terra", "psiquico"],resiste:["fada", "grama", "inseto", "lutador", "veneno"],imune:[],cadeia:["023", "024"]},
+"024":{nome:"Arbok",tipos:["veneno"],desc:"Seu padrão assusta inimigos.",img:"./pokemons/24.png",hp:60,atk:85,def:69,esp:65,spd:80,total:359,fracas:["terra", "psiquico"],resiste:["fada", "grama", "inseto", "lutador", "veneno"],imune:[],cadeia:["023", "024"]},
+"025":{nome:"Pikachu",tipos:["eletrico"],desc:"Armazena eletricidade nas bochechas.",img:"./pokemons/25.png",hp:35,atk:55,def:30,esp:50,spd:90,total:260,fracas:["terra"],resiste:["aco", "eletrico", "voador"],imune:[],cadeia:["025", "026"]},
+"026":{nome:"Raichu",tipos:["eletrico"],desc:"Descargas elétricas muito mais fortes.",img:"./pokemons/26.png",hp:60,atk:90,def:55,esp:90,spd:100,total:395,fracas:["terra"],resiste:["aco", "eletrico", "voador"],imune:[],cadeia:["025", "026"]},
+"027":{nome:"Sandshrew",tipos:["terra"],desc:"Se enrola para se proteger.",img:"./pokemons/27.png",hp:50,atk:75,def:85,esp:30,spd:40,total:280,fracas:["agua", "grama", "gelo"],resiste:["pedra", "veneno"],imune:["eletrico"],cadeia:["027", "028"]},
+"028":{nome:"Sandslash",tipos:["terra"],desc:"Suas garras são afiadas como lâminas.",img:"./pokemons/28.png",hp:75,atk:100,def:110,esp:55,spd:65,total:405,fracas:["agua", "grama", "gelo"],resiste:["pedra", "veneno"],imune:["eletrico"],cadeia:["027", "028"]},
+"029":{nome:"Nidoran♀",tipos:["veneno"],desc:"Mais cautelosa e defensiva.",img:"./pokemons/29.png",hp:55,atk:47,def:52,esp:40,spd:41,total:235,fracas:["terra", "psiquico"],resiste:["fada", "grama", "inseto", "lutador", "veneno"],imune:[],cadeia:["029", "030", "031"]},
+"030":{nome:"Nidorina",tipos:["veneno"],desc:"Cuida bem de sua prole.",img:"./pokemons/30.png",hp:70,atk:62,def:67,esp:55,spd:56,total:310,fracas:["terra", "psiquico"],resiste:["fada", "grama", "inseto", "lutador", "veneno"],imune:[],cadeia:["029", "030", "031"]},
+"031":{nome:"Nidoqueen",tipos:["veneno", "terra"],desc:"Corpo robusto e muito forte.",img:"./pokemons/31.png",hp:90,atk:82,def:87,esp:75,spd:76,total:410,fracas:["agua", "gelo", "terra", "psiquico"],resiste:["fada", "inseto", "lutador", "pedra", "veneno"],imune:["eletrico"],cadeia:["029", "030", "031"]},
+"032":{nome:"Nidoran♂",tipos:["veneno"],desc:"Mais agressivo que a fêmea.",img:"./pokemons/32.png",hp:46,atk:57,def:40,esp:40,spd:50,total:233,fracas:["terra", "psiquico"],resiste:["fada", "grama", "inseto", "lutador", "veneno"],imune:[],cadeia:["032", "033", "034"]},
+"033":{nome:"Nidorino",tipos:["veneno"],desc:"Ataca usando seu chifre venenoso.",img:"./pokemons/33.png",hp:61,atk:72,def:57,esp:55,spd:65,total:310,fracas:["terra", "psiquico"],resiste:["fada", "grama", "inseto", "lutador", "veneno"],imune:[],cadeia:["032", "033", "034"]},
+"034":{nome:"Nidoking",tipos:["veneno", "terra"],desc:"Extremamente poderoso e violento.",img:"./pokemons/34.png",hp:81,atk:92,def:77,esp:75,spd:85,total:410,fracas:["agua", "gelo", "terra", "psiquico"],resiste:["fada", "inseto", "lutador", "pedra", "veneno"],imune:["eletrico"],cadeia:["032", "033", "034"]},
+"035":{nome:"Clefairy",tipos:["fada"],desc:"Raro e adora a lua cheia.",img:"./pokemons/35.png",hp:70,atk:45,def:48,esp:60,spd:35,total:258,fracas:["veneno", "aco"],resiste:["inseto", "lutador", "sombrio"],imune:["dragao"],cadeia:["035", "036"]},
+"036":{nome:"Clefable",tipos:["fada"],desc:"Evita contato com humanos.",img:"./pokemons/36.png",hp:95,atk:70,def:73,esp:85,spd:60,total:383,fracas:["veneno", "aco"],resiste:["inseto", "lutador", "sombrio"],imune:["dragao"],cadeia:["035", "036"]},
+"037":{nome:"Vulpix",tipos:["fogo"],desc:"Possui seis caudas.",img:"./pokemons/37.png",hp:38,atk:41,def:40,esp:65,spd:65,total:249,fracas:["agua", "terra", "pedra"],resiste:["aco", "fada", "fogo", "gelo", "grama", "inseto"],imune:[],cadeia:["037", "038"]},
+"038":{nome:"Ninetales",tipos:["fogo"],desc:"Dizem que vive mil anos.",img:"./pokemons/38.png",hp:73,atk:76,def:75,esp:100,spd:100,total:424,fracas:["agua", "terra", "pedra"],resiste:["aco", "fada", "fogo", "gelo", "grama", "inseto"],imune:[],cadeia:["037", "038"]},
+"039":{nome:"Jigglypuff",tipos:["normal", "fada"],desc:"Canta para fazer inimigos dormirem.",img:"./pokemons/39.png",hp:115,atk:45,def:20,esp:25,spd:20,total:225,fracas:["veneno", "aco"],resiste:["inseto", "sombrio"],imune:["dragao"],cadeia:["039", "040"]},
+"040":{nome:"Wigglytuff",tipos:["normal", "fada"],desc:"Corpo macio e elástico.",img:"./pokemons/40.png",hp:140,atk:70,def:45,esp:50,spd:45,total:350,fracas:["veneno", "aco"],resiste:["inseto", "sombrio"],imune:["dragao"],cadeia:["039", "040"]},
+"041":{nome:"Zubat",tipos:["veneno", "voador"],desc:"Vive em cavernas escuras.",img:"./pokemons/41.png",hp:40,atk:45,def:35,esp:40,spd:55,total:215,fracas:["eletrico", "gelo", "psiquico", "pedra"],resiste:["fada", "grama", "inseto", "lutador", "veneno"],imune:["terra"],cadeia:["041", "042"]},
+"042":{nome:"Golbat",tipos:["veneno", "voador"],desc:"Ataca sugando sangue.",img:"./pokemons/42.png",hp:75,atk:80,def:70,esp:75,spd:90,total:390,fracas:["eletrico", "gelo", "psiquico", "pedra"],resiste:["fada", "grama", "inseto", "lutador", "veneno"],imune:["terra"],cadeia:["041", "042"]},
+"043":{nome:"Oddish",tipos:["grama", "veneno"],desc:"Sai à noite para se mover.",img:"./pokemons/43.png",hp:45,atk:50,def:55,esp:75,spd:30,total:255,fracas:["fogo", "gelo", "voador", "psiquico"],resiste:["agua", "eletrico", "fada", "grama", "lutador"],imune:[],cadeia:["043", "044", "045"]},
+"044":{nome:"Gloom",tipos:["grama", "veneno"],desc:"Exala um cheiro terrível.",img:"./pokemons/44.png",hp:60,atk:65,def:70,esp:85,spd:40,total:320,fracas:["fogo", "gelo", "voador", "psiquico"],resiste:["agua", "eletrico", "fada", "grama", "lutador"],imune:[],cadeia:["043", "044", "045"]},
+"045":{nome:"Vileplume",tipos:["grama", "veneno"],desc:"Flor enorme libera pó tóxico.",img:"./pokemons/45.png",hp:75,atk:80,def:85,esp:100,spd:50,total:390,fracas:["fogo", "gelo", "voador", "psiquico"],resiste:["agua", "eletrico", "fada", "grama", "lutador"],imune:[],cadeia:["043", "044", "045"]},
+"046":{nome:"Paras",tipos:["inseto", "grama"],desc:"Cogumelos crescem em seu corpo.",img:"./pokemons/46.png",hp:35,atk:70,def:55,esp:55,spd:25,total:240,fracas:["fogo", "voador", "gelo", "veneno", "inseto", "pedra"],resiste:["agua", "eletrico", "grama", "lutador", "terra"],imune:[],cadeia:["046", "047"]},
+"047":{nome:"Parasect",tipos:["inseto", "grama"],desc:"O fungo controla o Pokémon.",img:"./pokemons/47.png",hp:60,atk:95,def:80,esp:80,spd:30,total:345,fracas:["fogo", "voador", "gelo", "veneno", "inseto", "pedra"],resiste:["agua", "eletrico", "grama", "lutador", "terra"],imune:[],cadeia:["046", "047"]},
+"048":{nome:"Venonat",tipos:["inseto", "veneno"],desc:"Olhos grandes para enxergar à noite.",img:"./pokemons/48.png",hp:60,atk:55,def:50,esp:40,spd:45,total:250,fracas:["fogo", "voador", "psiquico", "pedra"],resiste:["fada", "grama", "inseto", "lutador", "veneno"],imune:[],cadeia:["048", "049"]},
+"049":{nome:"Venomoth",tipos:["inseto", "veneno"],desc:"Suas asas liberam pó venenoso.",img:"./pokemons/49.png",hp:70,atk:65,def:60,esp:90,spd:90,total:375,fracas:["fogo", "voador", "psiquico", "pedra"],resiste:["fada", "grama", "inseto", "lutador", "veneno"],imune:[],cadeia:["048", "049"]},
+"050":{nome:"Diglett",tipos:["terra"],desc:"Vive no subsolo.",img:"./pokemons/50.png",hp:10,atk:55,def:25,esp:45,spd:95,total:230,fracas:["agua", "grama", "gelo"],resiste:["pedra", "veneno"],imune:["eletrico"],cadeia:["050", "051"]},
+"051":{nome:"Dugtrio",tipos:["terra"],desc:"Três Diglett unidos.",img:"./pokemons/51.png",hp:35,atk:80,def:50,esp:70,spd:120,total:355,fracas:["agua", "grama", "gelo"],resiste:["pedra", "veneno"],imune:["eletrico"],cadeia:["050", "051"]},
+"052":{nome:"Meowth",tipos:["normal"],desc:"Adora objetos brilhantes.",img:"./pokemons/52.png",hp:40,atk:45,def:35,esp:40,spd:90,total:250,fracas:["lutador"],resiste:[],imune:[],cadeia:["052", "053"]},
+"053":{nome:"Persian",tipos:["normal"],desc:"Elegante e perigoso.",img:"./pokemons/53.png",hp:65,atk:70,def:60,esp:65,spd:115,total:375,fracas:["lutador"],resiste:[],imune:[],cadeia:["052", "053"]},
+"054":{nome:"Psyduck",tipos:["agua"],desc:"Sofre de dores de cabeça constantes.",img:"./pokemons/54.png",hp:50,atk:52,def:48,esp:50,spd:55,total:255,fracas:["eletrico", "grama"],resiste:["aco", "agua", "fogo", "gelo"],imune:[],cadeia:["054", "055"]},
+"055":{nome:"Golduck",tipos:["agua"],desc:"Nadador extremamente rápido.",img:"./pokemons/55.png",hp:80,atk:82,def:78,esp:80,spd:85,total:405,fracas:["eletrico", "grama"],resiste:["aco", "agua", "fogo", "gelo"],imune:[],cadeia:["054", "055"]},
+"056":{nome:"Mankey",tipos:["lutador"],desc:"Extremamente agressivo e vive irritado.",img:"./pokemons/56.png",hp:40,atk:80,def:35,esp:35,spd:70,total:260,fracas:["voador", "psiquico", "fada"],resiste:["inseto", "pedra", "sombrio"],imune:[],cadeia:["056", "057"]},
+"057":{nome:"Primeape",tipos:["lutador"],desc:"Fica furioso facilmente e nunca desiste de lutar.",img:"./pokemons/57.png",hp:65,atk:105,def:60,esp:60,spd:95,total:385,fracas:["voador", "psiquico", "fada"],resiste:["inseto", "pedra", "sombrio"],imune:[],cadeia:["056", "057"]},
+"058":{nome:"Growlithe",tipos:["fogo"],desc:"Leal e protetor, muito amigável com humanos.",img:"./pokemons/58.png",hp:55,atk:70,def:45,esp:50,spd:60,total:280,fracas:["agua", "terra", "pedra"],resiste:["aco", "fada", "fogo", "gelo", "grama", "inseto"],imune:[],cadeia:["058", "059"]},
+"059":{nome:"Arcanine",tipos:["fogo"],desc:"Conhecido por sua velocidade e nobreza.",img:"./pokemons/59.png",hp:90,atk:110,def:80,esp:80,spd:95,total:455,fracas:["agua", "terra", "pedra"],resiste:["aco", "fada", "fogo", "gelo", "grama", "inseto"],imune:[],cadeia:["058", "059"]},
+"060":{nome:"Poliwag",tipos:["agua"],desc:"Seu padrão espiral indica seus órgãos internos.",img:"./pokemons/60.png",hp:40,atk:50,def:40,esp:40,spd:90,total:260,fracas:["eletrico", "grama"],resiste:["aco", "agua", "fogo", "gelo"],imune:[],cadeia:["060", "061", "062"]},
+"061":{nome:"Poliwhirl",tipos:["agua"],desc:"Usa sua pele úmida para respirar fora d’água.",img:"./pokemons/61.png",hp:65,atk:65,def:65,esp:50,spd:90,total:335,fracas:["eletrico", "grama"],resiste:["aco", "agua", "fogo", "gelo"],imune:[],cadeia:["060", "061", "062"]},
+"062":{nome:"Poliwrath",tipos:["agua", "lutador"],desc:"Corpo musculoso excelente para nadar.",img:"./pokemons/62.png",hp:90,atk:85,def:95,esp:70,spd:70,total:410,fracas:["eletrico", "grama", "voador", "psiquico", "fada"],resiste:["aco", "agua", "fogo", "gelo", "inseto", "pedra", "sombrio"],imune:[],cadeia:["060", "061", "062"]},
+"063":{nome:"Abra",tipos:["psiquico"],desc:"Dorme 18 horas por dia e usa teletransporte.",img:"./pokemons/63.png",hp:25,atk:20,def:15,esp:105,spd:90,total:255,fracas:["inseto", "fantasma", "sombrio"],resiste:["lutador", "psiquico"],imune:[],cadeia:["063", "064", "065"]},
+"064":{nome:"Kadabra",tipos:["psiquico"],desc:"Emite ondas mentais poderosas.",img:"./pokemons/64.png",hp:40,atk:35,def:30,esp:120,spd:105,total:330,fracas:["inseto", "fantasma", "sombrio"],resiste:["lutador", "psiquico"],imune:[],cadeia:["063", "064", "065"]},
+"065":{nome:"Alakazam",tipos:["psiquico"],desc:"QI extremamente alto.",img:"./pokemons/65.png",hp:55,atk:50,def:45,esp:135,spd:120,total:405,fracas:["inseto", "fantasma", "sombrio"],resiste:["lutador", "psiquico"],imune:[],cadeia:["063", "064", "065"]},
+"066":{nome:"Machop",tipos:["lutador"],desc:"Treina constantemente para ficar mais forte.",img:"./pokemons/66.png",hp:70,atk:80,def:50,esp:35,spd:35,total:270,fracas:["voador", "psiquico", "fada"],resiste:["inseto", "pedra", "sombrio"],imune:[],cadeia:["066", "067", "068"]},
+"067":{nome:"Machoke",tipos:["lutador"],desc:"Usa um cinto para conter sua força.",img:"./pokemons/67.png",hp:80,atk:100,def:70,esp:50,spd:45,total:345,fracas:["voador", "psiquico", "fada"],resiste:["inseto", "pedra", "sombrio"],imune:[],cadeia:["066", "067", "068"]},
+"068":{nome:"Machamp",tipos:["lutador"],desc:"Possui quatro braços super poderosos.",img:"./pokemons/68.png",hp:90,atk:130,def:80,esp:65,spd:55,total:420,fracas:["voador", "psiquico", "fada"],resiste:["inseto", "pedra", "sombrio"],imune:[],cadeia:["066", "067", "068"]},
+"069":{nome:"Bellsprout",tipos:["grama", "veneno"],desc:"Corpo fino e flexível.",img:"./pokemons/69.png",hp:50,atk:75,def:35,esp:70,spd:40,total:270,fracas:["fogo", "gelo", "voador", "psiquico"],resiste:["agua", "eletrico", "fada", "grama", "lutador"],imune:[],cadeia:["069", "070", "071"]},
+"070":{nome:"Weepinbell",tipos:["grama", "veneno"],desc:"Produz um líquido dissolvente.",img:"./pokemons/70.png",hp:65,atk:90,def:50,esp:85,spd:55,total:345,fracas:["fogo", "gelo", "voador", "psiquico"],resiste:["agua", "eletrico", "fada", "grama", "lutador"],imune:[],cadeia:["069", "070", "071"]},
+"071":{nome:"Victreebel",tipos:["grama", "veneno"],desc:"Captura presas com sua boca grande.",img:"./pokemons/71.png",hp:80,atk:105,def:65,esp:100,spd:70,total:420,fracas:["fogo", "gelo", "voador", "psiquico"],resiste:["agua", "eletrico", "fada", "grama", "lutador"],imune:[],cadeia:["069", "070", "071"]},
+"072":{nome:"Tentacool",tipos:["agua", "veneno"],desc:"Flutua nos mares usando seus tentáculos.",img:"./pokemons/72.png",hp:40,atk:40,def:35,esp:100,spd:70,total:285,fracas:["eletrico", "terra", "psiquico"],resiste:["aco", "agua", "fada", "fogo", "gelo", "inseto", "lutador", "veneno"],imune:[],cadeia:["072", "073"]},
+"073":{nome:"Tentacruel",tipos:["agua", "veneno"],desc:"Possui tentáculos altamente venenosos.",img:"./pokemons/73.png",hp:80,atk:70,def:65,esp:120,spd:100,total:435,fracas:["eletrico", "terra", "psiquico"],resiste:["aco", "agua", "fada", "fogo", "gelo", "inseto", "lutador", "veneno"],imune:[],cadeia:["072", "073"]},
+"074":{nome:"Geodude",tipos:["pedra", "terra"],desc:"Corpo duro como rocha.",img:"./pokemons/74.png",hp:40,atk:80,def:100,esp:30,spd:20,total:270,fracas:["agua", "grama", "gelo", "lutador", "terra", "aco"],resiste:["fogo", "normal", "pedra", "veneno", "voador"],imune:["eletrico"],cadeia:["074", "075", "076"]},
+"075":{nome:"Graveler",tipos:["pedra", "terra"],desc:"Rola montanhas abaixo para se mover.",img:"./pokemons/75.png",hp:55,atk:95,def:115,esp:45,spd:35,total:345,fracas:["agua", "grama", "gelo", "lutador", "terra", "aco"],resiste:["fogo", "normal", "pedra", "veneno", "voador"],imune:["eletrico"],cadeia:["074", "075", "076"]},
+"076":{nome:"Golem",tipos:["pedra", "terra"],desc:"Explode ao se lançar contra inimigos.",img:"./pokemons/76.png",hp:80,atk:110,def:130,esp:55,spd:45,total:420,fracas:["agua", "grama", "gelo", "lutador", "terra", "aco"],resiste:["fogo", "normal", "pedra", "veneno", "voador"],imune:["eletrico"],cadeia:["074", "075", "076"]},
+"077":{nome:"Ponyta",tipos:["fogo"],desc:"Corre rapidamente com crina em chamas.",img:"./pokemons/77.png",hp:50,atk:85,def:55,esp:65,spd:90,total:345,fracas:["agua", "terra", "pedra"],resiste:["aco", "fada", "fogo", "gelo", "grama", "inseto"],imune:[],cadeia:["077", "078"]},
+"078":{nome:"Rapidash",tipos:["fogo"],desc:"Alcança velocidades incríveis.",img:"./pokemons/78.png",hp:65,atk:100,def:70,esp:80,spd:105,total:420,fracas:["agua", "terra", "pedra"],resiste:["aco", "fada", "fogo", "gelo", "grama", "inseto"],imune:[],cadeia:["077", "078"]},
+"079":{nome:"Slowpoke",tipos:["agua", "psiquico"],desc:"Lento e desatento.",img:"./pokemons/79.png",hp:90,atk:65,def:65,esp:40,spd:15,total:275,fracas:["eletrico", "grama", "inseto", "fantasma", "sombrio"],resiste:["aco", "agua", "fogo", "gelo", "lutador", "psiquico"],imune:[],cadeia:["079", "080"]},
+"080":{nome:"Slowbro",tipos:["agua", "psiquico"],desc:"Um Shellder mordeu sua cauda.",img:"./pokemons/80.png",hp:95,atk:75,def:110,esp:80,spd:30,total:390,fracas:["eletrico", "grama", "inseto", "fantasma", "sombrio"],resiste:["aco", "agua", "fogo", "gelo", "lutador", "psiquico"],imune:[],cadeia:["079", "080"]},
+"081":{nome:"Magnemite",tipos:["eletrico", "aco"],desc:"Usa magnetismo para flutuar.",img:"./pokemons/81.png",hp:25,atk:35,def:70,esp:95,spd:45,total:270,fracas:["terra", "fogo", "lutador"],resiste:["aco", "dragao", "eletrico", "fada", "gelo", "grama", "inseto", "normal", "pedra", "psiquico", "voador"],imune:["veneno"],cadeia:["081", "082"]},
+"082":{nome:"Magneton",tipos:["eletrico", "aco"],desc:"Três Magnemite unidos.",img:"./pokemons/82.png",hp:50,atk:60,def:95,esp:120,spd:70,total:395,fracas:["terra", "fogo", "lutador"],resiste:["aco", "dragao", "eletrico", "fada", "gelo", "grama", "inseto", "normal", "pedra", "psiquico", "voador"],imune:["veneno"],cadeia:["081", "082"]},
+"083":{nome:"Farfetch’d",tipos:["normal", "voador"],desc:"Sempre carrega um alho-poró.",img:"./pokemons/83.png",hp:52,atk:65,def:55,esp:58,spd:60,total:290,fracas:["eletrico", "gelo", "pedra"],resiste:["grama", "inseto"],imune:["terra"],cadeia:["083"]},
+"084":{nome:"Doduo",tipos:["normal", "voador"],desc:"Possui duas cabeças independentes.",img:"./pokemons/84.png",hp:35,atk:85,def:45,esp:35,spd:75,total:275,fracas:["eletrico", "gelo", "pedra"],resiste:["grama", "inseto"],imune:["terra"],cadeia:["084", "085"]},
+"085":{nome:"Dodrio",tipos:["normal", "voador"],desc:"Corre extremamente rápido com três cabeças.",img:"./pokemons/85.png",hp:60,atk:110,def:70,esp:60,spd:100,total:400,fracas:["eletrico", "gelo", "pedra"],resiste:["grama", "inseto"],imune:["terra"],cadeia:["084", "085"]},
+"086":{nome:"Seel",tipos:["agua"],desc:"Adora águas geladas.",img:"./pokemons/86.png",hp:65,atk:45,def:55,esp:70,spd:45,total:280,fracas:["eletrico", "grama"],resiste:["aco", "agua", "fogo", "gelo"],imune:[],cadeia:["086", "087"]},
+"087":{nome:"Dewgong",tipos:["agua", "gelo"],desc:"Corpo elegante adaptado ao frio.",img:"./pokemons/87.png",hp:90,atk:70,def:80,esp:95,spd:70,total:405,fracas:["eletrico", "grama", "lutador", "pedra"],resiste:["agua", "gelo"],imune:[],cadeia:["086", "087"]},
+"088":{nome:"Grimer",tipos:["veneno"],desc:"Feito de lodo tóxico.",img:"./pokemons/88.png",hp:80,atk:80,def:50,esp:40,spd:25,total:275,fracas:["terra", "psiquico"],resiste:["fada", "grama", "inseto", "lutador", "veneno"],imune:[],cadeia:["088", "089"]},
+"089":{nome:"Muk",tipos:["veneno"],desc:"Extremamente sujo e venenoso.",img:"./pokemons/89.png",hp:105,atk:105,def:75,esp:65,spd:50,total:400,fracas:["terra", "psiquico"],resiste:["fada", "grama", "inseto", "lutador", "veneno"],imune:[],cadeia:["088", "089"]},
+"090":{nome:"Shellder",tipos:["agua"],desc:"Concha dura que protege seu corpo.",img:"./pokemons/90.png",hp:30,atk:65,def:100,esp:45,spd:40,total:280,fracas:["eletrico", "grama"],resiste:["aco", "agua", "fogo", "gelo"],imune:[],cadeia:["090", "091"]},
+"091":{nome:"Cloyster",tipos:["agua", "gelo"],desc:"Possui uma concha extremamente resistente.",img:"./pokemons/91.png",hp:50,atk:95,def:180,esp:85,spd:70,total:480,fracas:["eletrico", "grama", "lutador", "pedra"],resiste:["agua", "gelo"],imune:[],cadeia:["090", "091"]},
+"092":{nome:"Gastly",tipos:["fantasma", "veneno"],desc:"Forma gasosa assustadora.",img:"./pokemons/92.png",hp:30,atk:35,def:30,esp:100,spd:80,total:275,fracas:["terra", "psiquico", "fantasma", "sombrio"],resiste:["fada", "grama", "inseto", "veneno"],imune:["lutador", "normal"],cadeia:["092", "093", "094"]},
+"093":{nome:"Haunter",tipos:["fantasma", "veneno"],desc:"Gosta de assustar pessoas.",img:"./pokemons/93.png",hp:45,atk:50,def:45,esp:115,spd:95,total:350,fracas:["terra", "psiquico", "fantasma", "sombrio"],resiste:["fada", "grama", "inseto", "veneno"],imune:["lutador", "normal"],cadeia:["092", "093", "094"]},
+"094":{nome:"Gengar",tipos:["fantasma", "veneno"],desc:"Se esconde nas sombras.",img:"./pokemons/94.png",hp:60,atk:65,def:60,esp:130,spd:110,total:425,fracas:["terra", "psiquico", "fantasma", "sombrio"],resiste:["fada", "grama", "inseto", "veneno"],imune:["lutador", "normal"],cadeia:["092", "093", "094"]},
+"095":{nome:"Onix",tipos:["pedra", "terra"],desc:"Corpo longo feito de rochas.",img:"./pokemons/95.png",hp:35,atk:45,def:160,esp:30,spd:70,total:340,fracas:["agua", "grama", "gelo", "lutador", "terra", "aco"],resiste:["fogo", "normal", "pedra", "veneno", "voador"],imune:["eletrico"],cadeia:["095"]},
+"096":{nome:"Drowzee",tipos:["psiquico"],desc:"Se alimenta de sonhos.",img:"./pokemons/96.png",hp:60,atk:48,def:45,esp:90,spd:42,total:285,fracas:["inseto", "fantasma", "sombrio"],resiste:["lutador", "psiquico"],imune:[],cadeia:["096", "097"]},
+"097":{nome:"Hypno",tipos:["psiquico"],desc:"Usa hipnose para controlar inimigos.",img:"./pokemons/97.png",hp:85,atk:73,def:70,esp:115,spd:67,total:410,fracas:["inseto", "fantasma", "sombrio"],resiste:["lutador", "psiquico"],imune:[],cadeia:["096", "097"]},
+"098":{nome:"Krabby",tipos:["agua"],desc:"Possui pinças poderosas.",img:"./pokemons/98.png",hp:30,atk:105,def:90,esp:25,spd:50,total:300,fracas:["eletrico", "grama"],resiste:["aco", "agua", "fogo", "gelo"],imune:[],cadeia:["098", "099"]},
+"099":{nome:"Kingler",tipos:["agua"],desc:"Uma pinça é maior e mais forte.",img:"./pokemons/99.png",hp:55,atk:130,def:115,esp:50,spd:75,total:425,fracas:["eletrico", "grama"],resiste:["aco", "agua", "fogo", "gelo"],imune:[],cadeia:["098", "099"]},
+"100":{nome:"Voltorb",tipos:["eletrico"],desc:"Parece uma Pokébola.",img:"./pokemons/100.png",hp:40,atk:30,def:50,esp:55,spd:100,total:275,fracas:["terra"],resiste:["aco", "eletrico", "voador"],imune:[],cadeia:["100", "101"]},
+"101":{nome:"Electrode",tipos:["eletrico"],desc:"Explode facilmente.",img:"./pokemons/101.png",hp:60,atk:50,def:70,esp:80,spd:140,total:400,fracas:["terra"],resiste:["aco", "eletrico", "voador"],imune:[],cadeia:["100", "101"]},
+"102":{nome:"Exeggcute",tipos:["grama", "psiquico"],desc:"Grupo de ovos com consciência.",img:"./pokemons/102.png",hp:60,atk:40,def:80,esp:60,spd:40,total:280,fracas:["inseto", "fogo", "gelo", "veneno", "voador", "fantasma", "sombrio"],resiste:["agua", "eletrico", "grama", "lutador", "psiquico", "terra"],imune:[],cadeia:["102", "103"]},
+"103":{nome:"Exeggutor",tipos:["grama", "psiquico"],desc:"Cada cabeça tem personalidade própria.",img:"./pokemons/103.png",hp:95,atk:95,def:85,esp:125,spd:55,total:455,fracas:["inseto", "fogo", "gelo", "veneno", "voador", "fantasma", "sombrio"],resiste:["agua", "eletrico", "grama", "lutador", "psiquico", "terra"],imune:[],cadeia:["102", "103"]},
+"104":{nome:"Cubone",tipos:["terra"],desc:"Usa o crânio de sua mãe.",img:"./pokemons/104.png",hp:50,atk:50,def:95,esp:40,spd:35,total:270,fracas:["agua", "grama", "gelo"],resiste:["pedra", "veneno"],imune:["eletrico"],cadeia:["104", "105"]},
+"105":{nome:"Marowak",tipos:["terra"],desc:"Luta com um osso como arma.",img:"./pokemons/105.png",hp:60,atk:80,def:110,esp:50,spd:45,total:345,fracas:["agua", "grama", "gelo"],resiste:["pedra", "veneno"],imune:["eletrico"],cadeia:["104", "105"]},
+"106":{nome:"Hitmonlee",tipos:["lutador"],desc:"Especialista em chutes.",img:"./pokemons/106.png",hp:50,atk:120,def:53,esp:35,spd:87,total:345,fracas:["voador", "psiquico", "fada"],resiste:["inseto", "pedra", "sombrio"],imune:[],cadeia:["106"]},
+"107":{nome:"Hitmonchan",tipos:["lutador"],desc:"Especialista em socos.",img:"./pokemons/107.png",hp:50,atk:105,def:79,esp:35,spd:76,total:345,fracas:["voador", "psiquico", "fada"],resiste:["inseto", "pedra", "sombrio"],imune:[],cadeia:["107"]},
+"108":{nome:"Lickitung",tipos:["normal"],desc:"Língua extremamente longa.",img:"./pokemons/108.png",hp:90,atk:55,def:75,esp:60,spd:30,total:310,fracas:["lutador"],resiste:[],imune:[],cadeia:["108"]},
+"109":{nome:"Koffing",tipos:["veneno"],desc:"Flutua liberando gases tóxicos.",img:"./pokemons/109.png",hp:40,atk:65,def:95,esp:60,spd:35,total:295,fracas:["terra", "psiquico"],resiste:["fada", "grama", "inseto", "lutador", "veneno"],imune:[],cadeia:["109", "110"]},
+"110":{nome:"Weezing",tipos:["veneno"],desc:"Dois corpos unidos cheios de gás.",img:"./pokemons/110.png",hp:65,atk:90,def:120,esp:85,spd:60,total:420,fracas:["terra", "psiquico"],resiste:["fada", "grama", "inseto", "lutador", "veneno"],imune:[],cadeia:["109", "110"]},
+"111":{nome:"Rhyhorn",tipos:["terra", "pedra"],desc:"Corre em linha reta destruindo tudo.",img:"./pokemons/111.png",hp:80,atk:85,def:95,esp:30,spd:25,total:315,fracas:["agua", "grama", "gelo", "lutador", "terra", "aco"],resiste:["fogo", "normal", "pedra", "veneno", "voador"],imune:["eletrico"],cadeia:["111", "112"]},
+"112":{nome:"Rhydon",tipos:["terra", "pedra"],desc:"Mais inteligente e forte.",img:"./pokemons/112.png",hp:105,atk:130,def:120,esp:45,spd:40,total:440,fracas:["agua", "grama", "gelo", "lutador", "terra", "aco"],resiste:["fogo", "normal", "pedra", "veneno", "voador"],imune:["eletrico"],cadeia:["111", "112"]},
+"113":{nome:"Chansey",tipos:["normal"],desc:"Carrega um ovo nutritivo.",img:"./pokemons/113.png",hp:250,atk:5,def:5,esp:105,spd:50,total:415,fracas:["lutador"],resiste:[],imune:[],cadeia:["113"]},
+"114":{nome:"Tangela",tipos:["grama"],desc:"Corpo coberto por vinhas.",img:"./pokemons/114.png",hp:65,atk:55,def:115,esp:100,spd:60,total:395,fracas:["fogo", "gelo", "veneno", "voador", "inseto"],resiste:["agua", "eletrico", "grama", "terra"],imune:[],cadeia:["114"]},
+"115":{nome:"Kangaskhan",tipos:["normal"],desc:"Carrega seu filhote na bolsa.",img:"./pokemons/115.png",hp:105,atk:95,def:80,esp:40,spd:90,total:410,fracas:["lutador"],resiste:[],imune:[],cadeia:["115"]},
+"116":{nome:"Horsea",tipos:["agua"],desc:"Dispara tinta para se defender.",img:"./pokemons/116.png",hp:30,atk:40,def:70,esp:70,spd:60,total:270,fracas:["eletrico", "grama"],resiste:["aco", "agua", "fogo", "gelo"],imune:[],cadeia:["116", "117"]},
+"117":{nome:"Seadra",tipos:["agua"],desc:"Possui espinhos venenosos.",img:"./pokemons/117.png",hp:55,atk:65,def:95,esp:95,spd:85,total:395,fracas:["eletrico", "grama"],resiste:["aco", "agua", "fogo", "gelo"],imune:[],cadeia:["116", "117"]},
+"118":{nome:"Goldeen",tipos:["agua"],desc:"Nada graciosamente.",img:"./pokemons/118.png",hp:45,atk:67,def:60,esp:50,spd:63,total:285,fracas:["eletrico", "grama"],resiste:["aco", "agua", "fogo", "gelo"],imune:[],cadeia:["118", "119"]},
+"119":{nome:"Seaking",tipos:["agua"],desc:"Forte durante época de reprodução.",img:"./pokemons/119.png",hp:80,atk:92,def:65,esp:80,spd:68,total:385,fracas:["eletrico", "grama"],resiste:["aco", "agua", "fogo", "gelo"],imune:[],cadeia:["118", "119"]},
+"120":{nome:"Staryu",tipos:["agua"],desc:"Regenera partes do corpo.",img:"./pokemons/120.png",hp:30,atk:45,def:55,esp:70,spd:85,total:285,fracas:["eletrico", "grama"],resiste:["aco", "agua", "fogo", "gelo"],imune:[],cadeia:["120", "121"]},
+"121":{nome:"Starmie",tipos:["agua", "psiquico"],desc:"Núcleo central misterioso.",img:"./pokemons/121.png",hp:60,atk:75,def:85,esp:100,spd:115,total:435,fracas:["eletrico", "grama", "inseto", "fantasma", "sombrio"],resiste:["aco", "agua", "fogo", "gelo", "lutador", "psiquico"],imune:[],cadeia:["120", "121"]},
+"122":{nome:"Mr. Mime",tipos:["psiquico", "fada"],desc:"Cria barreiras invisíveis.",img:"./pokemons/122.png",hp:40,atk:45,def:65,esp:100,spd:90,total:340,fracas:["veneno", "fantasma", "aco"],resiste:["lutador", "psiquico"],imune:["dragao"],cadeia:["122"]},
+"123":{nome:"Scyther",tipos:["inseto", "voador"],desc:"Movimentos extremamente rápidos.",img:"./pokemons/123.png",hp:70,atk:110,def:80,esp:55,spd:105,total:420,fracas:["pedra", "fogo", "eletrico", "gelo", "voador"],resiste:["grama", "inseto", "lutador"],imune:["terra"],cadeia:["123"]},
+"124":{nome:"Jynx",tipos:["gelo", "psiquico"],desc:"Se comunica por dança.",img:"./pokemons/124.png",hp:65,atk:50,def:35,esp:95,spd:95,total:340,fracas:["fogo", "inseto", "pedra", "fantasma", "sombrio", "aco"],resiste:["gelo", "psiquico"],imune:[],cadeia:["124"]},
+"125":{nome:"Electabuzz",tipos:["eletrico"],desc:"Corpo cheio de energia elétrica.",img:"./pokemons/125.png",hp:65,atk:83,def:57,esp:85,spd:105,total:395,fracas:["terra"],resiste:["aco", "eletrico", "voador"],imune:[],cadeia:["125"]},
+"126":{nome:"Magmar",tipos:["fogo"],desc:"Vive em vulcões.",img:"./pokemons/126.png",hp:65,atk:95,def:57,esp:85,spd:93,total:395,fracas:["agua", "terra", "pedra"],resiste:["aco", "fada", "fogo", "gelo", "grama", "inseto"],imune:[],cadeia:["126"]},
+"127":{nome:"Pinsir",tipos:["inseto"],desc:"Usa suas pinças para esmagar inimigos.",img:"./pokemons/127.png",hp:65,atk:125,def:100,esp:55,spd:85,total:430,fracas:["fogo", "voador", "pedra"],resiste:["grama", "lutador", "terra"],imune:[],cadeia:["127"]},
+"128":{nome:"Tauros",tipos:["normal"],desc:"Muito agressivo.",img:"./pokemons/128.png",hp:75,atk:100,def:95,esp:70,spd:110,total:450,fracas:["lutador"],resiste:[],imune:[],cadeia:["128"]},
+"129":{nome:"Magikarp",tipos:["agua"],desc:"Extremamente fraco, mas resistente.",img:"./pokemons/129.png",hp:20,atk:10,def:55,esp:20,spd:80,total:185,fracas:["eletrico", "grama"],resiste:["aco", "agua", "fogo", "gelo"],imune:[],cadeia:["129"]},
+"130":{nome:"Gyarados",tipos:["agua", "voador"],desc:"Violento e destrutivo.",img:"./pokemons/130.png",hp:95,atk:125,def:79,esp:100,spd:81,total:480,fracas:["eletrico", "pedra"],resiste:["aco", "agua", "fogo", "inseto", "lutador"],imune:["terra"],cadeia:["130"]},
+"131":{nome:"Lapras",tipos:["agua", "gelo"],desc:"Transporta pessoas pelo mar.",img:"./pokemons/131.png",hp:130,atk:85,def:80,esp:95,spd:60,total:450,fracas:["eletrico", "grama", "lutador", "pedra"],resiste:["agua", "gelo"],imune:[],cadeia:["131"]},
+"132":{nome:"Ditto",tipos:["normal"],desc:"Pode se transformar em qualquer coisa.",img:"./pokemons/132.png",hp:48,atk:48,def:48,esp:48,spd:48,total:240,fracas:["lutador"],resiste:[],imune:[],cadeia:["132"]},
+"133":{nome:"Eevee",tipos:["normal"],desc:"Possui DNA instável.",img:"./pokemons/133.png",hp:55,atk:55,def:50,esp:65,spd:55,total:280,fracas:["lutador"],resiste:[],imune:[],cadeia:["133", "134"]},
+"134":{nome:"Vaporeon",tipos:["agua"],desc:"Adapta-se à vida aquática.",img:"./pokemons/134.png",hp:130,atk:65,def:60,esp:110,spd:65,total:430,fracas:["eletrico", "grama"],resiste:["aco", "agua", "fogo", "gelo"],imune:[],cadeia:["133", "134"]},
+"135":{nome:"Jolteon",tipos:["eletrico"],desc:"Carrega eletricidade estática.",img:"./pokemons/135.png",hp:65,atk:65,def:60,esp:110,spd:130,total:430,fracas:["terra"],resiste:["aco", "eletrico", "voador"],imune:[],cadeia:["133", "135"]},
+"136":{nome:"Flareon",tipos:["fogo"],desc:"Armazena calor intenso.",img:"./pokemons/136.png",hp:65,atk:130,def:60,esp:110,spd:65,total:430,fracas:["agua", "terra", "pedra"],resiste:["aco", "fada", "fogo", "gelo", "grama", "inseto"],imune:[],cadeia:["133", "136"]},
+"137":{nome:"Porygon",tipos:["normal"],desc:"Criado por programação.",img:"./pokemons/137.png",hp:65,atk:60,def:70,esp:75,spd:40,total:310,fracas:["lutador"],resiste:[],imune:[],cadeia:["137"]},
+"138":{nome:"Omanyte",tipos:["pedra", "agua"],desc:"Revivido de fósseis.",img:"./pokemons/138.png",hp:35,atk:40,def:100,esp:90,spd:35,total:300,fracas:["grama", "eletrico", "lutador", "terra"],resiste:["fogo", "gelo", "normal", "veneno", "voador"],imune:[],cadeia:["138", "139"]},
+"139":{nome:"Omastar",tipos:["pedra", "agua"],desc:"Possui tentáculos poderosos.",img:"./pokemons/139.png",hp:70,atk:60,def:125,esp:115,spd:55,total:425,fracas:["grama", "eletrico", "lutador", "terra"],resiste:["fogo", "gelo", "normal", "veneno", "voador"],imune:[],cadeia:["138", "139"]},
+"140":{nome:"Kabuto",tipos:["pedra", "agua"],desc:"Pokémon pré-histórico.",img:"./pokemons/140.png",hp:30,atk:80,def:90,esp:45,spd:55,total:300,fracas:["grama", "eletrico", "lutador", "terra"],resiste:["fogo", "gelo", "normal", "veneno", "voador"],imune:[],cadeia:["140", "141"]},
+"141":{nome:"Kabutops",tipos:["pedra", "agua"],desc:"Predador veloz.",img:"./pokemons/141.png",hp:60,atk:115,def:105,esp:70,spd:80,total:430,fracas:["grama", "eletrico", "lutador", "terra"],resiste:["fogo", "gelo", "normal", "veneno", "voador"],imune:[],cadeia:["140", "141"]},
+"142":{nome:"Aerodactyl",tipos:["pedra", "voador"],desc:"Voava nos céus antigos.",img:"./pokemons/142.png",hp:80,atk:105,def:65,esp:60,spd:130,total:440,fracas:["agua", "eletrico", "gelo", "pedra", "aco"],resiste:["fogo", "inseto", "normal", "veneno", "voador"],imune:["terra"],cadeia:["142"]},
+"143":{nome:"Snorlax",tipos:["normal"],desc:"Dorme e come o tempo todo.",img:"./pokemons/143.png",hp:160,atk:110,def:65,esp:65,spd:30,total:430,fracas:["lutador"],resiste:[],imune:[],cadeia:["143"]},
+"144":{nome:"Articuno",tipos:["gelo", "voador"],desc:"Ave lendária do gelo.",img:"./pokemons/144.png",hp:90,atk:85,def:100,esp:125,spd:85,total:485,fracas:["pedra", "fogo", "eletrico", "aco"],resiste:["grama", "inseto"],imune:["terra"],cadeia:["144"]},
+"145":{nome:"Zapdos",tipos:["eletrico", "voador"],desc:"Ave lendária do trovão.",img:"./pokemons/145.png",hp:90,atk:90,def:85,esp:125,spd:100,total:490,fracas:["gelo", "pedra"],resiste:["aco", "grama", "inseto", "lutador", "voador"],imune:["terra"],cadeia:["145"]},
+"146":{nome:"Moltres",tipos:["fogo", "voador"],desc:"Ave lendária do fogo.",img:"./pokemons/146.png",hp:90,atk:100,def:90,esp:125,spd:90,total:495,fracas:["pedra", "agua", "eletrico"],resiste:["aco", "fada", "fogo", "grama", "inseto", "lutador"],imune:["terra"],cadeia:["146"]},
+"147":{nome:"Dratini",tipos:["dragao"],desc:"Pokémon raro e misterioso.",img:"./pokemons/147.png",hp:41,atk:64,def:45,esp:50,spd:50,total:250,fracas:["gelo", "dragao", "fada"],resiste:["agua", "eletrico", "fogo", "grama"],imune:[],cadeia:["147", "148", "149"]},
+"148":{nome:"Dragonair",tipos:["dragao"],desc:"Controla o clima.",img:"./pokemons/148.png",hp:61,atk:84,def:65,esp:70,spd:70,total:350,fracas:["gelo", "dragao", "fada"],resiste:["agua", "eletrico", "fogo", "grama"],imune:[],cadeia:["147", "148", "149"]},
+"149":{nome:"Dragonite",tipos:["dragao", "voador"],desc:"Extremamente poderoso e gentil.",img:"./pokemons/149.png",hp:91,atk:134,def:95,esp:100,spd:80,total:500,fracas:["gelo", "pedra", "dragao", "fada"],resiste:["agua", "fogo", "grama", "inseto", "lutador"],imune:["terra"],cadeia:["147", "148", "149"]},
+"150":{nome:"Mewtwo",tipos:["psiquico"],desc:"Pokémon criado por engenharia genética.",img:"./pokemons/150.png",hp:106,atk:110,def:90,esp:154,spd:130,total:590,fracas:["inseto", "fantasma", "sombrio"],resiste:["lutador", "psiquico"],imune:[],cadeia:["150"]},
+"151":{nome:"Mew",tipos:["psiquico"],desc:"Contém o DNA de todos os Pokémon.",img:"./pokemons/151.png",hp:100,atk:100,def:100,esp:100,spd:100,total:500,fracas:["inseto", "fantasma", "sombrio"],resiste:["lutador", "psiquico"],imune:[],cadeia:["151"]}
+};
+const TMS = [
+{tm:"TM01",nome:"Focus Punch",tipo:"lutador"},
+{tm:"TM02",nome:"Dragon Claw",tipo:"dragao"},
+{tm:"TM03",nome:"Water Pulse",tipo:"agua"},
+{tm:"TM04",nome:"Calm Mind",tipo:"psiquico"},
+{tm:"TM05",nome:"Roar",tipo:"normal"},
+{tm:"TM06",nome:"Toxic",tipo:"veneno"},
+{tm:"TM07",nome:"Hail",tipo:"gelo"},
+{tm:"TM08",nome:"Bulk Up",tipo:"lutador"},
+{tm:"TM09",nome:"Bullet Seed",tipo:"grama"},
+{tm:"TM10",nome:"Hidden Power",tipo:"normal"},
+{tm:"TM11",nome:"Sunny Day",tipo:"fogo"},
+{tm:"TM12",nome:"Taunt",tipo:"sombrio"},
+{tm:"TM13",nome:"Ice Beam",tipo:"gelo"},
+{tm:"TM14",nome:"Blizzard",tipo:"gelo"},
+{tm:"TM15",nome:"Hyper Beam",tipo:"normal"},
+{tm:"TM16",nome:"Light Screen",tipo:"psiquico"},
+{tm:"TM17",nome:"Protect",tipo:"normal"},
+{tm:"TM18",nome:"Rain Dance",tipo:"agua"},
+{tm:"TM19",nome:"Giga Drain",tipo:"grama"},
+{tm:"TM20",nome:"Safeguard",tipo:"normal"},
+{tm:"TM21",nome:"Frustration",tipo:"normal"},
+{tm:"TM22",nome:"SolarBeam",tipo:"grama"},
+{tm:"TM23",nome:"Iron Tail",tipo:"aco"},
+{tm:"TM24",nome:"Thunderbolt",tipo:"eletrico"},
+{tm:"TM25",nome:"Thunder",tipo:"eletrico"},
+{tm:"TM26",nome:"Earthquake",tipo:"terra"},
+{tm:"TM27",nome:"Return",tipo:"normal"},
+{tm:"TM28",nome:"Dig",tipo:"terra"},
+{tm:"TM29",nome:"Psychic",tipo:"psiquico"},
+{tm:"TM30",nome:"Shadow Ball",tipo:"fantasma"},
+{tm:"TM31",nome:"Brick Break",tipo:"lutador"},
+{tm:"TM32",nome:"Double Team",tipo:"normal"},
+{tm:"TM33",nome:"Reflect",tipo:"psiquico"},
+{tm:"TM34",nome:"Shock Wave",tipo:"eletrico"},
+{tm:"TM35",nome:"Flamethrower",tipo:"fogo"},
+{tm:"TM36",nome:"Sludge Bomb",tipo:"veneno"},
+{tm:"TM37",nome:"Sandstorm",tipo:"pedra"},
+{tm:"TM38",nome:"Fire Blast",tipo:"fogo"},
+{tm:"TM39",nome:"Rock Tomb",tipo:"pedra"},
+{tm:"TM40",nome:"Aerial Ace",tipo:"voador"},
+{tm:"TM41",nome:"Torment",tipo:"sombrio"},
+{tm:"TM42",nome:"Facade",tipo:"normal"},
+{tm:"TM43",nome:"Secret Power",tipo:"normal"},
+{tm:"TM44",nome:"Rest",tipo:"psiquico"},
+{tm:"TM45",nome:"Attract",tipo:"normal"},
+{tm:"TM46",nome:"Thief",tipo:"sombrio"},
+{tm:"TM47",nome:"Steel Wing",tipo:"aco"},
+{tm:"TM48",nome:"Skill Swap",tipo:"psiquico"},
+{tm:"TM49",nome:"Snatch",tipo:"sombrio"},
+{tm:"TM50",nome:"Overheat",tipo:"fogo"}
+];
+
+const GOLPES_NIVEL = {
+"001":[{lvl:1,nome:"Tackle",tipo:"normal"},{lvl:4,nome:"Growl",tipo:"normal"},{lvl:7,nome:"Leech Seed",tipo:"grama"},{lvl:10,nome:"Vine Whip",tipo:"grama"},{lvl:15,nome:"Poison Powder",tipo:"veneno"},{lvl:15,nome:"Sleep Powder",tipo:"grama"},{lvl:20,nome:"Razor Leaf",tipo:"grama"},{lvl:25,nome:"Sweet Scent",tipo:"normal"},{lvl:32,nome:"Growth",tipo:"normal"},{lvl:39,nome:"Synthesis",tipo:"grama"},{lvl:46,nome:"Solar Beam",tipo:"grama"}],
+"002":[{lvl:1,nome:"Tackle",tipo:"normal"},{lvl:1,nome:"Growl",tipo:"normal"},{lvl:1,nome:"Leech Seed",tipo:"grama"},{lvl:4,nome:"Growl",tipo:"normal"},{lvl:7,nome:"Leech Seed",tipo:"grama"},{lvl:10,nome:"Vine Whip",tipo:"grama"},{lvl:15,nome:"Poison Powder",tipo:"veneno"},{lvl:15,nome:"Sleep Powder",tipo:"grama"},{lvl:22,nome:"Razor Leaf",tipo:"grama"},{lvl:29,nome:"Sweet Scent",tipo:"normal"},{lvl:38,nome:"Growth",tipo:"normal"},{lvl:47,nome:"Synthesis",tipo:"grama"},{lvl:56,nome:"Solar Beam",tipo:"grama"}],
+"003":[{lvl:1,nome:"Vine Whip",tipo:"grama"},{lvl:1,nome:"Tackle",tipo:"normal"},{lvl:1,nome:"Growl",tipo:"normal"},{lvl:1,nome:"Leech Seed",tipo:"grama"},{lvl:4,nome:"Growl",tipo:"normal"},{lvl:7,nome:"Leech Seed",tipo:"grama"},{lvl:10,nome:"Vine Whip",tipo:"grama"},{lvl:15,nome:"Poison Powder",tipo:"veneno"},{lvl:15,nome:"Sleep Powder",tipo:"grama"},{lvl:22,nome:"Razor Leaf",tipo:"grama"},{lvl:29,nome:"Sweet Scent",tipo:"normal"},{lvl:41,nome:"Growth",tipo:"normal"},{lvl:53,nome:"Synthesis",tipo:"grama"},{lvl:65,nome:"Solar Beam",tipo:"grama"}],
+"004":[{lvl:1,nome:"Scratch",tipo:"normal"},{lvl:1,nome:"Growl",tipo:"normal"},{lvl:7,nome:"Ember",tipo:"fogo"},{lvl:13,nome:"Metal Claw",tipo:"aco"},{lvl:19,nome:"Smokescreen",tipo:"normal"},{lvl:25,nome:"Scary Face",tipo:"normal"},{lvl:31,nome:"Flamethrower",tipo:"fogo"},{lvl:37,nome:"Slash",tipo:"normal"},{lvl:43,nome:"Dragon Rage",tipo:"dragao"},{lvl:49,nome:"Fire Spin",tipo:"fogo"}],
+"005":[{lvl:1,nome:"Scratch",tipo:"normal"},{lvl:1,nome:"Growl",tipo:"normal"},{lvl:1,nome:"Ember",tipo:"fogo"},{lvl:7,nome:"Ember",tipo:"fogo"},{lvl:13,nome:"Metal Claw",tipo:"aco"},{lvl:20,nome:"Smokescreen",tipo:"normal"},{lvl:27,nome:"Scary Face",tipo:"normal"},{lvl:34,nome:"Flamethrower",tipo:"fogo"},{lvl:41,nome:"Slash",tipo:"normal"},{lvl:48,nome:"Dragon Rage",tipo:"dragao"},{lvl:55,nome:"Fire Spin",tipo:"fogo"}],
+"006":[{lvl:1,nome:"Scratch",tipo:"normal"},{lvl:1,nome:"Growl",tipo:"normal"},{lvl:1,nome:"Ember",tipo:"fogo"},{lvl:1,nome:"Metal Claw",tipo:"aco"},{lvl:1,nome:"Heat Wave",tipo:"fogo"},{lvl:7,nome:"Ember",tipo:"fogo"},{lvl:13,nome:"Metal Claw",tipo:"aco"},{lvl:20,nome:"Smokescreen",tipo:"normal"},{lvl:27,nome:"Scary Face",tipo:"normal"},{lvl:34,nome:"Flamethrower",tipo:"fogo"},{lvl:36,nome:"Wing Attack",tipo:"voador"},{lvl:44,nome:"Slash",tipo:"normal"},{lvl:54,nome:"Dragon Rage",tipo:"dragao"},{lvl:64,nome:"Fire Spin",tipo:"fogo"}],
+"007":[{lvl:1,nome:"Tackle",tipo:"normal"},{lvl:4,nome:"Tail Whip",tipo:"normal"},{lvl:7,nome:"Bubble",tipo:"agua"},{lvl:10,nome:"Withdraw",tipo:"agua"},{lvl:13,nome:"Water Gun",tipo:"agua"},{lvl:18,nome:"Bite",tipo:"sombrio"},{lvl:23,nome:"Rapid Spin",tipo:"normal"},{lvl:28,nome:"Protect",tipo:"normal"},{lvl:33,nome:"Rain Dance",tipo:"agua"},{lvl:40,nome:"Skull Bash",tipo:"normal"},{lvl:47,nome:"Hydro Pump",tipo:"agua"}],
+"008":[{lvl:1,nome:"Tackle",tipo:"normal"},{lvl:1,nome:"Tail Whip",tipo:"normal"},{lvl:1,nome:"Bubble",tipo:"agua"},{lvl:4,nome:"Tail Whip",tipo:"normal"},{lvl:7,nome:"Bubble",tipo:"agua"},{lvl:10,nome:"Withdraw",tipo:"agua"},{lvl:13,nome:"Water Gun",tipo:"agua"},{lvl:19,nome:"Bite",tipo:"sombrio"},{lvl:25,nome:"Rapid Spin",tipo:"normal"},{lvl:31,nome:"Protect",tipo:"normal"},{lvl:37,nome:"Rain Dance",tipo:"agua"},{lvl:45,nome:"Skull Bash",tipo:"normal"},{lvl:53,nome:"Hydro Pump",tipo:"agua"}],
+"009":[{lvl:1,nome:"Tackle",tipo:"normal"},{lvl:1,nome:"Tail Whip",tipo:"normal"},{lvl:1,nome:"Withdraw",tipo:"agua"},{lvl:1,nome:"Bubble",tipo:"agua"},{lvl:4,nome:"Tail Whip",tipo:"normal"},{lvl:7,nome:"Bubble",tipo:"agua"},{lvl:10,nome:"Withdraw",tipo:"agua"},{lvl:13,nome:"Water Gun",tipo:"agua"},{lvl:19,nome:"Bite",tipo:"sombrio"},{lvl:25,nome:"Rapid Spin",tipo:"normal"},{lvl:31,nome:"Protect",tipo:"normal"},{lvl:42,nome:"Rain Dance",tipo:"agua"},{lvl:55,nome:"Skull Bash",tipo:"normal"},{lvl:68,nome:"Hydro Pump",tipo:"agua"}],
+"010":[{lvl:1,nome:"Tackle",tipo:"normal"},{lvl:1,nome:"String Shot",tipo:"inseto"}],
+"011":[{lvl:1,nome:"Harden",tipo:"normal"},{lvl:7,nome:"Harden",tipo:"normal"}],
+"012":[{lvl:1,nome:"Confusion",tipo:"psiquico"},{lvl:10,nome:"Confusion",tipo:"psiquico"},{lvl:13,nome:"Poison Powder",tipo:"veneno"},{lvl:14,nome:"Stun Spore",tipo:"grama"},{lvl:15,nome:"Sleep Powder",tipo:"grama"},{lvl:18,nome:"Supersonic",tipo:"normal"},{lvl:23,nome:"Whirlwind",tipo:"normal"},{lvl:28,nome:"Gust",tipo:"voador"},{lvl:34,nome:"Psybeam",tipo:"psiquico"},{lvl:40,nome:"Safeguard",tipo:"normal"},{lvl:47,nome:"Silver Wind",tipo:"inseto"}],
+"013":[{lvl:1,nome:"Poison Sting",tipo:"veneno"},{lvl:1,nome:"String Shot",tipo:"inseto"}],
+"014":[{lvl:1,nome:"Harden",tipo:"normal"},{lvl:7,nome:"Harden",tipo:"normal"}],
+"015":[{lvl:1,nome:"Fury Attack",tipo:"normal"},{lvl:10,nome:"Fury Attack",tipo:"normal"},{lvl:15,nome:"Focus Energy",tipo:"normal"},{lvl:20,nome:"Twineedle",tipo:"inseto"},{lvl:25,nome:"Rage",tipo:"normal"},{lvl:30,nome:"Pursuit",tipo:"sombrio"},{lvl:35,nome:"Pin Missile",tipo:"inseto"},{lvl:40,nome:"Agility",tipo:"psiquico"},{lvl:45,nome:"Endeavor",tipo:"normal"}],
+"016":[{lvl:1,nome:"Tackle",tipo:"normal"},{lvl:5,nome:"Sand Attack",tipo:"terra"},{lvl:9,nome:"Gust",tipo:"voador"},{lvl:13,nome:"Quick Attack",tipo:"normal"},{lvl:19,nome:"Whirlwind",tipo:"normal"},{lvl:25,nome:"Wing Attack",tipo:"voador"},{lvl:31,nome:"Feather Dance",tipo:"voador"},{lvl:39,nome:"Agility",tipo:"psiquico"},{lvl:47,nome:"Mirror Move",tipo:"voador"}],
+"017":[{lvl:1,nome:"Gust",tipo:"voador"},{lvl:1,nome:"Sand Attack",tipo:"terra"},{lvl:1,nome:"Tackle",tipo:"normal"},{lvl:5,nome:"Sand Attack",tipo:"terra"},{lvl:9,nome:"Gust",tipo:"voador"},{lvl:13,nome:"Quick Attack",tipo:"normal"},{lvl:20,nome:"Whirlwind",tipo:"normal"},{lvl:27,nome:"Wing Attack",tipo:"voador"},{lvl:34,nome:"Feather Dance",tipo:"voador"},{lvl:43,nome:"Agility",tipo:"psiquico"},{lvl:52,nome:"Mirror Move",tipo:"voador"}],
+"018":[{lvl:1,nome:"Gust",tipo:"voador"},{lvl:1,nome:"Sand Attack",tipo:"terra"},{lvl:1,nome:"Tackle",tipo:"normal"},{lvl:1,nome:"Quick Attack",tipo:"normal"},{lvl:5,nome:"Sand Attack",tipo:"terra"},{lvl:9,nome:"Gust",tipo:"voador"},{lvl:13,nome:"Quick Attack",tipo:"normal"},{lvl:20,nome:"Whirlwind",tipo:"normal"},{lvl:27,nome:"Wing Attack",tipo:"voador"},{lvl:34,nome:"Feather Dance",tipo:"voador"},{lvl:48,nome:"Agility",tipo:"psiquico"},{lvl:62,nome:"Mirror Move",tipo:"voador"}],
+"019":[{lvl:1,nome:"Tackle",tipo:"normal"},{lvl:1,nome:"Tail Whip",tipo:"normal"},{lvl:7,nome:"Quick Attack",tipo:"normal"},{lvl:13,nome:"Hyper Fang",tipo:"normal"},{lvl:20,nome:"Focus Energy",tipo:"normal"},{lvl:27,nome:"Pursuit",tipo:"sombrio"},{lvl:34,nome:"Super Fang",tipo:"normal"},{lvl:41,nome:"Endeavor",tipo:"normal"}],
+"020":[{lvl:1,nome:"Tackle",tipo:"normal"},{lvl:1,nome:"Tail Whip",tipo:"normal"},{lvl:1,nome:"Quick Attack",tipo:"normal"},{lvl:7,nome:"Quick Attack",tipo:"normal"},{lvl:13,nome:"Hyper Fang",tipo:"normal"},{lvl:20,nome:"Scary Face",tipo:"normal"},{lvl:30,nome:"Pursuit",tipo:"sombrio"},{lvl:40,nome:"Super Fang",tipo:"normal"},{lvl:50,nome:"Endeavor",tipo:"normal"}],
+"021":[{lvl:1,nome:"Growl",tipo:"normal"},{lvl:1,nome:"Peck",tipo:"voador"},{lvl:7,nome:"Leer",tipo:"normal"},{lvl:13,nome:"Fury Attack",tipo:"normal"},{lvl:19,nome:"Pursuit",tipo:"sombrio"},{lvl:25,nome:"Aerial Ace",tipo:"voador"},{lvl:31,nome:"Mirror Move",tipo:"voador"},{lvl:37,nome:"Drill Peck",tipo:"voador"},{lvl:43,nome:"Agility",tipo:"psiquico"}],
+"022":[{lvl:1,nome:"Fury Attack",tipo:"normal"},{lvl:1,nome:"Leer",tipo:"normal"},{lvl:1,nome:"Growl",tipo:"normal"},{lvl:1,nome:"Peck",tipo:"voador"},{lvl:7,nome:"Leer",tipo:"normal"},{lvl:13,nome:"Fury Attack",tipo:"normal"},{lvl:26,nome:"Pursuit",tipo:"sombrio"},{lvl:32,nome:"Mirror Move",tipo:"voador"},{lvl:40,nome:"Drill Peck",tipo:"voador"},{lvl:47,nome:"Agility",tipo:"psiquico"}],
+"023":[{lvl:1,nome:"Wrap",tipo:"normal"},{lvl:1,nome:"Leer",tipo:"normal"},{lvl:8,nome:"Poison Sting",tipo:"veneno"},{lvl:13,nome:"Bite",tipo:"sombrio"},{lvl:20,nome:"Glare",tipo:"normal"},{lvl:25,nome:"Screech",tipo:"normal"},{lvl:32,nome:"Acid",tipo:"veneno"},{lvl:37,nome:"Stockpile",tipo:"normal"},{lvl:37,nome:"Spit Up",tipo:"normal"},{lvl:37,nome:"Swallow",tipo:"normal"},{lvl:44,nome:"Haze",tipo:"gelo"}],
+"024":[{lvl:1,nome:"Wrap",tipo:"normal"},{lvl:1,nome:"Poison Sting",tipo:"veneno"},{lvl:1,nome:"Leer",tipo:"normal"},{lvl:1,nome:"Bite",tipo:"sombrio"},{lvl:8,nome:"Poison Sting",tipo:"veneno"},{lvl:13,nome:"Bite",tipo:"sombrio"},{lvl:20,nome:"Glare",tipo:"normal"},{lvl:28,nome:"Screech",tipo:"normal"},{lvl:38,nome:"Acid",tipo:"veneno"},{lvl:46,nome:"Stockpile",tipo:"normal"},{lvl:46,nome:"Spit Up",tipo:"normal"},{lvl:46,nome:"Swallow",tipo:"normal"},{lvl:56,nome:"Haze",tipo:"gelo"}],
+"025":[{lvl:1,nome:"Growl",tipo:"normal"},{lvl:1,nome:"Thunder Shock",tipo:"eletrico"},{lvl:6,nome:"Tail Whip",tipo:"normal"},{lvl:8,nome:"Thunder Wave",tipo:"eletrico"},{lvl:11,nome:"Quick Attack",tipo:"normal"},{lvl:15,nome:"Double Team",tipo:"normal"},{lvl:20,nome:"Slam",tipo:"normal"},{lvl:26,nome:"Thunderbolt",tipo:"eletrico"},{lvl:33,nome:"Agility",tipo:"psiquico"},{lvl:41,nome:"Thunder",tipo:"eletrico"},{lvl:50,nome:"Light Screen",tipo:"psiquico"}],
+"026":[{lvl:1,nome:"Tail Whip",tipo:"normal"},{lvl:1,nome:"Thunder Shock",tipo:"eletrico"},{lvl:1,nome:"Thunderbolt",tipo:"eletrico"},{lvl:1,nome:"Quick Attack",tipo:"normal"}],
+"027":[{lvl:1,nome:"Scratch",tipo:"normal"},{lvl:6,nome:"Defense Curl",tipo:"normal"},{lvl:11,nome:"Sand Attack",tipo:"terra"},{lvl:17,nome:"Poison Sting",tipo:"veneno"},{lvl:23,nome:"Slash",tipo:"normal"},{lvl:30,nome:"Swift",tipo:"normal"},{lvl:37,nome:"Fury Swipes",tipo:"normal"},{lvl:45,nome:"Sand Tomb",tipo:"terra"},{lvl:53,nome:"Sandstorm",tipo:"pedra"}],
+"028":[{lvl:1,nome:"Scratch",tipo:"normal"},{lvl:1,nome:"Sand Attack",tipo:"terra"},{lvl:1,nome:"Defense Curl",tipo:"normal"},{lvl:6,nome:"Defense Curl",tipo:"normal"},{lvl:11,nome:"Sand Attack",tipo:"terra"},{lvl:17,nome:"Poison Sting",tipo:"veneno"},{lvl:24,nome:"Slash",tipo:"normal"},{lvl:33,nome:"Swift",tipo:"normal"},{lvl:42,nome:"Fury Swipes",tipo:"normal"},{lvl:52,nome:"Sand Tomb",tipo:"terra"},{lvl:62,nome:"Sandstorm",tipo:"pedra"}],
+"029":[{lvl:1,nome:"Scratch",tipo:"normal"},{lvl:1,nome:"Growl",tipo:"normal"},{lvl:8,nome:"Tail Whip",tipo:"normal"},{lvl:12,nome:"Double Kick",tipo:"lutador"},{lvl:17,nome:"Poison Sting",tipo:"veneno"},{lvl:20,nome:"Bite",tipo:"sombrio"},{lvl:23,nome:"Helping Hand",tipo:"normal"},{lvl:30,nome:"Fury Swipes",tipo:"normal"},{lvl:38,nome:"Flatter",tipo:"sombrio"},{lvl:47,nome:"Crunch",tipo:"sombrio"}],
+"030":[{lvl:1,nome:"Scratch",tipo:"normal"},{lvl:1,nome:"Growl",tipo:"normal"},{lvl:8,nome:"Tail Whip",tipo:"normal"},{lvl:12,nome:"Double Kick",tipo:"lutador"},{lvl:18,nome:"Poison Sting",tipo:"veneno"},{lvl:22,nome:"Bite",tipo:"sombrio"},{lvl:26,nome:"Helping Hand",tipo:"normal"},{lvl:34,nome:"Fury Swipes",tipo:"normal"},{lvl:43,nome:"Flatter",tipo:"sombrio"},{lvl:53,nome:"Crunch",tipo:"sombrio"}],
+"031":[{lvl:1,nome:"Scratch",tipo:"normal"},{lvl:1,nome:"Double Kick",tipo:"lutador"},{lvl:1,nome:"Tail Whip",tipo:"normal"},{lvl:1,nome:"Poison Sting",tipo:"veneno"},{lvl:22,nome:"Body Slam",tipo:"normal"},{lvl:43,nome:"Superpower",tipo:"lutador"}],
+"032":[{lvl:1,nome:"Leer",tipo:"normal"},{lvl:1,nome:"Peck",tipo:"voador"},{lvl:8,nome:"Focus Energy",tipo:"normal"},{lvl:12,nome:"Double Kick",tipo:"lutador"},{lvl:17,nome:"Poison Sting",tipo:"veneno"},{lvl:20,nome:"Horn Attack",tipo:"normal"},{lvl:23,nome:"Helping Hand",tipo:"normal"},{lvl:30,nome:"Fury Attack",tipo:"normal"},{lvl:38,nome:"Flatter",tipo:"sombrio"},{lvl:47,nome:"Horn Drill",tipo:"normal"}],
+"033":[{lvl:1,nome:"Leer",tipo:"normal"},{lvl:1,nome:"Peck",tipo:"voador"},{lvl:8,nome:"Focus Energy",tipo:"normal"},{lvl:12,nome:"Double Kick",tipo:"lutador"},{lvl:18,nome:"Poison Sting",tipo:"veneno"},{lvl:22,nome:"Horn Attack",tipo:"normal"},{lvl:26,nome:"Helping Hand",tipo:"normal"},{lvl:34,nome:"Fury Attack",tipo:"normal"},{lvl:43,nome:"Flatter",tipo:"sombrio"},{lvl:53,nome:"Horn Drill",tipo:"normal"}],
+"034":[{lvl:1,nome:"Double Kick",tipo:"lutador"},{lvl:1,nome:"Poison Sting",tipo:"veneno"},{lvl:1,nome:"Peck",tipo:"voador"},{lvl:1,nome:"Focus Energy",tipo:"normal"},{lvl:22,nome:"Thrash",tipo:"normal"},{lvl:43,nome:"Megahorn",tipo:"inseto"}],
+"035":[{lvl:1,nome:"Pound",tipo:"normal"},{lvl:1,nome:"Growl",tipo:"normal"},{lvl:5,nome:"Encore",tipo:"normal"},{lvl:9,nome:"Sing",tipo:"normal"},{lvl:13,nome:"Double Slap",tipo:"normal"},{lvl:17,nome:"Follow Me",tipo:"normal"},{lvl:21,nome:"Minimize",tipo:"normal"},{lvl:25,nome:"Defense Curl",tipo:"normal"},{lvl:29,nome:"Metronome",tipo:"normal"},{lvl:33,nome:"Cosmic Power",tipo:"psiquico"},{lvl:37,nome:"Moonlight",tipo:"fada"},{lvl:41,nome:"Light Screen",tipo:"psiquico"},{lvl:45,nome:"Meteor Mash",tipo:"aco"}],
+"036":[{lvl:1,nome:"Double Slap",tipo:"normal"},{lvl:1,nome:"Sing",tipo:"normal"},{lvl:1,nome:"Minimize",tipo:"normal"},{lvl:1,nome:"Metronome",tipo:"normal"}],
+"037":[{lvl:1,nome:"Ember",tipo:"fogo"},{lvl:5,nome:"Tail Whip",tipo:"normal"},{lvl:9,nome:"Roar",tipo:"normal"},{lvl:13,nome:"Quick Attack",tipo:"normal"},{lvl:17,nome:"Will-O-Wisp",tipo:"fogo"},{lvl:21,nome:"Confuse Ray",tipo:"fantasma"},{lvl:25,nome:"Imprison",tipo:"psiquico"},{lvl:29,nome:"Flamethrower",tipo:"fogo"},{lvl:33,nome:"Safeguard",tipo:"normal"},{lvl:37,nome:"Grudge",tipo:"fantasma"},{lvl:41,nome:"Fire Spin",tipo:"fogo"}],
+"038":[{lvl:1,nome:"Ember",tipo:"fogo"},{lvl:1,nome:"Quick Attack",tipo:"normal"},{lvl:1,nome:"Confuse Ray",tipo:"fantasma"},{lvl:1,nome:"Safeguard",tipo:"normal"},{lvl:45,nome:"Fire Spin",tipo:"fogo"}],
+"039":[{lvl:1,nome:"Sing",tipo:"normal"},{lvl:4,nome:"Defense Curl",tipo:"normal"},{lvl:9,nome:"Pound",tipo:"normal"},{lvl:14,nome:"Disable",tipo:"normal"},{lvl:19,nome:"Rollout",tipo:"pedra"},{lvl:24,nome:"Double Slap",tipo:"normal"},{lvl:29,nome:"Rest",tipo:"psiquico"},{lvl:34,nome:"Body Slam",tipo:"normal"},{lvl:39,nome:"Mimic",tipo:"normal"},{lvl:44,nome:"Hyper Voice",tipo:"normal"},{lvl:49,nome:"Double-Edge",tipo:"normal"}],
+"040":[{lvl:1,nome:"Double Slap",tipo:"normal"},{lvl:1,nome:"Sing",tipo:"normal"},{lvl:1,nome:"Disable",tipo:"normal"},{lvl:1,nome:"Defense Curl",tipo:"normal"}],
+"041":[{lvl:1,nome:"Leech Life",tipo:"inseto"},{lvl:6,nome:"Astonish",tipo:"fantasma"},{lvl:11,nome:"Supersonic",tipo:"normal"},{lvl:16,nome:"Bite",tipo:"sombrio"},{lvl:21,nome:"Wing Attack",tipo:"voador"},{lvl:26,nome:"Confuse Ray",tipo:"fantasma"},{lvl:31,nome:"Air Cutter",tipo:"voador"},{lvl:36,nome:"Mean Look",tipo:"normal"},{lvl:41,nome:"Poison Fang",tipo:"veneno"},{lvl:46,nome:"Haze",tipo:"gelo"}],
+"042":[{lvl:1,nome:"Supersonic",tipo:"normal"},{lvl:1,nome:"Screech",tipo:"normal"},{lvl:1,nome:"Leech Life",tipo:"inseto"},{lvl:1,nome:"Astonish",tipo:"fantasma"},{lvl:6,nome:"Astonish",tipo:"fantasma"},{lvl:11,nome:"Supersonic",tipo:"normal"},{lvl:16,nome:"Bite",tipo:"sombrio"},{lvl:21,nome:"Wing Attack",tipo:"voador"},{lvl:28,nome:"Confuse Ray",tipo:"fantasma"},{lvl:35,nome:"Air Cutter",tipo:"voador"},{lvl:42,nome:"Mean Look",tipo:"normal"},{lvl:49,nome:"Poison Fang",tipo:"veneno"},{lvl:56,nome:"Haze",tipo:"gelo"}],
+"043":[{lvl:1,nome:"Absorb",tipo:"grama"},{lvl:7,nome:"Sweet Scent",tipo:"normal"},{lvl:14,nome:"Poison Powder",tipo:"veneno"},{lvl:16,nome:"Stun Spore",tipo:"grama"},{lvl:18,nome:"Sleep Powder",tipo:"grama"},{lvl:23,nome:"Acid",tipo:"veneno"},{lvl:32,nome:"Moonlight",tipo:"fada"},{lvl:39,nome:"Petal Dance",tipo:"grama"}],
+"044":[{lvl:1,nome:"Absorb",tipo:"grama"},{lvl:1,nome:"Poison Powder",tipo:"veneno"},{lvl:1,nome:"Sweet Scent",tipo:"normal"},{lvl:7,nome:"Sweet Scent",tipo:"normal"},{lvl:14,nome:"Poison Powder",tipo:"veneno"},{lvl:16,nome:"Stun Spore",tipo:"grama"},{lvl:18,nome:"Sleep Powder",tipo:"grama"},{lvl:24,nome:"Acid",tipo:"veneno"},{lvl:35,nome:"Moonlight",tipo:"fada"},{lvl:44,nome:"Petal Dance",tipo:"grama"}],
+"045":[{lvl:1,nome:"Absorb",tipo:"grama"},{lvl:1,nome:"Mega Drain",tipo:"grama"},{lvl:1,nome:"Stun Spore",tipo:"grama"},{lvl:1,nome:"Aromatherapy",tipo:"grama"},{lvl:44,nome:"Petal Dance",tipo:"grama"}],
+"046":[{lvl:1,nome:"Scratch",tipo:"normal"},{lvl:7,nome:"Stun Spore",tipo:"grama"},{lvl:13,nome:"Poison Powder",tipo:"veneno"},{lvl:19,nome:"Leech Life",tipo:"inseto"},{lvl:25,nome:"Spore",tipo:"grama"},{lvl:31,nome:"Slash",tipo:"normal"},{lvl:37,nome:"Growth",tipo:"normal"},{lvl:43,nome:"Giga Drain",tipo:"grama"},{lvl:49,nome:"Aromatherapy",tipo:"grama"}],
+"047":[{lvl:1,nome:"Scratch",tipo:"normal"},{lvl:1,nome:"Poison Powder",tipo:"veneno"},{lvl:1,nome:"Stun Spore",tipo:"grama"},{lvl:7,nome:"Stun Spore",tipo:"grama"},{lvl:13,nome:"Poison Powder",tipo:"veneno"},{lvl:19,nome:"Leech Life",tipo:"inseto"},{lvl:27,nome:"Spore",tipo:"grama"},{lvl:35,nome:"Slash",tipo:"normal"},{lvl:43,nome:"Growth",tipo:"normal"},{lvl:51,nome:"Giga Drain",tipo:"grama"},{lvl:59,nome:"Aromatherapy",tipo:"grama"}],
+"048":[{lvl:1,nome:"Tackle",tipo:"normal"},{lvl:1,nome:"Disable",tipo:"normal"},{lvl:1,nome:"Foresight",tipo:"normal"},{lvl:9,nome:"Supersonic",tipo:"normal"},{lvl:17,nome:"Confusion",tipo:"psiquico"},{lvl:20,nome:"Poison Powder",tipo:"veneno"},{lvl:25,nome:"Leech Life",tipo:"inseto"},{lvl:28,nome:"Stun Spore",tipo:"grama"},{lvl:33,nome:"Psybeam",tipo:"psiquico"},{lvl:36,nome:"Sleep Powder",tipo:"grama"},{lvl:41,nome:"Psychic",tipo:"psiquico"}],
+"049":[{lvl:1,nome:"Tackle",tipo:"normal"},{lvl:1,nome:"Supersonic",tipo:"normal"},{lvl:1,nome:"Disable",tipo:"normal"},{lvl:1,nome:"Foresight",tipo:"normal"},{lvl:1,nome:"Silver Wind",tipo:"inseto"},{lvl:9,nome:"Supersonic",tipo:"normal"},{lvl:17,nome:"Confusion",tipo:"psiquico"},{lvl:20,nome:"Poison Powder",tipo:"veneno"},{lvl:25,nome:"Leech Life",tipo:"inseto"},{lvl:28,nome:"Stun Spore",tipo:"grama"},{lvl:31,nome:"Gust",tipo:"voador"},{lvl:36,nome:"Psybeam",tipo:"psiquico"},{lvl:42,nome:"Sleep Powder",tipo:"grama"},{lvl:52,nome:"Psychic",tipo:"psiquico"}],
+"050":[{lvl:1,nome:"Scratch",tipo:"normal"},{lvl:1,nome:"Sand Attack",tipo:"terra"},{lvl:5,nome:"Growl",tipo:"normal"},{lvl:9,nome:"Magnitude",tipo:"terra"},{lvl:17,nome:"Dig",tipo:"terra"},{lvl:21,nome:"Fury Swipes",tipo:"normal"},{lvl:25,nome:"Mud-Slap",tipo:"terra"},{lvl:33,nome:"Slash",tipo:"normal"},{lvl:41,nome:"Earthquake",tipo:"terra"},{lvl:49,nome:"Fissure",tipo:"terra"}],
+"051":[{lvl:1,nome:"Scratch",tipo:"normal"},{lvl:1,nome:"Sand Attack",tipo:"terra"},{lvl:1,nome:"Growl",tipo:"normal"},{lvl:1,nome:"Tri Attack",tipo:"normal"},{lvl:5,nome:"Growl",tipo:"normal"},{lvl:9,nome:"Magnitude",tipo:"terra"},{lvl:17,nome:"Dig",tipo:"terra"},{lvl:21,nome:"Fury Swipes",tipo:"normal"},{lvl:25,nome:"Mud-Slap",tipo:"terra"},{lvl:26,nome:"Sand Tomb",tipo:"terra"},{lvl:38,nome:"Slash",tipo:"normal"},{lvl:51,nome:"Earthquake",tipo:"terra"},{lvl:64,nome:"Fissure",tipo:"terra"}],
+"052":[{lvl:1,nome:"Scratch",tipo:"normal"},{lvl:1,nome:"Growl",tipo:"normal"},{lvl:10,nome:"Bite",tipo:"sombrio"},{lvl:18,nome:"Pay Day",tipo:"normal"},{lvl:25,nome:"Feint Attack",tipo:"sombrio"},{lvl:31,nome:"Screech",tipo:"normal"},{lvl:36,nome:"Fury Swipes",tipo:"normal"},{lvl:40,nome:"Slash",tipo:"normal"},{lvl:43,nome:"Fake Out",tipo:"normal"},{lvl:45,nome:"Swagger",tipo:"normal"}],
+"053":[{lvl:1,nome:"Scratch",tipo:"normal"},{lvl:1,nome:"Bite",tipo:"sombrio"},{lvl:1,nome:"Growl",tipo:"normal"},{lvl:10,nome:"Bite",tipo:"sombrio"},{lvl:18,nome:"Pay Day",tipo:"normal"},{lvl:25,nome:"Feint Attack",tipo:"sombrio"},{lvl:34,nome:"Screech",tipo:"normal"},{lvl:42,nome:"Fury Swipes",tipo:"normal"},{lvl:49,nome:"Slash",tipo:"normal"},{lvl:55,nome:"Fake Out",tipo:"normal"},{lvl:61,nome:"Swagger",tipo:"normal"}],
+"054":[{lvl:1,nome:"Scratch",tipo:"normal"},{lvl:1,nome:"Water Sport",tipo:"agua"},{lvl:5,nome:"Tail Whip",tipo:"normal"},{lvl:10,nome:"Disable",tipo:"normal"},{lvl:16,nome:"Confusion",tipo:"psiquico"},{lvl:23,nome:"Screech",tipo:"normal"},{lvl:31,nome:"Psych Up",tipo:"normal"},{lvl:40,nome:"Fury Swipes",tipo:"normal"},{lvl:50,nome:"Hydro Pump",tipo:"agua"}],
+"055":[{lvl:1,nome:"Scratch",tipo:"normal"},{lvl:1,nome:"Tail Whip",tipo:"normal"},{lvl:1,nome:"Disable",tipo:"normal"},{lvl:1,nome:"Water Sport",tipo:"agua"},{lvl:5,nome:"Tail Whip",tipo:"normal"},{lvl:10,nome:"Disable",tipo:"normal"},{lvl:16,nome:"Confusion",tipo:"psiquico"},{lvl:23,nome:"Screech",tipo:"normal"},{lvl:31,nome:"Psych Up",tipo:"normal"},{lvl:44,nome:"Fury Swipes",tipo:"normal"},{lvl:58,nome:"Hydro Pump",tipo:"agua"}],
+"056":[{lvl:1,nome:"Scratch",tipo:"normal"},{lvl:1,nome:"Leer",tipo:"normal"},{lvl:6,nome:"Low Kick",tipo:"lutador"},{lvl:11,nome:"Karate Chop",tipo:"lutador"},{lvl:16,nome:"Fury Swipes",tipo:"normal"},{lvl:21,nome:"Focus Energy",tipo:"normal"},{lvl:26,nome:"Seismic Toss",tipo:"lutador"},{lvl:31,nome:"Cross Chop",tipo:"lutador"},{lvl:36,nome:"Swagger",tipo:"normal"},{lvl:41,nome:"Screech",tipo:"normal"},{lvl:46,nome:"Thrash",tipo:"normal"}],
+"057":[{lvl:1,nome:"Scratch",tipo:"normal"},{lvl:1,nome:"Leer",tipo:"normal"},{lvl:1,nome:"Low Kick",tipo:"lutador"},{lvl:1,nome:"Rage",tipo:"normal"},{lvl:6,nome:"Low Kick",tipo:"lutador"},{lvl:11,nome:"Karate Chop",tipo:"lutador"},{lvl:16,nome:"Fury Swipes",tipo:"normal"},{lvl:21,nome:"Focus Energy",tipo:"normal"},{lvl:26,nome:"Seismic Toss",tipo:"lutador"},{lvl:28,nome:"Rage",tipo:"normal"},{lvl:35,nome:"Cross Chop",tipo:"lutador"},{lvl:44,nome:"Swagger",tipo:"normal"},{lvl:53,nome:"Screech",tipo:"normal"},{lvl:62,nome:"Thrash",tipo:"normal"}],
+"058":[{lvl:1,nome:"Bite",tipo:"sombrio"},{lvl:1,nome:"Roar",tipo:"normal"},{lvl:7,nome:"Ember",tipo:"fogo"},{lvl:13,nome:"Leer",tipo:"normal"},{lvl:19,nome:"Odor Sleuth",tipo:"normal"},{lvl:25,nome:"Take Down",tipo:"normal"},{lvl:31,nome:"Flame Wheel",tipo:"fogo"},{lvl:37,nome:"Helping Hand",tipo:"normal"},{lvl:43,nome:"Agility",tipo:"psiquico"},{lvl:49,nome:"Flamethrower",tipo:"fogo"}],
+"059":[{lvl:1,nome:"Bite",tipo:"sombrio"},{lvl:1,nome:"Roar",tipo:"normal"},{lvl:1,nome:"Ember",tipo:"fogo"},{lvl:1,nome:"Odor Sleuth",tipo:"normal"},{lvl:49,nome:"Extreme Speed",tipo:"normal"}],
+"060":[{lvl:1,nome:"Bubble",tipo:"agua"},{lvl:7,nome:"Hypnosis",tipo:"psiquico"},{lvl:13,nome:"Water Gun",tipo:"agua"},{lvl:19,nome:"Double Slap",tipo:"normal"},{lvl:25,nome:"Rain Dance",tipo:"agua"},{lvl:31,nome:"Body Slam",tipo:"normal"},{lvl:37,nome:"Belly Drum",tipo:"normal"},{lvl:43,nome:"Hydro Pump",tipo:"agua"}],
+"061":[{lvl:1,nome:"Water Gun",tipo:"agua"},{lvl:1,nome:"Hypnosis",tipo:"psiquico"},{lvl:1,nome:"Bubble",tipo:"agua"},{lvl:7,nome:"Hypnosis",tipo:"psiquico"},{lvl:13,nome:"Water Gun",tipo:"agua"},{lvl:19,nome:"Double Slap",tipo:"normal"},{lvl:27,nome:"Rain Dance",tipo:"agua"},{lvl:35,nome:"Body Slam",tipo:"normal"},{lvl:43,nome:"Belly Drum",tipo:"normal"},{lvl:51,nome:"Hydro Pump",tipo:"agua"}],
+"062":[{lvl:1,nome:"Double Slap",tipo:"normal"},{lvl:1,nome:"Water Gun",tipo:"agua"},{lvl:1,nome:"Submission",tipo:"lutador"},{lvl:1,nome:"Hypnosis",tipo:"psiquico"},{lvl:35,nome:"Submission",tipo:"lutador"},{lvl:51,nome:"Mind Reader",tipo:"normal"}],
+"063":[{lvl:1,nome:"Teleport",tipo:"psiquico"}],
+"064":[{lvl:1,nome:"Confusion",tipo:"psiquico"},{lvl:1,nome:"Teleport",tipo:"psiquico"},{lvl:1,nome:"Kinesis",tipo:"psiquico"},{lvl:16,nome:"Confusion",tipo:"psiquico"},{lvl:18,nome:"Disable",tipo:"normal"},{lvl:21,nome:"Psybeam",tipo:"psiquico"},{lvl:23,nome:"Reflect",tipo:"psiquico"},{lvl:25,nome:"Recover",tipo:"normal"},{lvl:30,nome:"Future Sight",tipo:"psiquico"},{lvl:33,nome:"Role Play",tipo:"psiquico"},{lvl:36,nome:"Psychic",tipo:"psiquico"},{lvl:43,nome:"Trick",tipo:"psiquico"}],
+"065":[{lvl:1,nome:"Confusion",tipo:"psiquico"},{lvl:1,nome:"Teleport",tipo:"psiquico"},{lvl:1,nome:"Kinesis",tipo:"psiquico"},{lvl:16,nome:"Confusion",tipo:"psiquico"},{lvl:18,nome:"Disable",tipo:"normal"},{lvl:21,nome:"Psybeam",tipo:"psiquico"},{lvl:23,nome:"Reflect",tipo:"psiquico"},{lvl:25,nome:"Recover",tipo:"normal"},{lvl:30,nome:"Future Sight",tipo:"psiquico"},{lvl:33,nome:"Calm Mind",tipo:"psiquico"},{lvl:36,nome:"Psychic",tipo:"psiquico"},{lvl:43,nome:"Trick",tipo:"psiquico"}],
+"066":[{lvl:1,nome:"Leer",tipo:"normal"},{lvl:1,nome:"Low Kick",tipo:"lutador"},{lvl:7,nome:"Focus Energy",tipo:"normal"},{lvl:13,nome:"Karate Chop",tipo:"lutador"},{lvl:19,nome:"Seismic Toss",tipo:"lutador"},{lvl:22,nome:"Foresight",tipo:"normal"},{lvl:25,nome:"Revenge",tipo:"lutador"},{lvl:31,nome:"Vital Throw",tipo:"lutador"},{lvl:37,nome:"Submission",tipo:"lutador"},{lvl:40,nome:"Cross Chop",tipo:"lutador"},{lvl:43,nome:"Scary Face",tipo:"normal"},{lvl:49,nome:"Dynamic Punch",tipo:"lutador"}],
+"067":[{lvl:1,nome:"Leer",tipo:"normal"},{lvl:1,nome:"Low Kick",tipo:"lutador"},{lvl:1,nome:"Focus Energy",tipo:"normal"},{lvl:7,nome:"Focus Energy",tipo:"normal"},{lvl:13,nome:"Karate Chop",tipo:"lutador"},{lvl:19,nome:"Seismic Toss",tipo:"lutador"},{lvl:22,nome:"Foresight",tipo:"normal"},{lvl:25,nome:"Revenge",tipo:"lutador"},{lvl:33,nome:"Vital Throw",tipo:"lutador"},{lvl:41,nome:"Submission",tipo:"lutador"},{lvl:46,nome:"Cross Chop",tipo:"lutador"},{lvl:51,nome:"Scary Face",tipo:"normal"},{lvl:59,nome:"Dynamic Punch",tipo:"lutador"}],
+"068":[{lvl:1,nome:"Leer",tipo:"normal"},{lvl:1,nome:"Low Kick",tipo:"lutador"},{lvl:1,nome:"Focus Energy",tipo:"normal"},{lvl:7,nome:"Focus Energy",tipo:"normal"},{lvl:13,nome:"Karate Chop",tipo:"lutador"},{lvl:19,nome:"Seismic Toss",tipo:"lutador"},{lvl:22,nome:"Foresight",tipo:"normal"},{lvl:25,nome:"Revenge",tipo:"lutador"},{lvl:33,nome:"Vital Throw",tipo:"lutador"},{lvl:41,nome:"Submission",tipo:"lutador"},{lvl:46,nome:"Cross Chop",tipo:"lutador"},{lvl:51,nome:"Scary Face",tipo:"normal"},{lvl:59,nome:"Dynamic Punch",tipo:"lutador"}],
+"069":[{lvl:1,nome:"Vine Whip",tipo:"grama"},{lvl:6,nome:"Growth",tipo:"normal"},{lvl:11,nome:"Wrap",tipo:"normal"},{lvl:15,nome:"Sleep Powder",tipo:"grama"},{lvl:17,nome:"Poison Powder",tipo:"veneno"},{lvl:19,nome:"Stun Spore",tipo:"grama"},{lvl:23,nome:"Acid",tipo:"veneno"},{lvl:30,nome:"Sweet Scent",tipo:"normal"},{lvl:37,nome:"Razor Leaf",tipo:"grama"},{lvl:45,nome:"Slam",tipo:"normal"}],
+"070":[{lvl:1,nome:"Vine Whip",tipo:"grama"},{lvl:1,nome:"Wrap",tipo:"normal"},{lvl:1,nome:"Growth",tipo:"normal"},{lvl:6,nome:"Growth",tipo:"normal"},{lvl:11,nome:"Wrap",tipo:"normal"},{lvl:15,nome:"Sleep Powder",tipo:"grama"},{lvl:17,nome:"Poison Powder",tipo:"veneno"},{lvl:19,nome:"Stun Spore",tipo:"grama"},{lvl:24,nome:"Acid",tipo:"veneno"},{lvl:33,nome:"Sweet Scent",tipo:"normal"},{lvl:42,nome:"Razor Leaf",tipo:"grama"},{lvl:54,nome:"Slam",tipo:"normal"}],
+"071":[{lvl:1,nome:"Vine Whip",tipo:"grama"},{lvl:1,nome:"Razor Leaf",tipo:"grama"},{lvl:1,nome:"Sleep Powder",tipo:"grama"},{lvl:1,nome:"Sweet Scent",tipo:"normal"},{lvl:1,nome:"Stockpile",tipo:"normal"},{lvl:1,nome:"Spit Up",tipo:"normal"},{lvl:1,nome:"Swallow",tipo:"normal"}],
+"072":[{lvl:1,nome:"Poison Sting",tipo:"veneno"},{lvl:6,nome:"Supersonic",tipo:"normal"},{lvl:12,nome:"Constrict",tipo:"normal"},{lvl:19,nome:"Acid",tipo:"veneno"},{lvl:25,nome:"Bubble Beam",tipo:"agua"},{lvl:30,nome:"Wrap",tipo:"normal"},{lvl:36,nome:"Barrier",tipo:"psiquico"},{lvl:43,nome:"Screech",tipo:"normal"},{lvl:49,nome:"Hydro Pump",tipo:"agua"}],
+"073":[{lvl:1,nome:"Poison Sting",tipo:"veneno"},{lvl:1,nome:"Supersonic",tipo:"normal"},{lvl:1,nome:"Constrict",tipo:"normal"},{lvl:6,nome:"Supersonic",tipo:"normal"},{lvl:12,nome:"Constrict",tipo:"normal"},{lvl:19,nome:"Acid",tipo:"veneno"},{lvl:25,nome:"Bubble Beam",tipo:"agua"},{lvl:30,nome:"Wrap",tipo:"normal"},{lvl:38,nome:"Barrier",tipo:"psiquico"},{lvl:47,nome:"Screech",tipo:"normal"},{lvl:55,nome:"Hydro Pump",tipo:"agua"}],
+"074":[{lvl:1,nome:"Tackle",tipo:"normal"},{lvl:1,nome:"Defense Curl",tipo:"normal"},{lvl:6,nome:"Mud Sport",tipo:"terra"},{lvl:11,nome:"Rock Throw",tipo:"pedra"},{lvl:16,nome:"Magnitude",tipo:"terra"},{lvl:21,nome:"Self-Destruct",tipo:"normal"},{lvl:26,nome:"Rollout",tipo:"pedra"},{lvl:31,nome:"Rock Blast",tipo:"pedra"},{lvl:36,nome:"Earthquake",tipo:"terra"},{lvl:41,nome:"Explosion",tipo:"normal"},{lvl:46,nome:"Double-Edge",tipo:"normal"}],
+"075":[{lvl:1,nome:"Tackle",tipo:"normal"},{lvl:1,nome:"Rock Throw",tipo:"pedra"},{lvl:1,nome:"Defense Curl",tipo:"normal"},{lvl:1,nome:"Mud Sport",tipo:"terra"},{lvl:6,nome:"Mud Sport",tipo:"terra"},{lvl:11,nome:"Rock Throw",tipo:"pedra"},{lvl:16,nome:"Magnitude",tipo:"terra"},{lvl:21,nome:"Self-Destruct",tipo:"normal"},{lvl:29,nome:"Rollout",tipo:"pedra"},{lvl:37,nome:"Rock Blast",tipo:"pedra"},{lvl:45,nome:"Earthquake",tipo:"terra"},{lvl:53,nome:"Explosion",tipo:"normal"},{lvl:62,nome:"Double-Edge",tipo:"normal"}],
+"076":[{lvl:1,nome:"Tackle",tipo:"normal"},{lvl:1,nome:"Rock Throw",tipo:"pedra"},{lvl:1,nome:"Defense Curl",tipo:"normal"},{lvl:1,nome:"Mud Sport",tipo:"terra"},{lvl:6,nome:"Mud Sport",tipo:"terra"},{lvl:11,nome:"Rock Throw",tipo:"pedra"},{lvl:16,nome:"Magnitude",tipo:"terra"},{lvl:21,nome:"Self-Destruct",tipo:"normal"},{lvl:29,nome:"Rollout",tipo:"pedra"},{lvl:37,nome:"Rock Blast",tipo:"pedra"},{lvl:45,nome:"Earthquake",tipo:"terra"},{lvl:53,nome:"Explosion",tipo:"normal"},{lvl:62,nome:"Double-Edge",tipo:"normal"}],
+"077":[{lvl:1,nome:"Quick Attack",tipo:"normal"},{lvl:5,nome:"Growl",tipo:"normal"},{lvl:9,nome:"Tail Whip",tipo:"normal"},{lvl:14,nome:"Ember",tipo:"fogo"},{lvl:19,nome:"Stomp",tipo:"normal"},{lvl:25,nome:"Fire Spin",tipo:"fogo"},{lvl:31,nome:"Take Down",tipo:"normal"},{lvl:38,nome:"Agility",tipo:"psiquico"},{lvl:45,nome:"Bounce",tipo:"voador"},{lvl:53,nome:"Fire Blast",tipo:"fogo"}],
+"078":[{lvl:1,nome:"Tail Whip",tipo:"normal"},{lvl:1,nome:"Growl",tipo:"normal"},{lvl:1,nome:"Ember",tipo:"fogo"},{lvl:1,nome:"Quick Attack",tipo:"normal"},{lvl:5,nome:"Growl",tipo:"normal"},{lvl:9,nome:"Tail Whip",tipo:"normal"},{lvl:14,nome:"Ember",tipo:"fogo"},{lvl:19,nome:"Stomp",tipo:"normal"},{lvl:25,nome:"Fire Spin",tipo:"fogo"},{lvl:31,nome:"Take Down",tipo:"normal"},{lvl:38,nome:"Agility",tipo:"psiquico"},{lvl:40,nome:"Fury Attack",tipo:"normal"},{lvl:50,nome:"Bounce",tipo:"voador"},{lvl:63,nome:"Fire Blast",tipo:"fogo"}],
+"079":[{lvl:1,nome:"Tackle",tipo:"normal"},{lvl:1,nome:"Curse",tipo:"fantasma"},{lvl:1,nome:"Yawn",tipo:"normal"},{lvl:6,nome:"Growl",tipo:"normal"},{lvl:13,nome:"Water Gun",tipo:"agua"},{lvl:17,nome:"Confusion",tipo:"psiquico"},{lvl:24,nome:"Disable",tipo:"normal"},{lvl:29,nome:"Headbutt",tipo:"normal"},{lvl:36,nome:"Amnesia",tipo:"psiquico"},{lvl:40,nome:"Psychic",tipo:"psiquico"},{lvl:47,nome:"Psych Up",tipo:"normal"}],
+"080":[{lvl:1,nome:"Tackle",tipo:"normal"},{lvl:1,nome:"Growl",tipo:"normal"},{lvl:1,nome:"Curse",tipo:"fantasma"},{lvl:1,nome:"Yawn",tipo:"normal"},{lvl:6,nome:"Growl",tipo:"normal"},{lvl:13,nome:"Water Gun",tipo:"agua"},{lvl:17,nome:"Confusion",tipo:"psiquico"},{lvl:24,nome:"Disable",tipo:"normal"},{lvl:29,nome:"Headbutt",tipo:"normal"},{lvl:36,nome:"Amnesia",tipo:"psiquico"},{lvl:37,nome:"Withdraw",tipo:"agua"},{lvl:44,nome:"Psychic",tipo:"psiquico"},{lvl:55,nome:"Psych Up",tipo:"normal"}],
+"081":[{lvl:1,nome:"Tackle",tipo:"normal"},{lvl:1,nome:"Metal Sound",tipo:"aco"},{lvl:6,nome:"Thunder Shock",tipo:"eletrico"},{lvl:11,nome:"Supersonic",tipo:"normal"},{lvl:16,nome:"Sonic Boom",tipo:"normal"},{lvl:21,nome:"Thunder Wave",tipo:"eletrico"},{lvl:26,nome:"Spark",tipo:"eletrico"},{lvl:32,nome:"Lock-On",tipo:"normal"},{lvl:38,nome:"Swift",tipo:"normal"},{lvl:44,nome:"Screech",tipo:"normal"},{lvl:50,nome:"Zap Cannon",tipo:"eletrico"}],
+"082":[{lvl:1,nome:"Tackle",tipo:"normal"},{lvl:1,nome:"Supersonic",tipo:"normal"},{lvl:1,nome:"Thunder Shock",tipo:"eletrico"},{lvl:1,nome:"Metal Sound",tipo:"aco"},{lvl:6,nome:"Thunder Shock",tipo:"eletrico"},{lvl:11,nome:"Supersonic",tipo:"normal"},{lvl:16,nome:"Sonic Boom",tipo:"normal"},{lvl:21,nome:"Thunder Wave",tipo:"eletrico"},{lvl:26,nome:"Spark",tipo:"eletrico"},{lvl:35,nome:"Lock-On",tipo:"normal"},{lvl:44,nome:"Tri Attack",tipo:"normal"},{lvl:53,nome:"Screech",tipo:"normal"},{lvl:62,nome:"Zap Cannon",tipo:"eletrico"}],
+"083":[{lvl:1,nome:"Peck",tipo:"voador"},{lvl:6,nome:"Sand Attack",tipo:"terra"},{lvl:11,nome:"Leer",tipo:"normal"},{lvl:16,nome:"Fury Attack",tipo:"normal"},{lvl:21,nome:"Knock Off",tipo:"sombrio"},{lvl:26,nome:"Fury Cutter",tipo:"inseto"},{lvl:31,nome:"Swords Dance",tipo:"normal"},{lvl:36,nome:"Agility",tipo:"psiquico"},{lvl:41,nome:"Slash",tipo:"normal"},{lvl:46,nome:"False Swipe",tipo:"normal"}],
+"084":[{lvl:1,nome:"Growl",tipo:"normal"},{lvl:1,nome:"Peck",tipo:"voador"},{lvl:9,nome:"Pursuit",tipo:"sombrio"},{lvl:13,nome:"Fury Attack",tipo:"normal"},{lvl:21,nome:"Tri Attack",tipo:"normal"},{lvl:25,nome:"Rage",tipo:"normal"},{lvl:33,nome:"Uproar",tipo:"normal"},{lvl:37,nome:"Drill Peck",tipo:"voador"},{lvl:45,nome:"Agility",tipo:"psiquico"}],
+"085":[{lvl:1,nome:"Fury Attack",tipo:"normal"},{lvl:1,nome:"Growl",tipo:"normal"},{lvl:1,nome:"Peck",tipo:"voador"},{lvl:1,nome:"Pursuit",tipo:"sombrio"},{lvl:9,nome:"Pursuit",tipo:"sombrio"},{lvl:13,nome:"Fury Attack",tipo:"normal"},{lvl:21,nome:"Tri Attack",tipo:"normal"},{lvl:25,nome:"Rage",tipo:"normal"},{lvl:38,nome:"Uproar",tipo:"normal"},{lvl:47,nome:"Drill Peck",tipo:"voador"},{lvl:60,nome:"Agility",tipo:"psiquico"}],
+"086":[{lvl:1,nome:"Headbutt",tipo:"normal"},{lvl:9,nome:"Growl",tipo:"normal"},{lvl:17,nome:"Icy Wind",tipo:"gelo"},{lvl:21,nome:"Aurora Beam",tipo:"gelo"},{lvl:29,nome:"Rest",tipo:"psiquico"},{lvl:37,nome:"Take Down",tipo:"normal"},{lvl:41,nome:"Ice Beam",tipo:"gelo"},{lvl:49,nome:"Safeguard",tipo:"normal"}],
+"087":[{lvl:1,nome:"Headbutt",tipo:"normal"},{lvl:1,nome:"Growl",tipo:"normal"},{lvl:1,nome:"Aurora Beam",tipo:"gelo"},{lvl:1,nome:"Icy Wind",tipo:"gelo"},{lvl:1,nome:"Signal Beam",tipo:"inseto"},{lvl:9,nome:"Growl",tipo:"normal"},{lvl:17,nome:"Icy Wind",tipo:"gelo"},{lvl:21,nome:"Aurora Beam",tipo:"gelo"},{lvl:29,nome:"Rest",tipo:"psiquico"},{lvl:34,nome:"Sheer Cold",tipo:"gelo"},{lvl:42,nome:"Take Down",tipo:"normal"},{lvl:51,nome:"Ice Beam",tipo:"gelo"},{lvl:64,nome:"Safeguard",tipo:"normal"}],
+"088":[{lvl:1,nome:"Pound",tipo:"normal"},{lvl:1,nome:"Poison Gas",tipo:"veneno"},{lvl:4,nome:"Harden",tipo:"normal"},{lvl:8,nome:"Disable",tipo:"normal"},{lvl:13,nome:"Sludge",tipo:"veneno"},{lvl:19,nome:"Minimize",tipo:"normal"},{lvl:26,nome:"Screech",tipo:"normal"},{lvl:34,nome:"Acid Armor",tipo:"veneno"},{lvl:43,nome:"Sludge Bomb",tipo:"veneno"},{lvl:53,nome:"Memento",tipo:"sombrio"}],
+"089":[{lvl:1,nome:"Pound",tipo:"normal"},{lvl:1,nome:"Harden",tipo:"normal"},{lvl:1,nome:"Poison Gas",tipo:"veneno"},{lvl:4,nome:"Harden",tipo:"normal"},{lvl:8,nome:"Disable",tipo:"normal"},{lvl:13,nome:"Sludge",tipo:"veneno"},{lvl:19,nome:"Minimize",tipo:"normal"},{lvl:26,nome:"Screech",tipo:"normal"},{lvl:34,nome:"Acid Armor",tipo:"veneno"},{lvl:47,nome:"Sludge Bomb",tipo:"veneno"},{lvl:61,nome:"Memento",tipo:"sombrio"}],
+"090":[{lvl:1,nome:"Tackle",tipo:"normal"},{lvl:1,nome:"Withdraw",tipo:"agua"},{lvl:8,nome:"Icicle Spear",tipo:"gelo"},{lvl:15,nome:"Supersonic",tipo:"normal"},{lvl:22,nome:"Aurora Beam",tipo:"gelo"},{lvl:29,nome:"Protect",tipo:"normal"},{lvl:36,nome:"Leer",tipo:"normal"},{lvl:43,nome:"Clamp",tipo:"agua"},{lvl:50,nome:"Ice Beam",tipo:"gelo"}],
+"091":[{lvl:1,nome:"Supersonic",tipo:"normal"},{lvl:1,nome:"Aurora Beam",tipo:"gelo"},{lvl:1,nome:"Withdraw",tipo:"agua"},{lvl:1,nome:"Protect",tipo:"normal"},{lvl:36,nome:"Spikes",tipo:"terra"},{lvl:43,nome:"Spike Cannon",tipo:"normal"}],
+"092":[{lvl:1,nome:"Hypnosis",tipo:"psiquico"},{lvl:1,nome:"Lick",tipo:"fantasma"},{lvl:8,nome:"Spite",tipo:"fantasma"},{lvl:13,nome:"Curse",tipo:"fantasma"},{lvl:16,nome:"Night Shade",tipo:"fantasma"},{lvl:21,nome:"Confuse Ray",tipo:"fantasma"},{lvl:28,nome:"Dream Eater",tipo:"psiquico"},{lvl:33,nome:"Destiny Bond",tipo:"fantasma"},{lvl:36,nome:"Shadow Ball",tipo:"fantasma"},{lvl:41,nome:"Nightmare",tipo:"fantasma"},{lvl:48,nome:"Mean Look",tipo:"normal"}],
+"093":[{lvl:1,nome:"Hypnosis",tipo:"psiquico"},{lvl:1,nome:"Lick",tipo:"fantasma"},{lvl:1,nome:"Spite",tipo:"fantasma"},{lvl:8,nome:"Spite",tipo:"fantasma"},{lvl:13,nome:"Curse",tipo:"fantasma"},{lvl:16,nome:"Night Shade",tipo:"fantasma"},{lvl:21,nome:"Confuse Ray",tipo:"fantasma"},{lvl:25,nome:"Shadow Punch",tipo:"fantasma"},{lvl:31,nome:"Dream Eater",tipo:"psiquico"},{lvl:39,nome:"Destiny Bond",tipo:"fantasma"},{lvl:45,nome:"Shadow Ball",tipo:"fantasma"},{lvl:53,nome:"Nightmare",tipo:"fantasma"},{lvl:64,nome:"Mean Look",tipo:"normal"}],
+"094":[{lvl:1,nome:"Hypnosis",tipo:"psiquico"},{lvl:1,nome:"Lick",tipo:"fantasma"},{lvl:1,nome:"Spite",tipo:"fantasma"},{lvl:8,nome:"Spite",tipo:"fantasma"},{lvl:13,nome:"Curse",tipo:"fantasma"},{lvl:16,nome:"Night Shade",tipo:"fantasma"},{lvl:21,nome:"Confuse Ray",tipo:"fantasma"},{lvl:25,nome:"Shadow Punch",tipo:"fantasma"},{lvl:31,nome:"Dream Eater",tipo:"psiquico"},{lvl:39,nome:"Destiny Bond",tipo:"fantasma"},{lvl:45,nome:"Shadow Ball",tipo:"fantasma"},{lvl:53,nome:"Nightmare",tipo:"fantasma"},{lvl:64,nome:"Mean Look",tipo:"normal"}],
+"095":[{lvl:1,nome:"Tackle",tipo:"normal"},{lvl:1,nome:"Screech",tipo:"normal"},{lvl:8,nome:"Bind",tipo:"normal"},{lvl:12,nome:"Rock Throw",tipo:"pedra"},{lvl:19,nome:"Harden",tipo:"normal"},{lvl:23,nome:"Rage",tipo:"normal"},{lvl:30,nome:"Dragon Breath",tipo:"dragao"},{lvl:34,nome:"Sandstorm",tipo:"pedra"},{lvl:41,nome:"Slam",tipo:"normal"},{lvl:45,nome:"Iron Tail",tipo:"aco"},{lvl:52,nome:"Sand Tomb",tipo:"terra"},{lvl:56,nome:"Double-Edge",tipo:"normal"}],
+"096":[{lvl:1,nome:"Pound",tipo:"normal"},{lvl:1,nome:"Hypnosis",tipo:"psiquico"},{lvl:7,nome:"Disable",tipo:"normal"},{lvl:11,nome:"Confusion",tipo:"psiquico"},{lvl:17,nome:"Headbutt",tipo:"normal"},{lvl:21,nome:"Poison Gas",tipo:"veneno"},{lvl:27,nome:"Meditate",tipo:"psiquico"},{lvl:31,nome:"Psychic",tipo:"psiquico"},{lvl:37,nome:"Psych Up",tipo:"normal"},{lvl:41,nome:"Swagger",tipo:"normal"},{lvl:47,nome:"Future Sight",tipo:"psiquico"}],
+"097":[{lvl:1,nome:"Pound",tipo:"normal"},{lvl:1,nome:"Disable",tipo:"normal"},{lvl:1,nome:"Confusion",tipo:"psiquico"},{lvl:1,nome:"Hypnosis",tipo:"psiquico"},{lvl:1,nome:"Nightmare",tipo:"fantasma"},{lvl:7,nome:"Disable",tipo:"normal"},{lvl:11,nome:"Confusion",tipo:"psiquico"},{lvl:17,nome:"Headbutt",tipo:"normal"},{lvl:21,nome:"Poison Gas",tipo:"veneno"},{lvl:29,nome:"Meditate",tipo:"psiquico"},{lvl:35,nome:"Psychic",tipo:"psiquico"},{lvl:43,nome:"Psych Up",tipo:"normal"},{lvl:49,nome:"Swagger",tipo:"normal"},{lvl:57,nome:"Future Sight",tipo:"psiquico"}],
+"098":[{lvl:1,nome:"Bubble",tipo:"agua"},{lvl:5,nome:"Leer",tipo:"normal"},{lvl:12,nome:"Vise Grip",tipo:"normal"},{lvl:16,nome:"Harden",tipo:"normal"},{lvl:23,nome:"Mud Shot",tipo:"terra"},{lvl:27,nome:"Stomp",tipo:"normal"},{lvl:34,nome:"Guillotine",tipo:"normal"},{lvl:38,nome:"Protect",tipo:"normal"},{lvl:45,nome:"Crabhammer",tipo:"agua"},{lvl:49,nome:"Flail",tipo:"normal"}],
+"099":[{lvl:1,nome:"Vise Grip",tipo:"normal"},{lvl:1,nome:"Leer",tipo:"normal"},{lvl:1,nome:"Harden",tipo:"normal"},{lvl:1,nome:"Bubble",tipo:"agua"},{lvl:1,nome:"Metal Claw",tipo:"aco"},{lvl:5,nome:"Leer",tipo:"normal"},{lvl:12,nome:"Vise Grip",tipo:"normal"},{lvl:16,nome:"Harden",tipo:"normal"},{lvl:23,nome:"Mud Shot",tipo:"terra"},{lvl:27,nome:"Stomp",tipo:"normal"},{lvl:38,nome:"Guillotine",tipo:"normal"},{lvl:42,nome:"Protect",tipo:"normal"},{lvl:57,nome:"Crabhammer",tipo:"agua"},{lvl:65,nome:"Flail",tipo:"normal"}],
+"100":[{lvl:1,nome:"Tackle",tipo:"normal"},{lvl:1,nome:"Charge",tipo:"eletrico"},{lvl:8,nome:"Screech",tipo:"normal"},{lvl:15,nome:"Sonic Boom",tipo:"normal"},{lvl:21,nome:"Spark",tipo:"eletrico"},{lvl:27,nome:"Self-Destruct",tipo:"normal"},{lvl:32,nome:"Rollout",tipo:"pedra"},{lvl:37,nome:"Light Screen",tipo:"psiquico"},{lvl:42,nome:"Swift",tipo:"normal"},{lvl:46,nome:"Explosion",tipo:"normal"},{lvl:49,nome:"Mirror Coat",tipo:"psiquico"}],
+"101":[{lvl:1,nome:"Tackle",tipo:"normal"},{lvl:1,nome:"Sonic Boom",tipo:"normal"},{lvl:1,nome:"Screech",tipo:"normal"},{lvl:1,nome:"Charge",tipo:"eletrico"},{lvl:8,nome:"Screech",tipo:"normal"},{lvl:15,nome:"Sonic Boom",tipo:"normal"},{lvl:21,nome:"Spark",tipo:"eletrico"},{lvl:27,nome:"Self-Destruct",tipo:"normal"},{lvl:34,nome:"Rollout",tipo:"pedra"},{lvl:41,nome:"Light Screen",tipo:"psiquico"},{lvl:48,nome:"Swift",tipo:"normal"},{lvl:54,nome:"Explosion",tipo:"normal"},{lvl:59,nome:"Mirror Coat",tipo:"psiquico"}],
+"102":[{lvl:1,nome:"Hypnosis",tipo:"psiquico"},{lvl:1,nome:"Barrage",tipo:"normal"},{lvl:1,nome:"Uproar",tipo:"normal"},{lvl:7,nome:"Reflect",tipo:"psiquico"},{lvl:13,nome:"Leech Seed",tipo:"grama"},{lvl:19,nome:"Confusion",tipo:"psiquico"},{lvl:25,nome:"Stun Spore",tipo:"grama"},{lvl:31,nome:"Poison Powder",tipo:"veneno"},{lvl:37,nome:"Sleep Powder",tipo:"grama"},{lvl:43,nome:"Solar Beam",tipo:"grama"}],
+"103":[{lvl:1,nome:"Confusion",tipo:"psiquico"},{lvl:1,nome:"Hypnosis",tipo:"psiquico"},{lvl:1,nome:"Barrage",tipo:"normal"},{lvl:19,nome:"Stomp",tipo:"normal"},{lvl:31,nome:"Egg Bomb",tipo:"normal"}],
+"104":[{lvl:1,nome:"Growl",tipo:"normal"},{lvl:5,nome:"Tail Whip",tipo:"normal"},{lvl:9,nome:"Bone Club",tipo:"terra"},{lvl:13,nome:"Headbutt",tipo:"normal"},{lvl:17,nome:"Leer",tipo:"normal"},{lvl:21,nome:"Focus Energy",tipo:"normal"},{lvl:25,nome:"Bonemerang",tipo:"terra"},{lvl:29,nome:"Rage",tipo:"normal"},{lvl:33,nome:"False Swipe",tipo:"normal"},{lvl:37,nome:"Thrash",tipo:"normal"},{lvl:41,nome:"Bone Rush",tipo:"terra"},{lvl:45,nome:"Double-Edge",tipo:"normal"}],
+"105":[{lvl:1,nome:"Headbutt",tipo:"normal"},{lvl:1,nome:"Tail Whip",tipo:"normal"},{lvl:1,nome:"Growl",tipo:"normal"},{lvl:1,nome:"Bone Club",tipo:"terra"},{lvl:5,nome:"Tail Whip",tipo:"normal"},{lvl:9,nome:"Bone Club",tipo:"terra"},{lvl:13,nome:"Headbutt",tipo:"normal"},{lvl:17,nome:"Leer",tipo:"normal"},{lvl:21,nome:"Focus Energy",tipo:"normal"},{lvl:25,nome:"Bonemerang",tipo:"terra"},{lvl:32,nome:"Rage",tipo:"normal"},{lvl:39,nome:"False Swipe",tipo:"normal"},{lvl:46,nome:"Thrash",tipo:"normal"},{lvl:53,nome:"Bone Rush",tipo:"terra"},{lvl:61,nome:"Double-Edge",tipo:"normal"}],
+"106":[{lvl:1,nome:"Double Kick",tipo:"lutador"},{lvl:1,nome:"Revenge",tipo:"lutador"},{lvl:6,nome:"Meditate",tipo:"psiquico"},{lvl:11,nome:"Rolling Kick",tipo:"lutador"},{lvl:16,nome:"Jump Kick",tipo:"lutador"},{lvl:20,nome:"Brick Break",tipo:"lutador"},{lvl:21,nome:"Focus Energy",tipo:"normal"},{lvl:26,nome:"High Jump Kick",tipo:"lutador"},{lvl:31,nome:"Mind Reader",tipo:"normal"},{lvl:36,nome:"Foresight",tipo:"normal"},{lvl:41,nome:"Endure",tipo:"normal"},{lvl:46,nome:"Mega Kick",tipo:"normal"},{lvl:51,nome:"Reversal",tipo:"lutador"}],
+"107":[{lvl:1,nome:"Comet Punch",tipo:"normal"},{lvl:1,nome:"Revenge",tipo:"lutador"},{lvl:7,nome:"Agility",tipo:"psiquico"},{lvl:13,nome:"Pursuit",tipo:"sombrio"},{lvl:20,nome:"Mach Punch",tipo:"lutador"},{lvl:26,nome:"Fire Punch",tipo:"fogo"},{lvl:26,nome:"Ice Punch",tipo:"gelo"},{lvl:26,nome:"Thunder Punch",tipo:"eletrico"},{lvl:32,nome:"Sky Uppercut",tipo:"lutador"},{lvl:38,nome:"Mega Punch",tipo:"normal"},{lvl:44,nome:"Detect",tipo:"lutador"},{lvl:50,nome:"Counter",tipo:"lutador"}],
+"108":[{lvl:1,nome:"Lick",tipo:"fantasma"},{lvl:7,nome:"Supersonic",tipo:"normal"},{lvl:12,nome:"Defense Curl",tipo:"normal"},{lvl:18,nome:"Knock Off",tipo:"sombrio"},{lvl:23,nome:"Stomp",tipo:"normal"},{lvl:29,nome:"Wrap",tipo:"normal"},{lvl:34,nome:"Disable",tipo:"normal"},{lvl:40,nome:"Slam",tipo:"normal"},{lvl:45,nome:"Screech",tipo:"normal"},{lvl:51,nome:"Refresh",tipo:"normal"}],
+"109":[{lvl:1,nome:"Tackle",tipo:"normal"},{lvl:1,nome:"Poison Gas",tipo:"veneno"},{lvl:9,nome:"Smog",tipo:"veneno"},{lvl:17,nome:"Self-Destruct",tipo:"normal"},{lvl:21,nome:"Sludge",tipo:"veneno"},{lvl:25,nome:"Smokescreen",tipo:"normal"},{lvl:33,nome:"Haze",tipo:"gelo"},{lvl:41,nome:"Explosion",tipo:"normal"},{lvl:45,nome:"Destiny Bond",tipo:"fantasma"},{lvl:49,nome:"Memento",tipo:"sombrio"}],
+"110":[{lvl:1,nome:"Tackle",tipo:"normal"},{lvl:1,nome:"Self-Destruct",tipo:"normal"},{lvl:1,nome:"Smog",tipo:"veneno"},{lvl:1,nome:"Poison Gas",tipo:"veneno"},{lvl:9,nome:"Smog",tipo:"veneno"},{lvl:17,nome:"Self-Destruct",tipo:"normal"},{lvl:21,nome:"Sludge",tipo:"veneno"},{lvl:25,nome:"Smokescreen",tipo:"normal"},{lvl:33,nome:"Haze",tipo:"gelo"},{lvl:44,nome:"Explosion",tipo:"normal"},{lvl:51,nome:"Destiny Bond",tipo:"fantasma"},{lvl:58,nome:"Memento",tipo:"sombrio"}],
+"111":[{lvl:1,nome:"Horn Attack",tipo:"normal"},{lvl:1,nome:"Tail Whip",tipo:"normal"},{lvl:10,nome:"Stomp",tipo:"normal"},{lvl:15,nome:"Fury Attack",tipo:"normal"},{lvl:24,nome:"Scary Face",tipo:"normal"},{lvl:29,nome:"Rock Blast",tipo:"pedra"},{lvl:38,nome:"Horn Drill",tipo:"normal"},{lvl:43,nome:"Take Down",tipo:"normal"},{lvl:52,nome:"Earthquake",tipo:"terra"},{lvl:57,nome:"Megahorn",tipo:"inseto"}],
+"112":[{lvl:1,nome:"Stomp",tipo:"normal"},{lvl:1,nome:"Horn Attack",tipo:"normal"},{lvl:1,nome:"Fury Attack",tipo:"normal"},{lvl:1,nome:"Tail Whip",tipo:"normal"},{lvl:10,nome:"Stomp",tipo:"normal"},{lvl:15,nome:"Fury Attack",tipo:"normal"},{lvl:24,nome:"Scary Face",tipo:"normal"},{lvl:29,nome:"Rock Blast",tipo:"pedra"},{lvl:38,nome:"Horn Drill",tipo:"normal"},{lvl:46,nome:"Take Down",tipo:"normal"},{lvl:58,nome:"Earthquake",tipo:"terra"},{lvl:66,nome:"Megahorn",tipo:"inseto"}],
+"113":[{lvl:1,nome:"Pound",tipo:"normal"},{lvl:1,nome:"Growl",tipo:"normal"},{lvl:5,nome:"Tail Whip",tipo:"normal"},{lvl:9,nome:"Refresh",tipo:"normal"},{lvl:13,nome:"Soft-Boiled",tipo:"normal"},{lvl:17,nome:"Double Slap",tipo:"normal"},{lvl:23,nome:"Minimize",tipo:"normal"},{lvl:29,nome:"Sing",tipo:"normal"},{lvl:35,nome:"Egg Bomb",tipo:"normal"},{lvl:41,nome:"Defense Curl",tipo:"normal"},{lvl:49,nome:"Light Screen",tipo:"psiquico"},{lvl:57,nome:"Double-Edge",tipo:"normal"}],
+"114":[{lvl:1,nome:"Constrict",tipo:"normal"},{lvl:1,nome:"Ingrain",tipo:"grama"},{lvl:4,nome:"Sleep Powder",tipo:"grama"},{lvl:10,nome:"Absorb",tipo:"grama"},{lvl:13,nome:"Growth",tipo:"normal"},{lvl:19,nome:"Poison Powder",tipo:"veneno"},{lvl:22,nome:"Vine Whip",tipo:"grama"},{lvl:28,nome:"Bind",tipo:"normal"},{lvl:31,nome:"Mega Drain",tipo:"grama"},{lvl:37,nome:"Stun Spore",tipo:"grama"},{lvl:40,nome:"Slam",tipo:"normal"},{lvl:46,nome:"Tickle",tipo:"normal"}],
+"115":[{lvl:1,nome:"Comet Punch",tipo:"normal"},{lvl:1,nome:"Leer",tipo:"normal"},{lvl:7,nome:"Bite",tipo:"sombrio"},{lvl:13,nome:"Tail Whip",tipo:"normal"},{lvl:19,nome:"Fake Out",tipo:"normal"},{lvl:25,nome:"Mega Punch",tipo:"normal"},{lvl:31,nome:"Rage",tipo:"normal"},{lvl:37,nome:"Endure",tipo:"normal"},{lvl:43,nome:"Dizzy Punch",tipo:"normal"},{lvl:49,nome:"Reversal",tipo:"lutador"}],
+"116":[{lvl:1,nome:"Bubble",tipo:"agua"},{lvl:8,nome:"Smokescreen",tipo:"normal"},{lvl:15,nome:"Leer",tipo:"normal"},{lvl:22,nome:"Water Gun",tipo:"agua"},{lvl:29,nome:"Twister",tipo:"dragao"},{lvl:36,nome:"Agility",tipo:"psiquico"},{lvl:43,nome:"Hydro Pump",tipo:"agua"},{lvl:50,nome:"Dragon Dance",tipo:"dragao"}],
+"117":[{lvl:1,nome:"Leer",tipo:"normal"},{lvl:1,nome:"Water Gun",tipo:"agua"},{lvl:1,nome:"Smokescreen",tipo:"normal"},{lvl:1,nome:"Bubble",tipo:"agua"},{lvl:8,nome:"Smokescreen",tipo:"normal"},{lvl:15,nome:"Leer",tipo:"normal"},{lvl:22,nome:"Water Gun",tipo:"agua"},{lvl:29,nome:"Twister",tipo:"dragao"},{lvl:40,nome:"Agility",tipo:"psiquico"},{lvl:51,nome:"Hydro Pump",tipo:"agua"},{lvl:62,nome:"Dragon Dance",tipo:"dragao"}],
+"118":[{lvl:1,nome:"Tail Whip",tipo:"normal"},{lvl:1,nome:"Peck",tipo:"voador"},{lvl:1,nome:"Water Sport",tipo:"agua"},{lvl:10,nome:"Supersonic",tipo:"normal"},{lvl:15,nome:"Horn Attack",tipo:"normal"},{lvl:24,nome:"Flail",tipo:"normal"},{lvl:29,nome:"Fury Attack",tipo:"normal"},{lvl:38,nome:"Waterfall",tipo:"agua"},{lvl:43,nome:"Horn Drill",tipo:"normal"},{lvl:52,nome:"Agility",tipo:"psiquico"},{lvl:57,nome:"Megahorn",tipo:"inseto"}],
+"119":[{lvl:1,nome:"Tail Whip",tipo:"normal"},{lvl:1,nome:"Supersonic",tipo:"normal"},{lvl:1,nome:"Peck",tipo:"voador"},{lvl:1,nome:"Water Sport",tipo:"agua"},{lvl:10,nome:"Supersonic",tipo:"normal"},{lvl:15,nome:"Horn Attack",tipo:"normal"},{lvl:24,nome:"Flail",tipo:"normal"},{lvl:29,nome:"Fury Attack",tipo:"normal"},{lvl:41,nome:"Waterfall",tipo:"agua"},{lvl:49,nome:"Horn Drill",tipo:"normal"},{lvl:61,nome:"Agility",tipo:"psiquico"},{lvl:69,nome:"Megahorn",tipo:"inseto"}],
+"120":[{lvl:1,nome:"Tackle",tipo:"normal"},{lvl:1,nome:"Harden",tipo:"normal"},{lvl:6,nome:"Water Gun",tipo:"agua"},{lvl:10,nome:"Rapid Spin",tipo:"normal"},{lvl:15,nome:"Recover",tipo:"normal"},{lvl:19,nome:"Camouflage",tipo:"normal"},{lvl:24,nome:"Swift",tipo:"normal"},{lvl:28,nome:"Bubble Beam",tipo:"agua"},{lvl:33,nome:"Minimize",tipo:"normal"},{lvl:37,nome:"Light Screen",tipo:"psiquico"},{lvl:42,nome:"Cosmic Power",tipo:"psiquico"},{lvl:46,nome:"Hydro Pump",tipo:"agua"}],
+"121":[{lvl:1,nome:"Water Gun",tipo:"agua"},{lvl:1,nome:"Recover",tipo:"normal"},{lvl:1,nome:"Swift",tipo:"normal"},{lvl:1,nome:"Rapid Spin",tipo:"normal"},{lvl:33,nome:"Confuse Ray",tipo:"fantasma"}],
+"122":[{lvl:1,nome:"Barrier",tipo:"psiquico"},{lvl:5,nome:"Confusion",tipo:"psiquico"},{lvl:8,nome:"Substitute",tipo:"normal"},{lvl:12,nome:"Meditate",tipo:"psiquico"},{lvl:15,nome:"Double Slap",tipo:"normal"},{lvl:19,nome:"Light Screen",tipo:"psiquico"},{lvl:19,nome:"Reflect",tipo:"psiquico"},{lvl:22,nome:"Magical Leaf",tipo:"grama"},{lvl:26,nome:"Encore",tipo:"normal"},{lvl:29,nome:"Psybeam",tipo:"psiquico"},{lvl:33,nome:"Recycle",tipo:"normal"},{lvl:36,nome:"Trick",tipo:"psiquico"},{lvl:40,nome:"Role Play",tipo:"psiquico"},{lvl:43,nome:"Psychic",tipo:"psiquico"},{lvl:47,nome:"Baton Pass",tipo:"normal"},{lvl:50,nome:"Safeguard",tipo:"normal"}],
+"123":[{lvl:1,nome:"Leer",tipo:"normal"},{lvl:1,nome:"Quick Attack",tipo:"normal"},{lvl:6,nome:"Focus Energy",tipo:"normal"},{lvl:11,nome:"Pursuit",tipo:"sombrio"},{lvl:16,nome:"False Swipe",tipo:"normal"},{lvl:21,nome:"Agility",tipo:"psiquico"},{lvl:26,nome:"Wing Attack",tipo:"voador"},{lvl:31,nome:"Slash",tipo:"normal"},{lvl:36,nome:"Swords Dance",tipo:"normal"},{lvl:41,nome:"Double Team",tipo:"normal"},{lvl:46,nome:"Fury Cutter",tipo:"inseto"}],
+"124":[{lvl:1,nome:"Pound",tipo:"normal"},{lvl:1,nome:"Lick",tipo:"fantasma"},{lvl:1,nome:"Lovely Kiss",tipo:"normal"},{lvl:1,nome:"Powder Snow",tipo:"gelo"},{lvl:9,nome:"Lovely Kiss",tipo:"normal"},{lvl:13,nome:"Powder Snow",tipo:"gelo"},{lvl:21,nome:"Double Slap",tipo:"normal"},{lvl:25,nome:"Ice Punch",tipo:"gelo"},{lvl:35,nome:"Mean Look",tipo:"normal"},{lvl:41,nome:"Fake Tears",tipo:"sombrio"},{lvl:51,nome:"Body Slam",tipo:"normal"},{lvl:57,nome:"Perish Song",tipo:"normal"},{lvl:67,nome:"Blizzard",tipo:"gelo"}],
+"125":[{lvl:1,nome:"Thunder Punch",tipo:"eletrico"},{lvl:1,nome:"Leer",tipo:"normal"},{lvl:1,nome:"Quick Attack",tipo:"normal"},{lvl:9,nome:"Thunder Punch",tipo:"eletrico"},{lvl:17,nome:"Light Screen",tipo:"psiquico"},{lvl:25,nome:"Swift",tipo:"normal"},{lvl:36,nome:"Screech",tipo:"normal"},{lvl:47,nome:"Thunderbolt",tipo:"eletrico"},{lvl:58,nome:"Thunder",tipo:"eletrico"}],
+"126":[{lvl:1,nome:"Fire Punch",tipo:"fogo"},{lvl:1,nome:"Leer",tipo:"normal"},{lvl:1,nome:"Ember",tipo:"fogo"},{lvl:1,nome:"Smog",tipo:"veneno"},{lvl:7,nome:"Leer",tipo:"normal"},{lvl:13,nome:"Smog",tipo:"veneno"},{lvl:19,nome:"Fire Punch",tipo:"fogo"},{lvl:25,nome:"Smokescreen",tipo:"normal"},{lvl:33,nome:"Sunny Day",tipo:"fogo"},{lvl:41,nome:"Flamethrower",tipo:"fogo"},{lvl:49,nome:"Confuse Ray",tipo:"fantasma"},{lvl:57,nome:"Fire Blast",tipo:"fogo"}],
+"127":[{lvl:1,nome:"Vise Grip",tipo:"normal"},{lvl:1,nome:"Focus Energy",tipo:"normal"},{lvl:7,nome:"Bind",tipo:"normal"},{lvl:13,nome:"Seismic Toss",tipo:"lutador"},{lvl:19,nome:"Harden",tipo:"normal"},{lvl:25,nome:"Revenge",tipo:"lutador"},{lvl:31,nome:"Brick Break",tipo:"lutador"},{lvl:37,nome:"Guillotine",tipo:"normal"},{lvl:43,nome:"Submission",tipo:"lutador"},{lvl:49,nome:"Swords Dance",tipo:"normal"}],
+"128":[{lvl:1,nome:"Tackle",tipo:"normal"},{lvl:1,nome:"Tail Whip",tipo:"normal"},{lvl:4,nome:"Rage",tipo:"normal"},{lvl:8,nome:"Horn Attack",tipo:"normal"},{lvl:13,nome:"Scary Face",tipo:"normal"},{lvl:19,nome:"Pursuit",tipo:"sombrio"},{lvl:26,nome:"Swagger",tipo:"normal"},{lvl:34,nome:"Rest",tipo:"psiquico"},{lvl:43,nome:"Thrash",tipo:"normal"},{lvl:53,nome:"Take Down",tipo:"normal"}],
+"129":[{lvl:1,nome:"Splash",tipo:"normal"},{lvl:15,nome:"Tackle",tipo:"normal"},{lvl:30,nome:"Flail",tipo:"normal"}],
+"130":[{lvl:1,nome:"Thrash",tipo:"normal"},{lvl:20,nome:"Bite",tipo:"sombrio"},{lvl:25,nome:"Dragon Rage",tipo:"dragao"},{lvl:30,nome:"Leer",tipo:"normal"},{lvl:35,nome:"Twister",tipo:"dragao"},{lvl:40,nome:"Hydro Pump",tipo:"agua"},{lvl:45,nome:"Rain Dance",tipo:"agua"},{lvl:50,nome:"Dragon Dance",tipo:"dragao"},{lvl:55,nome:"Hyper Beam",tipo:"normal"}],
+"131":[{lvl:1,nome:"Growl",tipo:"normal"},{lvl:1,nome:"Sing",tipo:"normal"},{lvl:1,nome:"Water Gun",tipo:"agua"},{lvl:7,nome:"Mist",tipo:"gelo"},{lvl:13,nome:"Body Slam",tipo:"normal"},{lvl:19,nome:"Confuse Ray",tipo:"fantasma"},{lvl:25,nome:"Perish Song",tipo:"normal"},{lvl:31,nome:"Ice Beam",tipo:"gelo"},{lvl:37,nome:"Rain Dance",tipo:"agua"},{lvl:43,nome:"Safeguard",tipo:"normal"},{lvl:49,nome:"Hydro Pump",tipo:"agua"},{lvl:55,nome:"Sheer Cold",tipo:"gelo"}],
+"132":[{lvl:1,nome:"Transform",tipo:"normal"}],
+"133":[{lvl:1,nome:"Tackle",tipo:"normal"},{lvl:1,nome:"Tail Whip",tipo:"normal"},{lvl:1,nome:"Helping Hand",tipo:"normal"},{lvl:8,nome:"Sand Attack",tipo:"terra"},{lvl:16,nome:"Growl",tipo:"normal"},{lvl:23,nome:"Quick Attack",tipo:"normal"},{lvl:30,nome:"Bite",tipo:"sombrio"},{lvl:36,nome:"Baton Pass",tipo:"normal"},{lvl:42,nome:"Take Down",tipo:"normal"}],
+"134":[{lvl:1,nome:"Tackle",tipo:"normal"},{lvl:1,nome:"Tail Whip",tipo:"normal"},{lvl:1,nome:"Helping Hand",tipo:"normal"},{lvl:8,nome:"Sand Attack",tipo:"terra"},{lvl:16,nome:"Water Gun",tipo:"agua"},{lvl:23,nome:"Quick Attack",tipo:"normal"},{lvl:30,nome:"Bite",tipo:"sombrio"},{lvl:36,nome:"Aurora Beam",tipo:"gelo"},{lvl:42,nome:"Haze",tipo:"gelo"},{lvl:47,nome:"Acid Armor",tipo:"veneno"},{lvl:52,nome:"Hydro Pump",tipo:"agua"}],
+"135":[{lvl:1,nome:"Tackle",tipo:"normal"},{lvl:1,nome:"Tail Whip",tipo:"normal"},{lvl:1,nome:"Helping Hand",tipo:"normal"},{lvl:8,nome:"Sand Attack",tipo:"terra"},{lvl:16,nome:"Thunder Shock",tipo:"eletrico"},{lvl:23,nome:"Quick Attack",tipo:"normal"},{lvl:30,nome:"Double Kick",tipo:"lutador"},{lvl:36,nome:"Pin Missile",tipo:"inseto"},{lvl:42,nome:"Thunder Wave",tipo:"eletrico"},{lvl:47,nome:"Agility",tipo:"psiquico"},{lvl:52,nome:"Thunder",tipo:"eletrico"}],
+"136":[{lvl:1,nome:"Tackle",tipo:"normal"},{lvl:1,nome:"Tail Whip",tipo:"normal"},{lvl:1,nome:"Helping Hand",tipo:"normal"},{lvl:8,nome:"Sand Attack",tipo:"terra"},{lvl:16,nome:"Ember",tipo:"fogo"},{lvl:23,nome:"Quick Attack",tipo:"normal"},{lvl:30,nome:"Bite",tipo:"sombrio"},{lvl:36,nome:"Fire Spin",tipo:"fogo"},{lvl:42,nome:"Smog",tipo:"veneno"},{lvl:47,nome:"Leer",tipo:"normal"},{lvl:52,nome:"Flamethrower",tipo:"fogo"}],
+"137":[{lvl:1,nome:"Tackle",tipo:"normal"},{lvl:1,nome:"Conversion",tipo:"normal"},{lvl:1,nome:"Conversion 2",tipo:"normal"},{lvl:9,nome:"Agility",tipo:"psiquico"},{lvl:12,nome:"Psybeam",tipo:"psiquico"},{lvl:20,nome:"Recover",tipo:"normal"},{lvl:24,nome:"Sharpen",tipo:"normal"},{lvl:32,nome:"Lock-On",tipo:"normal"},{lvl:36,nome:"Tri Attack",tipo:"normal"},{lvl:44,nome:"Recycle",tipo:"normal"},{lvl:48,nome:"Zap Cannon",tipo:"eletrico"}],
+"138":[{lvl:1,nome:"Withdraw",tipo:"agua"},{lvl:1,nome:"Constrict",tipo:"normal"},{lvl:13,nome:"Bite",tipo:"sombrio"},{lvl:19,nome:"Water Gun",tipo:"agua"},{lvl:25,nome:"Mud Shot",tipo:"terra"},{lvl:31,nome:"Leer",tipo:"normal"},{lvl:37,nome:"Protect",tipo:"normal"},{lvl:43,nome:"Tickle",tipo:"normal"},{lvl:49,nome:"Ancient Power",tipo:"pedra"},{lvl:55,nome:"Hydro Pump",tipo:"agua"}],
+"139":[{lvl:1,nome:"Bite",tipo:"sombrio"},{lvl:1,nome:"Water Gun",tipo:"agua"},{lvl:1,nome:"Withdraw",tipo:"agua"},{lvl:1,nome:"Constrict",tipo:"normal"},{lvl:13,nome:"Bite",tipo:"sombrio"},{lvl:19,nome:"Water Gun",tipo:"agua"},{lvl:25,nome:"Mud Shot",tipo:"terra"},{lvl:31,nome:"Leer",tipo:"normal"},{lvl:37,nome:"Protect",tipo:"normal"},{lvl:40,nome:"Spike Cannon",tipo:"normal"},{lvl:46,nome:"Tickle",tipo:"normal"},{lvl:55,nome:"Ancient Power",tipo:"pedra"},{lvl:65,nome:"Hydro Pump",tipo:"agua"}],
+"140":[{lvl:1,nome:"Scratch",tipo:"normal"},{lvl:1,nome:"Harden",tipo:"normal"},{lvl:13,nome:"Absorb",tipo:"grama"},{lvl:19,nome:"Leer",tipo:"normal"},{lvl:25,nome:"Mud Shot",tipo:"terra"},{lvl:31,nome:"Sand Attack",tipo:"terra"},{lvl:37,nome:"Endure",tipo:"normal"},{lvl:43,nome:"Metal Sound",tipo:"aco"},{lvl:49,nome:"Mega Drain",tipo:"grama"},{lvl:55,nome:"Ancient Power",tipo:"pedra"}],
+"141":[{lvl:1,nome:"Scratch",tipo:"normal"},{lvl:1,nome:"Leer",tipo:"normal"},{lvl:1,nome:"Absorb",tipo:"grama"},{lvl:1,nome:"Harden",tipo:"normal"},{lvl:1,nome:"Fury Cutter",tipo:"inseto"},{lvl:13,nome:"Absorb",tipo:"grama"},{lvl:19,nome:"Leer",tipo:"normal"},{lvl:25,nome:"Mud Shot",tipo:"terra"},{lvl:31,nome:"Sand Attack",tipo:"terra"},{lvl:37,nome:"Endure",tipo:"normal"},{lvl:40,nome:"Slash",tipo:"normal"},{lvl:46,nome:"Metal Sound",tipo:"aco"},{lvl:55,nome:"Mega Drain",tipo:"grama"},{lvl:65,nome:"Ancient Power",tipo:"pedra"}],
+"142":[{lvl:1,nome:"Wing Attack",tipo:"voador"},{lvl:8,nome:"Agility",tipo:"psiquico"},{lvl:15,nome:"Bite",tipo:"sombrio"},{lvl:22,nome:"Supersonic",tipo:"normal"},{lvl:29,nome:"Ancient Power",tipo:"pedra"},{lvl:36,nome:"Scary Face",tipo:"normal"},{lvl:43,nome:"Take Down",tipo:"normal"},{lvl:50,nome:"Hyper Beam",tipo:"normal"}],
+"143":[{lvl:1,nome:"Tackle",tipo:"normal"},{lvl:5,nome:"Amnesia",tipo:"psiquico"},{lvl:9,nome:"Defense Curl",tipo:"normal"},{lvl:13,nome:"Belly Drum",tipo:"normal"},{lvl:17,nome:"Headbutt",tipo:"normal"},{lvl:21,nome:"Yawn",tipo:"normal"},{lvl:25,nome:"Rest",tipo:"psiquico"},{lvl:29,nome:"Snore",tipo:"normal"},{lvl:33,nome:"Body Slam",tipo:"normal"},{lvl:37,nome:"Sleep Talk",tipo:"normal"},{lvl:41,nome:"Block",tipo:"normal"},{lvl:45,nome:"Covet",tipo:"normal"},{lvl:49,nome:"Rollout",tipo:"pedra"},{lvl:53,nome:"Hyper Beam",tipo:"normal"}],
+"144":[{lvl:1,nome:"Gust",tipo:"voador"},{lvl:1,nome:"Powder Snow",tipo:"gelo"},{lvl:13,nome:"Mist",tipo:"gelo"},{lvl:25,nome:"Agility",tipo:"psiquico"},{lvl:37,nome:"Mind Reader",tipo:"normal"},{lvl:49,nome:"Ice Beam",tipo:"gelo"},{lvl:61,nome:"Reflect",tipo:"psiquico"},{lvl:73,nome:"Blizzard",tipo:"gelo"},{lvl:85,nome:"Sheer Cold",tipo:"gelo"}],
+"145":[{lvl:1,nome:"Peck",tipo:"voador"},{lvl:1,nome:"Thunder Shock",tipo:"eletrico"},{lvl:13,nome:"Thunder Wave",tipo:"eletrico"},{lvl:25,nome:"Agility",tipo:"psiquico"},{lvl:37,nome:"Detect",tipo:"lutador"},{lvl:49,nome:"Drill Peck",tipo:"voador"},{lvl:61,nome:"Charge",tipo:"eletrico"},{lvl:73,nome:"Light Screen",tipo:"psiquico"},{lvl:85,nome:"Thunder",tipo:"eletrico"}],
+"146":[{lvl:1,nome:"Wing Attack",tipo:"voador"},{lvl:1,nome:"Ember",tipo:"fogo"},{lvl:13,nome:"Fire Spin",tipo:"fogo"},{lvl:25,nome:"Agility",tipo:"psiquico"},{lvl:37,nome:"Endure",tipo:"normal"},{lvl:49,nome:"Flamethrower",tipo:"fogo"},{lvl:61,nome:"Safeguard",tipo:"normal"},{lvl:73,nome:"Heat Wave",tipo:"fogo"},{lvl:85,nome:"Sky Attack",tipo:"voador"}],
+"147":[{lvl:1,nome:"Wrap",tipo:"normal"},{lvl:1,nome:"Leer",tipo:"normal"},{lvl:8,nome:"Thunder Wave",tipo:"eletrico"},{lvl:15,nome:"Twister",tipo:"dragao"},{lvl:22,nome:"Dragon Rage",tipo:"dragao"},{lvl:29,nome:"Slam",tipo:"normal"},{lvl:36,nome:"Agility",tipo:"psiquico"},{lvl:43,nome:"Safeguard",tipo:"normal"},{lvl:50,nome:"Outrage",tipo:"dragao"},{lvl:57,nome:"Hyper Beam",tipo:"normal"}],
+"148":[{lvl:1,nome:"Wrap",tipo:"normal"},{lvl:1,nome:"Leer",tipo:"normal"},{lvl:1,nome:"Thunder Wave",tipo:"eletrico"},{lvl:1,nome:"Twister",tipo:"dragao"},{lvl:8,nome:"Thunder Wave",tipo:"eletrico"},{lvl:15,nome:"Twister",tipo:"dragao"},{lvl:22,nome:"Dragon Rage",tipo:"dragao"},{lvl:29,nome:"Slam",tipo:"normal"},{lvl:38,nome:"Agility",tipo:"psiquico"},{lvl:47,nome:"Safeguard",tipo:"normal"},{lvl:56,nome:"Outrage",tipo:"dragao"},{lvl:65,nome:"Hyper Beam",tipo:"normal"}],
+"149":[{lvl:1,nome:"Wrap",tipo:"normal"},{lvl:1,nome:"Leer",tipo:"normal"},{lvl:1,nome:"Thunder Wave",tipo:"eletrico"},{lvl:1,nome:"Twister",tipo:"dragao"},{lvl:8,nome:"Thunder Wave",tipo:"eletrico"},{lvl:15,nome:"Twister",tipo:"dragao"},{lvl:22,nome:"Dragon Rage",tipo:"dragao"},{lvl:29,nome:"Slam",tipo:"normal"},{lvl:38,nome:"Agility",tipo:"psiquico"},{lvl:47,nome:"Safeguard",tipo:"normal"},{lvl:55,nome:"Wing Attack",tipo:"voador"},{lvl:61,nome:"Outrage",tipo:"dragao"},{lvl:75,nome:"Hyper Beam",tipo:"normal"}],
+"150":[{lvl:1,nome:"Disable",tipo:"normal"},{lvl:1,nome:"Confusion",tipo:"psiquico"},{lvl:11,nome:"Barrier",tipo:"psiquico"},{lvl:22,nome:"Mist",tipo:"gelo"},{lvl:33,nome:"Swift",tipo:"normal"},{lvl:44,nome:"Recover",tipo:"normal"},{lvl:55,nome:"Safeguard",tipo:"normal"},{lvl:66,nome:"Psychic",tipo:"psiquico"},{lvl:77,nome:"Psych Up",tipo:"normal"},{lvl:88,nome:"Future Sight",tipo:"psiquico"},{lvl:99,nome:"Amnesia",tipo:"psiquico"}],
+"151":[{lvl:1,nome:"Pound",tipo:"normal"},{lvl:10,nome:"Transform",tipo:"normal"},{lvl:20,nome:"Mega Punch",tipo:"normal"},{lvl:30,nome:"Metronome",tipo:"normal"},{lvl:40,nome:"Psychic",tipo:"psiquico"},{lvl:50,nome:"Ancient Power",tipo:"pedra"}]
+};
+
+    const ROTULO_TIPO = {
+      normal:"Normal", fogo:"Fogo", agua:"Água", eletrico:"Elétrico", grama:"Grama",
+      gelo:"Gelo", lutador:"Lutador", veneno:"Veneno", terra:"Terra", voador:"Voador",
+      psiquico:"Psíquico", inseto:"Inseto", pedra:"Pedra", fantasma:"Fantasma",
+      dragao:"Dragão", sombrio:"Sombrio", aco:"Aço", fada:"Fada"
+    };
+
+    function badge(tipoSlug){
+      return `<span class="badge tipo-${tipoSlug}">${ROTULO_TIPO[tipoSlug] || tipoSlug}</span>`;
+    }
+
+    function barraStat(rotulo, valor, max){
+      const pct = Math.min(100, Math.round((valor / max) * 100));
+      return `
+        <div class="linha-stat">
+          <span class="linha-stat-nome">${rotulo}</span>
+          <div class="linha-stat-barra"><div class="linha-stat-preenchimento" style="width:${pct}%"></div></div>
+          <span class="linha-stat-valor">${valor}</span>
+        </div>`;
+    }
+
+    function pad3(n){ return String(n).padStart(3, '0'); }
+
+    function montarEvolucao(cadeia, numAtual){
+      if (cadeia.length < 2){
+        return '<p class="sub">Este Pokémon não evolui.</p>';
+      }
+      return '<div class="cadeia-evolucao">' + cadeia.map((n, i) => {
+        const p = DADOS[n];
+        if (!p) return '';
+        const atual = n === numAtual ? ' atual' : '';
+        const seta = i < cadeia.length - 1 ? '<span class="seta-evolucao">→</span>' : '';
+        return `<a class="evo-item${atual}" href="pokemon-detalhes.html?n=${n}">
+                  <span class="num">#${n}</span>
+                  <img src="${p.img}" alt="${p.nome}" loading="lazy">
+                  <span class="evo-nome">${p.nome}</span>
+                </a>${seta}`;
+      }).join('') + '</div>';
+    }
+
+    function montarGolpesNivel(numero){
+      const lista = GOLPES_NIVEL[numero];
+      if (!lista || lista.length === 0){
+        return '<p class="sub">Nenhum golpe de nível cadastrado para este Pokémon.</p>';
+      }
+      const linhas = lista.map(g => `
+        <tr>
+          <td class="mono">${g.lvl === 1 ? 'Inicial' : 'Nv. ' + g.lvl}</td>
+          <td>${g.nome}</td>
+          <td>${badge(g.tipo)}</td>
+        </tr>`).join('');
+      return `
+        <div class="wrap-tabela">
+          <table>
+            <thead><tr><th>Nível</th><th>Golpe</th><th>Tipo</th></tr></thead>
+            <tbody>${linhas}</tbody>
+          </table>
+        </div>
+        <p class="sub" style="margin-top:8px; font-size:13px;">
+          Moveset de referência: Pokémon FireRed / LeafGreen.
+        </p>`;
+    }
+
+    function montarGolpesTM(tipos){
+      const compativeis = TMS.filter(t => tipos.includes(t.tipo));
+      if (compativeis.length === 0){
+        return '<p class="sub">Nenhuma TM do tipo deste Pokémon na nossa lista — confira a <a href="tms.html">tabela completa de TMs</a>.</p>';
+      }
+      const itens = compativeis.map(t => `
+        <li class="golpe-item">
+          <span class="golpe-tm">${t.tm}</span>
+          <span class="golpe-nome">${t.nome}</span>
+          ${badge(t.tipo)}
+        </li>`).join('');
+      return `<ul class="lista-golpes">${itens}</ul>
+        <p class="sub" style="margin-top:10px; font-size:13px;">
+          * Estimativa por compatibilidade de tipo. Veja a <a href="tms.html">lista completa de TMs</a> para todos os detalhes.
+        </p>`;
+    }
+
+    function renderizar(numero){
+      const p = DADOS[numero];
+      const container = document.getElementById('conteudoFicha');
+
+      if (!p){
+        container.innerHTML = `
+          <p class="eyebrow">Ops</p>
+          <h1>Pokémon não encontrado</h1>
+          <p class="sub">Não achamos o número <strong>${numero}</strong> na Kantodex.
+          Volte para a <a href="pokemons.html">Pokédex completa</a>.</p>`;
+        return;
+      }
+
+      document.getElementById('tituloPagina').textContent = `${p.nome} — Kantodex`;
+
+      const badgesTipos = p.tipos.map(badge).join(' ');
+      const badgesFraquezas = p.fracas.length ? p.fracas.map(badge).join(' ') : '<span class="sub">Nenhuma</span>';
+      const badgesResistencias = p.resiste.length ? p.resiste.map(badge).join(' ') : '<span class="sub">Nenhuma</span>';
+      const badgesImunidades = p.imune.length ? p.imune.map(badge).join(' ') : '<span class="sub">Nenhuma</span>';
+
+      const numAnterior = pad3(((parseInt(numero,10) + 149) % 151) + 1);
+      const numProximo   = pad3((parseInt(numero,10) % 151) + 1);
+
+      container.innerHTML = `
+        <p class="eyebrow">Pokédex Nacional · Kanto</p>
+        <div class="ficha-cabecalho">
+          <img class="ficha-imagem" src="${p.img}" alt="${p.nome}">
+          <div>
+            <span class="num-grande">#${numero}</span>
+            <h1>${p.nome}</h1>
+            <p class="badges">${badgesTipos}</p>
+            <p class="sub">${p.desc}</p>
+          </div>
+        </div>
+
+        <div class="nav-ficha">
+          <a href="pokemon-detalhes.html?n=${numAnterior}">← Anterior (#${numAnterior})</a>
+          <a href="pokemons.html">Ver Pokédex completa</a>
+          <a href="pokemon-detalhes.html?n=${numProximo}">Próximo (#${numProximo}) →</a>
+        </div>
+
+        <h2>Estatísticas base</h2>
+        <div class="bloco-stats">
+          ${barraStat('HP', p.hp, 255)}
+          ${barraStat('Ataque', p.atk, 200)}
+          ${barraStat('Defesa', p.def, 230)}
+          ${barraStat('Especial', p.esp, 200)}
+          ${barraStat('Velocidade', p.spd, 180)}
+        </div>
+        <p class="sub" style="margin-top:8px;">Total base: <strong>${p.total}</strong></p>
+
+        <h2>Fraquezas e resistências</h2>
+        <div class="grade-tipos">
+          <div><p class="rotulo-mini">🔺 Fraco contra</p><p>${badgesFraquezas}</p></div>
+          <div><p class="rotulo-mini">🛡️ Resiste a</p><p>${badgesResistencias}</p></div>
+          <div><p class="rotulo-mini">🚫 Imune a</p><p>${badgesImunidades}</p></div>
+        </div>
+
+        <h2>Linha evolutiva</h2>
+        ${montarEvolucao(p.cadeia, numero)}
+
+        <h2>Golpes aprendidos por nível</h2>
+        ${montarGolpesNivel(numero)}
+
+        <h2>Golpes compatíveis (TMs)</h2>
+        ${montarGolpesTM(p.tipos)}
+      `;
+    }
+
+    const parametros = new URLSearchParams(window.location.search);
+    const numeroPedido = pad3(parseInt(parametros.get('n') || '1', 10) || 1);
+    renderizar(numeroPedido);
+
+    const botaoTopo = document.getElementById('botaoTopo');
+    window.addEventListener('scroll', () => {
+      botaoTopo.classList.toggle('visivel', window.scrollY > 400);
+    });
+    botaoTopo.addEventListener('click', (e) => {
+      e.preventDefault();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  </script>
+</body>
+</html>

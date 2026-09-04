@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TM's — Kantodex</title>
+  <meta name="description" content="Lista completa das 50 TM's de Pokémon FireRed, com tipo e poder de cada golpe.">
+  <link rel="stylesheet" href="index.css">
+</head>
+<body>
+
+  <header class="topo-app">
+    <div class="topo-row">
+      <div class="marca">
+        <div class="lente" title="Kantodex"></div>
+        <p class="titulo-site">KANTODEX</p>
+    </div>
+    <div class="faixa">
+      <div class="barra">
+        <nav>
+          <a href="./kantodex.html">KANTODEX</a>
+          <a href="./pokemons.html">POKÉMONS</a>
+          <a href="./tms.html" class="ativo">TM'S</a>
+          <a href="./mapa.html">MAPA</a>
+          <a href="./avalie.html">AVALIE</a>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="tela">
+      <p class="eyebrow">Pokémon FireRed</p>
+      <h1>TM's — Máquinas de Ensino</h1>
+      <p class="sub">
+        As 50 <strong>TM's</strong> (Técnicas de Máquina) disponíveis em
+        Pokémon FireRed, com o tipo e o poder de cada golpe. Use o campo abaixo
+        para buscar por nome do golpe — e não deixe de conferir também os
+        <a href="pokemons.html">151 Pokémon da Kantodex</a> para ver quem
+        aprende cada TM.
+      </p>
+
+      <div class="stat-strip">
+        <div class="stat-chip"><strong>50</strong><span>TM's</span></div>
+        <div class="stat-chip"><strong>150</strong><span>Maior poder</span></div>
+        <div class="stat-chip"><strong>FR</strong><span>FireRed</span></div>
+      </div>
+
+      <div class="ferramentas">
+        <div class="campo-busca">
+          <span>🔍</span>
+          <input type="text" id="buscaTM" placeholder="Buscar TM por nome do golpe…" autocomplete="off">
+        </div>
+      </div>
+
+      <p class="contador-resultado" id="contadorTM">Exibindo 50 de 50 TM's</p>
+
+      <div class="wrap-tabela">
+        <table>
+          <thead>
+            <tr>
+              <th>TM</th>
+              <th>Nome</th>
+              <th>Tipo</th>
+              <th>Dano</th>
+            </tr>
+          </thead>
+          <tbody id="corpoTabela">
+  <tr data-nome="focus punch" data-tipo="lutador"><td class="mono">TM01</td><td>Focus Punch</td><td><span class="badge tipo-lutador">Lutador</span></td><td>150</td></tr>
+  <tr data-nome="dragon claw" data-tipo="dragao"><td class="mono">TM02</td><td>Dragon Claw</td><td><span class="badge tipo-dragao">Dragão</span></td><td>80</td></tr>
+  <tr data-nome="water pulse" data-tipo="agua"><td class="mono">TM03</td><td>Water Pulse</td><td><span class="badge tipo-agua">Água</span></td><td>60</td></tr>
+  <tr data-nome="calm mind" data-tipo="psiquico"><td class="mono">TM04</td><td>Calm Mind</td><td><span class="badge tipo-psiquico">Psíquico</span></td><td>-</td></tr>
+  <tr data-nome="roar" data-tipo="normal"><td class="mono">TM05</td><td>Roar</td><td><span class="badge tipo-normal">Normal</span></td><td>-</td></tr>
+  <tr data-nome="toxic" data-tipo="venenoso"><td class="mono">TM06</td><td>Toxic</td><td><span class="badge tipo-venenoso">Venenoso</span></td><td>-</td></tr>
+  <tr data-nome="hail" data-tipo="gelo"><td class="mono">TM07</td><td>Hail</td><td><span class="badge tipo-gelo">Gelo</span></td><td>-</td></tr>
+  <tr data-nome="bulk up" data-tipo="lutador"><td class="mono">TM08</td><td>Bulk Up</td><td><span class="badge tipo-lutador">Lutador</span></td><td>-</td></tr>
+  <tr data-nome="bullet seed" data-tipo="planta"><td class="mono">TM09</td><td>Bullet Seed</td><td><span class="badge tipo-planta">Planta</span></td><td>10</td></tr>
+  <tr data-nome="hidden power" data-tipo="normal"><td class="mono">TM10</td><td>Hidden Power</td><td><span class="badge tipo-normal">Normal*</span></td><td>Variável</td></tr>
+  <tr data-nome="sunny day" data-tipo="fogo"><td class="mono">TM11</td><td>Sunny Day</td><td><span class="badge tipo-fogo">Fogo</span></td><td>-</td></tr>
+  <tr data-nome="taunt" data-tipo="sombrio"><td class="mono">TM12</td><td>Taunt</td><td><span class="badge tipo-sombrio">Sombrio</span></td><td>-</td></tr>
+  <tr data-nome="ice beam" data-tipo="gelo"><td class="mono">TM13</td><td>Ice Beam</td><td><span class="badge tipo-gelo">Gelo</span></td><td>95</td></tr>
+  <tr data-nome="blizzard" data-tipo="gelo"><td class="mono">TM14</td><td>Blizzard</td><td><span class="badge tipo-gelo">Gelo</span></td><td>120</td></tr>
+  <tr data-nome="hyper beam" data-tipo="normal"><td class="mono">TM15</td><td>Hyper Beam</td><td><span class="badge tipo-normal">Normal</span></td><td>150</td></tr>
+  <tr data-nome="light screen" data-tipo="psiquico"><td class="mono">TM16</td><td>Light Screen</td><td><span class="badge tipo-psiquico">Psíquico</span></td><td>-</td></tr>
+  <tr data-nome="protect" data-tipo="normal"><td class="mono">TM17</td><td>Protect</td><td><span class="badge tipo-normal">Normal</span></td><td>-</td></tr>
+  <tr data-nome="rain dance" data-tipo="agua"><td class="mono">TM18</td><td>Rain Dance</td><td><span class="badge tipo-agua">Água</span></td><td>-</td></tr>
+  <tr data-nome="giga drain" data-tipo="planta"><td class="mono">TM19</td><td>Giga Drain</td><td><span class="badge tipo-planta">Planta</span></td><td>60</td></tr>
+  <tr data-nome="safeguard" data-tipo="normal"><td class="mono">TM20</td><td>Safeguard</td><td><span class="badge tipo-normal">Normal</span></td><td>-</td></tr>
+  <tr data-nome="frustration" data-tipo="normal"><td class="mono">TM21</td><td>Frustration</td><td><span class="badge tipo-normal">Normal</span></td><td>Variável</td></tr>
+  <tr data-nome="solarbeam" data-tipo="planta"><td class="mono">TM22</td><td>SolarBeam</td><td><span class="badge tipo-planta">Planta</span></td><td>120</td></tr>
+  <tr data-nome="iron tail" data-tipo="aco"><td class="mono">TM23</td><td>Iron Tail</td><td><span class="badge tipo-aco">Aço</span></td><td>100</td></tr>
+  <tr data-nome="thunderbolt" data-tipo="eletrico"><td class="mono">TM24</td><td>Thunderbolt</td><td><span class="badge tipo-eletrico">Elétrico</span></td><td>95</td></tr>
+  <tr data-nome="thunder" data-tipo="eletrico"><td class="mono">TM25</td><td>Thunder</td><td><span class="badge tipo-eletrico">Elétrico</span></td><td>120</td></tr>
+  <tr data-nome="earthquake" data-tipo="terra"><td class="mono">TM26</td><td>Earthquake</td><td><span class="badge tipo-terra">Terra</span></td><td>100</td></tr>
+  <tr data-nome="return" data-tipo="normal"><td class="mono">TM27</td><td>Return</td><td><span class="badge tipo-normal">Normal</span></td><td>Variável</td></tr>
+  <tr data-nome="dig" data-tipo="terra"><td class="mono">TM28</td><td>Dig</td><td><span class="badge tipo-terra">Terra</span></td><td>60</td></tr>
+  <tr data-nome="psychic" data-tipo="psiquico"><td class="mono">TM29</td><td>Psychic</td><td><span class="badge tipo-psiquico">Psíquico</span></td><td>90</td></tr>
+  <tr data-nome="shadow ball" data-tipo="fantasma"><td class="mono">TM30</td><td>Shadow Ball</td><td><span class="badge tipo-fantasma">Fantasma</span></td><td>80</td></tr>
+  <tr data-nome="brick break" data-tipo="lutador"><td class="mono">TM31</td><td>Brick Break</td><td><span class="badge tipo-lutador">Lutador</span></td><td>75</td></tr>
+  <tr data-nome="double team" data-tipo="normal"><td class="mono">TM32</td><td>Double Team</td><td><span class="badge tipo-normal">Normal</span></td><td>-</td></tr>
+  <tr data-nome="reflect" data-tipo="psiquico"><td class="mono">TM33</td><td>Reflect</td><td><span class="badge tipo-psiquico">Psíquico</span></td><td>-</td></tr>
+  <tr data-nome="shock wave" data-tipo="eletrico"><td class="mono">TM34</td><td>Shock Wave</td><td><span class="badge tipo-eletrico">Elétrico</span></td><td>60</td></tr>
+  <tr data-nome="flamethrower" data-tipo="fogo"><td class="mono">TM35</td><td>Flamethrower</td><td><span class="badge tipo-fogo">Fogo</span></td><td>95</td></tr>
+  <tr data-nome="sludge bomb" data-tipo="venenoso"><td class="mono">TM36</td><td>Sludge Bomb</td><td><span class="badge tipo-venenoso">Venenoso</span></td><td>90</td></tr>
+  <tr data-nome="sandstorm" data-tipo="pedra"><td class="mono">TM37</td><td>Sandstorm</td><td><span class="badge tipo-pedra">Pedra</span></td><td>-</td></tr>
+  <tr data-nome="fire blast" data-tipo="fogo"><td class="mono">TM38</td><td>Fire Blast</td><td><span class="badge tipo-fogo">Fogo</span></td><td>120</td></tr>
+  <tr data-nome="rock tomb" data-tipo="pedra"><td class="mono">TM39</td><td>Rock Tomb</td><td><span class="badge tipo-pedra">Pedra</span></td><td>50</td></tr>
+  <tr data-nome="aerial ace" data-tipo="voador"><td class="mono">TM40</td><td>Aerial Ace</td><td><span class="badge tipo-voador">Voador</span></td><td>60</td></tr>
+  <tr data-nome="torment" data-tipo="sombrio"><td class="mono">TM41</td><td>Torment</td><td><span class="badge tipo-sombrio">Sombrio</span></td><td>-</td></tr>
+  <tr data-nome="facade" data-tipo="normal"><td class="mono">TM42</td><td>Facade</td><td><span class="badge tipo-normal">Normal</span></td><td>70</td></tr>
+  <tr data-nome="secret power" data-tipo="normal"><td class="mono">TM43</td><td>Secret Power</td><td><span class="badge tipo-normal">Normal</span></td><td>70</td></tr>
+  <tr data-nome="rest" data-tipo="psiquico"><td class="mono">TM44</td><td>Rest</td><td><span class="badge tipo-psiquico">Psíquico</span></td><td>-</td></tr>
+  <tr data-nome="attract" data-tipo="normal"><td class="mono">TM45</td><td>Attract</td><td><span class="badge tipo-normal">Normal</span></td><td>-</td></tr>
+  <tr data-nome="thief" data-tipo="sombrio"><td class="mono">TM46</td><td>Thief</td><td><span class="badge tipo-sombrio">Sombrio</span></td><td>40</td></tr>
+  <tr data-nome="steel wing" data-tipo="aco"><td class="mono">TM47</td><td>Steel Wing</td><td><span class="badge tipo-aco">Aço</span></td><td>70</td></tr>
+  <tr data-nome="skill swap" data-tipo="psiquico"><td class="mono">TM48</td><td>Skill Swap</td><td><span class="badge tipo-psiquico">Psíquico</span></td><td>-</td></tr>
+  <tr data-nome="snatch" data-tipo="sombrio"><td class="mono">TM49</td><td>Snatch</td><td><span class="badge tipo-sombrio">Sombrio</span></td><td>-</td></tr>
+  <tr data-nome="overheat" data-tipo="fogo"><td class="mono">TM50</td><td>Overheat</td><td><span class="badge tipo-fogo">Fogo</span></td><td>140</td></tr>          </tbody>
+        </table>
+      </div>
+
+      <p class="sub" style="margin-top:10px; font-size:13px;">
+        * Hidden Power tem tipo variável, definido pelos IVs do Pokémon.
+      </p>
+
+      <p class="sub" style="margin-top:20px;">
+        Pronto para ver quem usa esses golpes? Volte para a
+        <a href="pokemons.html">Pokédex</a> ou passe pela
+        <a href="kantodex.html">página inicial</a>.
+      </p>
+    </section>
+
+    <footer>
+      <b>Pietro Santana 2026 &copy;</b> · TM's de Pokémon FireRed
+    </footer>
+  </main>
+
+  <a href="#" class="topo-flutuante" id="botaoTopo" aria-label="Voltar ao topo">↑</a>
+
+  <script>
+    const buscaTM = document.getElementById('buscaTM');
+    const linhas  = document.querySelectorAll('#corpoTabela tr');
+    const contadorTM = document.getElementById('contadorTM');
+
+    buscaTM.addEventListener('input', () => {
+      const termo = buscaTM.value.trim().toLowerCase();
+      let visiveis = 0;
+      linhas.forEach(linha => {
+        const combina = linha.dataset.nome.includes(termo);
+        linha.classList.toggle('oculta', !combina);
+        if (combina) visiveis++;
+      });
+      contadorTM.textContent = `Exibindo ${visiveis} de 50 TM's`;
+    });
+
+    const botaoTopo = document.getElementById('botaoTopo');
+    window.addEventListener('scroll', () => {
+      botaoTopo.classList.toggle('visivel', window.scrollY > 400);
+    });
+    botaoTopo.addEventListener('click', (e) => {
+      e.preventDefault();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  </script>
+</body>
+</html>

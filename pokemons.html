@@ -1,0 +1,2705 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pokémons — Kantodex</title>
+  <meta name="description" content="Pokédex completa com os 151 Pokémon de Kanto: busque por nome ou filtre por tipo.">
+  <link rel="stylesheet" href="index.css">
+</head>
+<body>
+
+  <header class="topo-app">
+    <div class="topo-row">
+      <div class="marca">
+        <div class="lente" title="Kantodex"></div>
+        <p class="titulo-site">KANTODEX</p>
+    </div>
+    <div class="faixa">
+      <div class="barra">
+        <nav>
+          <a href="./kantodex.html">KANTODEX</a>
+          <a href="./pokemons.html" class="ativo">POKÉMONS</a>
+          <a href="./tms.html">TM'S</a>
+          <a href="./mapa.html">MAPA</a>
+          <a href="./avalie.html">AVALIE</a>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="tela">
+      <p class="eyebrow">Geração I · Kanto</p>
+      <h1>Pokédex — 151 Pokémon de Kanto</h1>
+      <p class="sub">
+        Digite um nome no campo de busca ou clique em uma das palavras de
+        <strong>tipo</strong> abaixo para filtrar a lista. Passe o mouse (ou o dedo, no celular)
+        sobre qualquer cartão para virá-lo e ler a descrição da Pokédex.
+        Veja também as <a href="tms.html">TM's disponíveis</a> ou
+        <a href="avalie.html">deixe sua avaliação</a> ao final da visita.
+      </p>
+
+      <div class="ferramentas">
+        <div class="campo-busca">
+          <span>🔍</span>
+          <input type="text" id="busca" placeholder="Buscar Pokémon pelo nome…" autocomplete="off">
+        </div>
+        <div class="chips" id="chips">
+          <button type="button" class="chip selecionado" data-tipo="todos">Todos</button>
+        <button type="button" class="chip" data-tipo="aco">Aço</button>
+                <button type="button" class="chip" data-tipo="dragao">Dragão</button>
+                <button type="button" class="chip" data-tipo="eletrico">Elétrico</button>
+                <button type="button" class="chip" data-tipo="fada">Fada</button>
+                <button type="button" class="chip" data-tipo="fantasma">Fantasma</button>
+                <button type="button" class="chip" data-tipo="fogo">Fogo</button>
+                <button type="button" class="chip" data-tipo="gelo">Gelo</button>
+                <button type="button" class="chip" data-tipo="grama">Grama</button>
+                <button type="button" class="chip" data-tipo="inseto">Inseto</button>
+                <button type="button" class="chip" data-tipo="lutador">Lutador</button>
+                <button type="button" class="chip" data-tipo="normal">Normal</button>
+                <button type="button" class="chip" data-tipo="pedra">Pedra</button>
+                <button type="button" class="chip" data-tipo="psiquico">Psíquico</button>
+                <button type="button" class="chip" data-tipo="terra">Terra</button>
+                <button type="button" class="chip" data-tipo="veneno">Veneno</button>
+                <button type="button" class="chip" data-tipo="voador">Voador</button>
+                <button type="button" class="chip" data-tipo="agua">Água</button>        </div>
+      </div>
+
+      <p class="contador-resultado" id="contador">Exibindo 151 de 151 Pokémon</p>
+
+      <div class="grade-pokemon" id="grade">
+      <article class="carta" id="p001" data-nome="bulbasaur" data-numero="001" data-tipos="grama veneno">
+        <div class="carta-interna">
+          <div class="carta-face carta-frente">
+            <span class="num">#001</span>
+            <img src="./pokemons/1.png" alt="Bulbasaur" loading="lazy">
+            <h3>Bulbasaur</h3>
+            <p class="badges"><span class="badge tipo-grama">Grama</span> <span class="badge tipo-veneno">Veneno</span></p>
+          </div>
+          <div class="carta-face carta-verso">
+            <span class="num">Nº 001</span>
+            <h4>Bulbasaur</h4>
+            <p class="badges"><span class="badge tipo-grama">Grama</span> <span class="badge tipo-veneno">Veneno</span></p>
+            <p>Uma semente cresce em suas costas desde o nascimento.</p>
+            <a class="link-detalhes" href="pokemon-detalhes.html?n=001">Ver ficha completa →</a>
+          </div>
+        </div>
+      </article>
+      <article class="carta" id="p002" data-nome="ivysaur" data-numero="002" data-tipos="grama veneno">
+        <div class="carta-interna">
+          <div class="carta-face carta-frente">
+            <span class="num">#002</span>
+            <img src="./pokemons/2.png" alt="Ivysaur" loading="lazy">
+            <h3>Ivysaur</h3>
+            <p class="badges"><span class="badge tipo-grama">Grama</span> <span class="badge tipo-veneno">Veneno</span></p>
+          </div>
+          <div class="carta-face carta-verso">
+            <span class="num">Nº 002</span>
+            <h4>Ivysaur</h4>
+            <p class="badges"><span class="badge tipo-grama">Grama</span> <span class="badge tipo-veneno">Veneno</span></p>
+            <p>O broto em suas costas cresce absorvendo energia.</p>
+            <a class="link-detalhes" href="pokemon-detalhes.html?n=002">Ver ficha completa →</a>
+          </div>
+        </div>
+      </article>
+      <article class="carta" id="p003" data-nome="venusaur" data-numero="003" data-tipos="grama veneno">
+        <div class="carta-interna">
+          <div class="carta-face carta-frente">
+            <span class="num">#003</span>
+            <img src="./pokemons/3.png" alt="Venusaur" loading="lazy">
+            <h3>Venusaur</h3>
+            <p class="badges"><span class="badge tipo-grama">Grama</span> <span class="badge tipo-veneno">Veneno</span></p>
+          </div>
+          <div class="carta-face carta-verso">
+            <span class="num">Nº 003</span>
+            <h4>Venusaur</h4>
+            <p class="badges"><span class="badge tipo-grama">Grama</span> <span class="badge tipo-veneno">Veneno</span></p>
+            <p>A planta floresce totalmente após absorver energia solar.</p>
+            <a class="link-detalhes" href="pokemon-detalhes.html?n=003">Ver ficha completa →</a>
+          </div>
+        </div>
+      </article>
+      <article class="carta" id="p004" data-nome="charmander" data-numero="004" data-tipos="fogo">
+        <div class="carta-interna">
+          <div class="carta-face carta-frente">
+            <span class="num">#004</span>
+            <img src="./pokemons/4.png" alt="Charmander" loading="lazy">
+            <h3>Charmander</h3>
+            <p class="badges"><span class="badge tipo-fogo">Fogo</span></p>
+          </div>
+          <div class="carta-face carta-verso">
+            <span class="num">Nº 004</span>
+            <h4>Charmander</h4>
+            <p class="badges"><span class="badge tipo-fogo">Fogo</span></p>
+            <p>A chama em sua cauda indica sua saúde.</p>
+            <a class="link-detalhes" href="pokemon-detalhes.html?n=004">Ver ficha completa →</a>
+          </div>
+        </div>
+      </article>
+      <article class="carta" id="p005" data-nome="charmeleon" data-numero="005" data-tipos="fogo">
+        <div class="carta-interna">
+          <div class="carta-face carta-frente">
+            <span class="num">#005</span>
+            <img src="./pokemons/5.png" alt="Charmeleon" loading="lazy">
+            <h3>Charmeleon</h3>
+            <p class="badges"><span class="badge tipo-fogo">Fogo</span></p>
+          </div>
+          <div class="carta-face carta-verso">
+            <span class="num">Nº 005</span>
+            <h4>Charmeleon</h4>
+            <p class="badges"><span class="badge tipo-fogo">Fogo</span></p>
+            <p>Extremamente agressivo, cospe chamas intensas.</p>
+            <a class="link-detalhes" href="pokemon-detalhes.html?n=005">Ver ficha completa →</a>
+          </div>
+        </div>
+      </article>
+      <article class="carta" id="p006" data-nome="charizard" data-numero="006" data-tipos="fogo voador">
+        <div class="carta-interna">
+          <div class="carta-face carta-frente">
+            <span class="num">#006</span>
+            <img src="./pokemons/6.png" alt="Charizard" loading="lazy">
+            <h3>Charizard</h3>
+            <p class="badges"><span class="badge tipo-fogo">Fogo</span> <span class="badge tipo-voador">Voador</span></p>
+          </div>
+          <div class="carta-face carta-verso">
+            <span class="num">Nº 006</span>
+            <h4>Charizard</h4>
+            <p class="badges"><span class="badge tipo-fogo">Fogo</span> <span class="badge tipo-voador">Voador</span></p>
+            <p>Cospe fogo capaz de derreter qualquer coisa.</p>
+            <a class="link-detalhes" href="pokemon-detalhes.html?n=006">Ver ficha completa →</a>
+          </div>
+        </div>
+      </article>
+      <article class="carta" id="p007" data-nome="squirtle" data-numero="007" data-tipos="agua">
+        <div class="carta-interna">
+          <div class="carta-face carta-frente">
+            <span class="num">#007</span>
+            <img src="./pokemons/7.png" alt="Squirtle" loading="lazy">
+            <h3>Squirtle</h3>
+            <p class="badges"><span class="badge tipo-agua">Água</span></p>
+          </div>
+          <div class="carta-face carta-verso">
+            <span class="num">Nº 007</span>
+            <h4>Squirtle</h4>
+            <p class="badges"><span class="badge tipo-agua">Água</span></p>
+            <p>Se protege dentro de sua concha resistente.</p>
+            <a class="link-detalhes" href="pokemon-detalhes.html?n=007">Ver ficha completa →</a>
+          </div>
+        </div>
+      </article>
+      <article class="carta" id="p008" data-nome="wartortle" data-numero="008" data-tipos="agua">
+        <div class="carta-interna">
+          <div class="carta-face carta-frente">
+            <span class="num">#008</span>
+            <img src="./pokemons/8.png" alt="Wartortle" loading="lazy">
+            <h3>Wartortle</h3>
+            <p class="badges"><span class="badge tipo-agua">Água</span></p>
+          </div>
+          <div class="carta-face carta-verso">
+            <span class="num">Nº 008</span>
+            <h4>Wartortle</h4>
+            <p class="badges"><span class="badge tipo-agua">Água</span></p>
+            <p>Sua cauda peluda simboliza longevidade.</p>
+            <a class="link-detalhes" href="pokemon-detalhes.html?n=008">Ver ficha completa →</a>
+          </div>
+        </div>
+      </article>
+      <article class="carta" id="p009" data-nome="blastoise" data-numero="009" data-tipos="agua">
+        <div class="carta-interna">
+          <div class="carta-face carta-frente">
+            <span class="num">#009</span>
+            <img src="./pokemons/9.png" alt="Blastoise" loading="lazy">
+            <h3>Blastoise</h3>
+            <p class="badges"><span class="badge tipo-agua">Água</span></p>
+          </div>
+          <div class="carta-face carta-verso">
+            <span class="num">Nº 009</span>
+            <h4>Blastoise</h4>
+            <p class="badges"><span class="badge tipo-agua">Água</span></p>
+            <p>Possui canhões de água poderosos em sua concha.</p>
+            <a class="link-detalhes" href="pokemon-detalhes.html?n=009">Ver ficha completa →</a>
+          </div>
+        </div>
+      </article>
+      <article class="carta" id="p010" data-nome="caterpie" data-numero="010" data-tipos="inseto">
+        <div class="carta-interna">
+          <div class="carta-face carta-frente">
+            <span class="num">#010</span>
+            <img src="./pokemons/10.png" alt="Caterpie" loading="lazy">
+            <h3>Caterpie</h3>
+            <p class="badges"><span class="badge tipo-inseto">Inseto</span></p>
+          </div>
+          <div class="carta-face carta-verso">
+            <span class="num">Nº 010</span>
+            <h4>Caterpie</h4>
+            <p class="badges"><span class="badge tipo-inseto">Inseto</span></p>
+            <p>Libera um cheiro ruim para afastar inimigos.</p>
+            <a class="link-detalhes" href="pokemon-detalhes.html?n=010">Ver ficha completa →</a>
+          </div>
+        </div>
+      </article>
+      <article class="carta" id="p011" data-nome="metapod" data-numero="011" data-tipos="inseto">
+        <div class="carta-interna">
+          <div class="carta-face carta-frente">
+            <span class="num">#011</span>
+            <img src="./pokemons/11.png" alt="Metapod" loading="lazy">
+            <h3>Metapod</h3>
+            <p class="badges"><span class="badge tipo-inseto">Inseto</span></p>
+          </div>
+          <div class="carta-face carta-verso">
+            <span class="num">Nº 011</span>
+            <h4>Metapod</h4>
+            <p class="badges"><span class="badge tipo-inseto">Inseto</span></p>
+            <p>Endurece sua casca enquanto evolui.</p>
+            <a class="link-detalhes" href="pokemon-detalhes.html?n=011">Ver ficha completa →</a>
+          </div>
+        </div>
+      </article>
+      <article class="carta" id="p012" data-nome="butterfree" data-numero="012" data-tipos="inseto voador">
+        <div class="carta-interna">
+          <div class="carta-face carta-frente">
+            <span class="num">#012</span>
+            <img src="./pokemons/12.png" alt="Butterfree" loading="lazy">
+            <h3>Butterfree</h3>
+            <p class="badges"><span class="badge tipo-inseto">Inseto</span> <span class="badge tipo-voador">Voador</span></p>
+          </div>
+          <div class="carta-face carta-verso">
+            <span class="num">Nº 012</span>
+            <h4>Butterfree</h4>
+            <p class="badges"><span class="badge tipo-inseto">Inseto</span> <span class="badge tipo-voador">Voador</span></p>
+            <p>Suas asas liberam pó tóxico.</p>
+            <a class="link-detalhes" href="pokemon-detalhes.html?n=012">Ver ficha completa →</a>
+          </div>
+        </div>
+      </article>
+      <article class="carta" id="p013" data-nome="weedle" data-numero="013" data-tipos="inseto veneno">
+        <div class="carta-interna">
+          <div class="carta-face carta-frente">
+            <span class="num">#013</span>
+            <img src="./pokemons/13.png" alt="Weedle" loading="lazy">
+            <h3>Weedle</h3>
+            <p class="badges"><span class="badge tipo-inseto">Inseto</span> <span class="badge tipo-veneno">Veneno</span></p>
+          </div>
+          <div class="carta-face carta-verso">
+            <span class="num">Nº 013</span>
+            <h4>Weedle</h4>
+            <p class="badges"><span class="badge tipo-inseto">Inseto</span> <span class="badge tipo-veneno">Veneno</span></p>
+            <p>Possui um ferrão venenoso na cabeça.</p>
+            <a class="link-detalhes" href="pokemon-detalhes.html?n=013">Ver ficha completa →</a>
+          </div>
+        </div>
+      </article>
+      <article class="carta" id="p014" data-nome="kakuna" data-numero="014" data-tipos="inseto veneno">
+        <div class="carta-interna">
+          <div class="carta-face carta-frente">
+            <span class="num">#014</span>
+            <img src="./pokemons/14.png" alt="Kakuna" loading="lazy">
+            <h3>Kakuna</h3>
+            <p class="badges"><span class="badge tipo-inseto">Inseto</span> <span class="badge tipo-veneno">Veneno</span></p>
+          </div>
+          <div class="carta-face carta-verso">
+            <span class="num">Nº 014</span>
+            <h4>Kakuna</h4>
+            <p class="badges"><span class="badge tipo-inseto">Inseto</span> <span class="badge tipo-veneno">Veneno</span></p>
+            <p>Quase imóvel enquanto evolui.</p>
+            <a class="link-detalhes" href="pokemon-detalhes.html?n=014">Ver ficha completa →</a>
+          </div>
+        </div>
+      </article>
+      <article class="carta" id="p015" data-nome="beedrill" data-numero="015" data-tipos="inseto veneno">
+        <div class="carta-interna">
+          <div class="carta-face carta-frente">
+            <span class="num">#015</span>
+            <img src="./pokemons/15.png" alt="Beedrill" loading="lazy">
+            <h3>Beedrill</h3>
+            <p class="badges"><span class="badge tipo-inseto">Inseto</span> <span class="badge tipo-veneno">Veneno</span></p>
+          </div>
+          <div class="carta-face carta-verso">
+            <span class="num">Nº 015</span>
+            <h4>Beedrill</h4>
+            <p class="badges"><span class="badge tipo-inseto">Inseto</span> <span class="badge tipo-veneno">Veneno</span></p>
+            <p>Ataca com ferrões extremamente rápidos.</p>
+            <a class="link-detalhes" href="pokemon-detalhes.html?n=015">Ver ficha completa →</a>
+          </div>
+        </div>
+      </article>
+      <article class="carta" id="p016" data-nome="pidgey" data-numero="016" data-tipos="normal voador">
+        <div class="carta-interna">
+          <div class="carta-face carta-frente">
+            <span class="num">#016</span>
+            <img src="./pokemons/16.png" alt="Pidgey" loading="lazy">
+            <h3>Pidgey</h3>
+            <p class="badges"><span class="badge tipo-normal">Normal</span> <span class="badge tipo-voador">Voador</span></p>
+          </div>
+          <div class="carta-face carta-verso">
+            <span class="num">Nº 016</span>
+            <h4>Pidgey</h4>
+            <p class="badges"><span class="badge tipo-normal">Normal</span> <span class="badge tipo-voador">Voador</span></p>
+            <p>Pokémon comum em florestas.</p>
+            <a class="link-detalhes" href="pokemon-detalhes.html?n=016">Ver ficha completa →</a>
+          </div>
+        </div>
+      </article>
+      <article class="carta" id="p017" data-nome="pidgeotto" data-numero="017" data-tipos="normal voador">
+        <div class="carta-interna">
+          <div class="carta-face carta-frente">
+            <span class="num">#017</span>
+            <img src="./pokemons/17.png" alt="Pidgeotto" loading="lazy">
+            <h3>Pidgeotto</h3>
+            <p class="badges"><span class="badge tipo-normal">Normal</span> <span class="badge tipo-voador">Voador</span></p>
+          </div>
+          <div class="carta-face carta-verso">
+            <span class="num">Nº 017</span>
+            <h4>Pidgeotto</h4>
+            <p class="badges"><span class="badge tipo-normal">Normal</span> <span class="badge tipo-voador">Voador</span></p>
+            <p>Defende território ferozmente.</p>
+            <a class="link-detalhes" href="pokemon-detalhes.html?n=017">Ver ficha completa →</a>
+          </div>
+        </div>
+      </article>
+      <article class="carta" id="p018" data-nome="pidgeot" data-numero="018" data-tipos="normal voador">
+        <div class="carta-interna">
+          <div class="carta-face carta-frente">
+            <span class="num">#018</span>
+            <img src="./pokemons/18.png" alt="Pidgeot" loading="lazy">
+            <h3>Pidgeot</h3>
+            <p class="badges"><span class="badge tipo-normal">Normal</span> <span class="badge tipo-voador">Voador</span></p>
+          </div>
+          <div class="carta-face carta-verso">
+            <span class="num">Nº 018</span>
+            <h4>Pidgeot</h4>
+            <p class="badges"><span class="badge tipo-normal">Normal</span> <span class="badge tipo-voador">Voador</span></p>
+            <p>Voa a velocidades altíssimas.</p>
+            <a class="link-detalhes" href="pokemon-detalhes.html?n=018">Ver ficha completa →</a>
+          </div>
+        </div>
+      </article>
+      <article class="carta" id="p019" data-nome="rattata" data-numero="019" data-tipos="normal">
+        <div class="carta-interna">
+          <div class="carta-face carta-frente">
+            <span class="num">#019</span>
+            <img src="./pokemons/19.png" alt="Rattata" loading="lazy">
+            <h3>Rattata</h3>
+            <p class="badges"><span class="badge tipo-normal">Normal</span></p>
+          </div>
+          <div class="carta-face carta-verso">
+            <span class="num">Nº 019</span>
+            <h4>Rattata</h4>
+            <p class="badges"><span class="badge tipo-normal">Normal</span></p>
+            <p>Morde qualquer coisa ao seu alcance.</p>
+            <a class="link-detalhes" href="pokemon-detalhes.html?n=019">Ver ficha completa →</a>
+          </div>
+        </div>
+      </article>
+      <article class="carta" id="p020" data-nome="raticate" data-numero="020" data-tipos="normal">
+        <div class="carta-interna">
+          <div class="carta-face carta-frente">
+            <span class="num">#020</span>
+            <img src="./pokemons/20.png" alt="Raticate" loading="lazy">
+            <h3>Raticate</h3>
+            <p class="badges"><span class="badge tipo-normal">Normal</span></p>
+          </div>
+          <div class="carta-face carta-verso">
+            <span class="num">Nº 020</span>
+            <h4>Raticate</h4>
+            <p class="badges"><span class="badge tipo-normal">Normal</span></p>
+            <p>Dentes fortes capazes de destruir metal.</p>
+            <a class="link-detalhes" href="pokemon-detalhes.html?n=020">Ver ficha completa →</a>
+          </div>
+        </div>
+      </article>
+      <article class="carta" id="p021" data-nome="spearow" data-numero="021" data-tipos="normal voador">
+        <div class="carta-interna">
+          <div class="carta-face carta-frente">
+            <span class="num">#021</span>
+            <img src="./pokemons/21.png" alt="Spearow" loading="lazy">
+            <h3>Spearow</h3>
+            <p class="badges"><span class="badge tipo-normal">Normal</span> <span class="badge tipo-voador">Voador</span></p>
+          </div>
+          <div class="carta-face carta-verso">
+            <span class="num">Nº 021</span>
+            <h4>Spearow</h4>
+            <p class="badges"><span class="badge tipo-normal">Normal</span> <span class="badge tipo-voador">Voador</span></p>
+            <p>Pequeno, mas muito barulhento.</p>
+            <a class="link-detalhes" href="pokemon-detalhes.html?n=021">Ver ficha completa →</a>
+          </div>
+        </div>
+      </article>
+      <article class="carta" id="p022" data-nome="fearow" data-numero="022" data-tipos="normal voador">
+        <div class="carta-interna">
+          <div class="carta-face carta-frente">
+            <span class="num">#022</span>
+            <img src="./pokemons/22.png" alt="Fearow" loading="lazy">
+            <h3>Fearow</h3>
+            <p class="badges"><span class="badge tipo-normal">Normal</span> <span class="badge tipo-voador">Voador</span></p>
+          </div>
+          <div class="carta-face carta-verso">
+            <span class="num">Nº 022</span>
+            <h4>Fearow</h4>
+            <p class="badges"><span class="badge tipo-normal">Normal</span> <span class="badge tipo-voador">Voador</span></p>
+            <p>Voa por longas distâncias sem parar.</p>
+            <a class="link-detalhes" href="pokemon-detalhes.html?n=022">Ver ficha completa →</a>
+          </div>
+        </div>
+      </article>
+      <article class="carta" id="p023" data-nome="ekans" data-numero="023" data-tipos="veneno">
+        <div class="carta-interna">
+          <div class="carta-face carta-frente">
+            <span class="num">#023</span>
+            <img src="./pokemons/23.png" alt="Ekans" loading="lazy">
+            <h3>Ekans</h3>
+            <p class="badges"><span class="badge tipo-veneno">Veneno</span></p>
+          </div>
+          <div class="carta-face carta-verso">
+            <span class="num">Nº 023</span>
+            <h4>Ekans</h4>
+            <p class="badges"><span class="badge tipo-veneno">Veneno</span></p>
+            <p>Se move silenciosamente pelo chão.</p>
+            <a class="link-detalhes" href="pokemon-detalhes.html?n=023">Ver ficha completa →</a>
+          </div>
+        </div>
+      </article>
+      <article class="carta" id="p024" data-nome="arbok" data-numero="024" data-tipos="veneno">
+        <div class="carta-interna">
+          <div class="carta-face carta-frente">
+            <span class="num">#024</span>
+            <img src="./pokemons/24.png" alt="Arbok" loading="lazy">
+            <h3>Arbok</h3>
+            <p class="badges"><span class="badge tipo-veneno">Veneno</span></p>
+          </div>
+          <div class="carta-face carta-verso">
+            <span class="num">Nº 024</span>
+            <h4>Arbok</h4>
+            <p class="badges"><span class="badge tipo-veneno">Veneno</span></p>
+            <p>Seu padrão assusta inimigos.</p>
+            <a class="link-detalhes" href="pokemon-detalhes.html?n=024">Ver ficha completa →</a>
+          </div>
+        </div>
+      </article>
+      <article class="carta" id="p025" data-nome="pikachu" data-numero="025" data-tipos="eletrico">
+        <div class="carta-interna">
+          <div class="carta-face carta-frente">
+            <span class="num">#025</span>
+            <img src="./pokemons/25.png" alt="Pikachu" loading="lazy">
+            <h3>Pikachu</h3>
+            <p class="badges"><span class="badge tipo-eletrico">Elétrico</span></p>
+          </div>
+          <div class="carta-face carta-verso">
+            <span class="num">Nº 025</span>
+            <h4>Pikachu</h4>
+            <p class="badges"><span class="badge tipo-eletrico">Elétrico</span></p>
+            <p>Armazena eletricidade nas bochechas.</p>
+            <a class="link-detalhes" href="pokemon-detalhes.html?n=025">Ver ficha completa →</a>
+          </div>
+        </div>
+      </article>
+      <article class="carta" id="p026" data-nome="raichu" data-numero="026" data-tipos="eletrico">
+        <div class="carta-interna">
+          <div class="carta-face carta-frente">
+            <span class="num">#026</span>
+            <img src="./pokemons/26.png" alt="Raichu" loading="lazy">
+            <h3>Raichu</h3>
+            <p class="badges"><span class="badge tipo-eletrico">Elétrico</span></p>
+          </div>
+          <div class="carta-face carta-verso">
+            <span class="num">Nº 026</span>
+            <h4>Raichu</h4>
+            <p class="badges"><span class="badge tipo-eletrico">Elétrico</span></p>
+            <p>Descargas elétricas muito mais fortes.</p>
+            <a class="link-detalhes" href="pokemon-detalhes.html?n=026">Ver ficha completa →</a>
+          </div>
+        </div>
+      </article>
+      <article class="carta" id="p027" data-nome="sandshrew" data-numero="027" data-tipos="terra">
+        <div class="carta-interna">
+          <div class="carta-face carta-frente">
+            <span class="num">#027</span>
+            <img src="./pokemons/27.png" alt="Sandshrew" loading="lazy">
+            <h3>Sandshrew</h3>
+            <p class="badges"><span class="badge tipo-terra">Terra</span></p>
+          </div>
+          <div class="carta-face carta-verso">
+            <span class="num">Nº 027</span>
+            <h4>Sandshrew</h4>
+            <p class="badges"><span class="badge tipo-terra">Terra</span></p>
+            <p>Se enrola para se proteger.</p>
+            <a class="link-detalhes" href="pokemon-detalhes.html?n=027">Ver ficha completa →</a>
+          </div>
+        </div>
+      </article>
+      <article class="carta" id="p028" data-nome="sandslash" data-numero="028" data-tipos="terra">
+        <div class="carta-interna">
+          <div class="carta-face carta-frente">
+            <span class="num">#028</span>
+            <img src="./pokemons/28.png" alt="Sandslash" loading="lazy">
+            <h3>Sandslash</h3>
+            <p class="badges"><span class="badge tipo-terra">Terra</span></p>
+          </div>
+          <div class="carta-face carta-verso">
+            <span class="num">Nº 028</span>
+            <h4>Sandslash</h4>
+            <p class="badges"><span class="badge tipo-terra">Terra</span></p>
+            <p>Suas garras são afiadas como lâminas.</p>
+            <a class="link-detalhes" href="pokemon-detalhes.html?n=028">Ver ficha completa →</a>
+          </div>
+        </div>
+      </article>
+      <article class="carta" id="p029" data-nome="nidoran♀" data-numero="029" data-tipos="veneno">
+        <div class="carta-interna">
+          <div class="carta-face carta-frente">
+            <span class="num">#029</span>
+            <img src="./pokemons/29.png" alt="Nidoran♀" loading="lazy">
+            <h3>Nidoran♀</h3>
+            <p class="badges"><span class="badge tipo-veneno">Veneno</span></p>
+          </div>
+          <div class="carta-face carta-verso">
+            <span class="num">Nº 029</span>
+            <h4>Nidoran♀</h4>
+            <p class="badges"><span class="badge tipo-veneno">Veneno</span></p>
+            <p>Mais cautelosa e defensiva.</p>
+            <a class="link-detalhes" href="pokemon-detalhes.html?n=029">Ver ficha completa →</a>
+          </div>
+        </div>
+      </article>
+      <article class="carta" id="p030" data-nome="nidorina" data-numero="030" data-tipos="veneno">
+        <div class="carta-interna">
+          <div class="carta-face carta-frente">
+            <span class="num">#030</span>
+            <img src="./pokemons/30.png" alt="Nidorina" loading="lazy">
+            <h3>Nidorina</h3>
+            <p class="badges"><span class="badge tipo-veneno">Veneno</span></p>
+          </div>
+          <div class="carta-face carta-verso">
+            <span class="num">Nº 030</span>
+            <h4>Nidorina</h4>
+            <p class="badges"><span class="badge tipo-veneno">Veneno</span></p>
+            <p>Cuida bem de sua prole.</p>
+            <a class="link-detalhes" href="pokemon-detalhes.html?n=030">Ver ficha completa →</a>
+          </div>
+        </div>
+      </article>
+      <article class="carta" id="p031" data-nome="nidoqueen" data-numero="031" data-tipos="veneno terra">
+        <div class="carta-interna">
+          <div class="carta-face carta-frente">
+            <span class="num">#031</span>
+            <img src="./pokemons/31.png" alt="Nidoqueen" loading="lazy">
+            <h3>Nidoqueen</h3>
+            <p class="badges"><span class="badge tipo-veneno">Veneno</span> <span class="badge tipo-terra">Terra</span></p>
+          </div>
+          <div class="carta-face carta-verso">
+            <span class="num">Nº 031</span>
+            <h4>Nidoqueen</h4>
+            <p class="badges"><span class="badge tipo-veneno">Veneno</span> <span class="badge tipo-terra">Terra</span></p>
+            <p>Corpo robusto e muito forte.</p>
+            <a class="link-detalhes" href="pokemon-detalhes.html?n=031">Ver ficha completa →</a>
+          </div>
+        </div>
+      </article>
+      <article class="carta" id="p032" data-nome="nidoran♂" data-numero="032" data-tipos="veneno">
+        <div class="carta-interna">
+          <div class="carta-face carta-frente">
+            <span class="num">#032</span>
+            <img src="./pokemons/32.png" alt="Nidoran♂" loading="lazy">
+            <h3>Nidoran♂</h3>
+            <p class="badges"><span class="badge tipo-veneno">Veneno</span></p>
+          </div>
+          <div class="carta-face carta-verso">
+            <span class="num">Nº 032</span>
+            <h4>Nidoran♂</h4>
+            <p class="badges"><span class="badge tipo-veneno">Veneno</span></p>
+            <p>Mais agressivo que a fêmea.</p>
+            <a class="link-detalhes" href="pokemon-detalhes.html?n=032">Ver ficha completa →</a>
+          </div>
+        </div>
+      </article>
+      <article class="carta" id="p033" data-nome="nidorino" data-numero="033" data-tipos="veneno">
+        <div class="carta-interna">
+          <div class="carta-face carta-frente">
+            <span class="num">#033</span>
+            <img src="./pokemons/33.png" alt="Nidorino" loading="lazy">
+            <h3>Nidorino</h3>
+            <p class="badges"><span class="badge tipo-veneno">Veneno</span></p>
+          </div>
+          <div class="carta-face carta-verso">
+            <span class="num">Nº 033</span>
+            <h4>Nidorino</h4>
+            <p class="badges"><span class="badge tipo-veneno">Veneno</span></p>
+            <p>Ataca usando seu chifre venenoso.</p>
+            <a class="link-detalhes" href="pokemon-detalhes.html?n=033">Ver ficha completa →</a>
+          </div>
+        </div>
+      </article>
+      <article class="carta" id="p034" data-nome="nidoking" data-numero="034" data-tipos="veneno terra">
+        <div class="carta-interna">
+          <div class="carta-face carta-frente">
+            <span class="num">#034</span>
+            <img src="./pokemons/34.png" alt="Nidoking" loading="lazy">
+            <h3>Nidoking</h3>
+            <p class="badges"><span class="badge tipo-veneno">Veneno</span> <span class="badge tipo-terra">Terra</span></p>
+          </div>
+          <div class="carta-face carta-verso">
+            <span class="num">Nº 034</span>
+            <h4>Nidoking</h4>
+            <p class="badges"><span class="badge tipo-veneno">Veneno</span> <span class="badge tipo-terra">Terra</span></p>
+            <p>Extremamente poderoso e violento.</p>
+            <a class="link-detalhes" href="pokemon-detalhes.html?n=034">Ver ficha completa →</a>
+          </div>
+        </div>
+      </article>
+      <article class="carta" id="p035" data-nome="clefairy" data-numero="035" data-tipos="fada">
+        <div class="carta-interna">
+          <div class="carta-face carta-frente">
+            <span class="num">#035</span>
+            <img src="./pokemons/35.png" alt="Clefairy" loading="lazy">
+            <h3>Clefairy</h3>
+            <p class="badges"><span class="badge tipo-fada">Fada</span></p>
+          </div>
+          <div class="carta-face carta-verso">
+            <span class="num">Nº 035</span>
+            <h4>Clefairy</h4>
+            <p class="badges"><span class="badge tipo-fada">Fada</span></p>
+            <p>Raro e adora a lua cheia.</p>
+            <a class="link-detalhes" href="pokemon-detalhes.html?n=035">Ver ficha completa →</a>
+          </div>
+        </div>
+      </article>
+      <article class="carta" id="p036" data-nome="clefable" data-numero="036" data-tipos="fada">
+        <div class="carta-interna">
+          <div class="carta-face carta-frente">
+            <span class="num">#036</span>
+            <img src="./pokemons/36.png" alt="Clefable" loading="lazy">
+            <h3>Clefable</h3>
+            <p class="badges"><span class="badge tipo-fada">Fada</span></p>
+          </div>
+          <div class="carta-face carta-verso">
+            <span class="num">Nº 036</span>
+            <h4>Clefable</h4>
+            <p class="badges"><span class="badge tipo-fada">Fada</span></p>
+            <p>Evita contato com humanos.</p>
+            <a class="link-detalhes" href="pokemon-detalhes.html?n=036">Ver ficha completa →</a>
+          </div>
+        </div>
+      </article>
+      <article class="carta" id="p037" data-nome="vulpix" data-numero="037" data-tipos="fogo">
+        <div class="carta-interna">
+          <div class="carta-face carta-frente">
+            <span class="num">#037</span>
+            <img src="./pokemons/37.png" alt="Vulpix" loading="lazy">
+            <h3>Vulpix</h3>
+            <p class="badges"><span class="badge tipo-fogo">Fogo</span></p>
+          </div>
+          <div class="carta-face carta-verso">
+            <span class="num">Nº 037</span>
+            <h4>Vulpix</h4>
+            <p class="badges"><span class="badge tipo-fogo">Fogo</span></p>
+            <p>Possui seis caudas.</p>
+            <a class="link-detalhes" href="pokemon-detalhes.html?n=037">Ver ficha completa →</a>
+          </div>
+        </div>
+      </article>
+      <article class="carta" id="p038" data-nome="ninetales" data-numero="038" data-tipos="fogo">
+        <div class="carta-interna">
+          <div class="carta-face carta-frente">
+            <span class="num">#038</span>
+            <img src="./pokemons/38.png" alt="Ninetales" loading="lazy">
+            <h3>Ninetales</h3>
+            <p class="badges"><span class="badge tipo-fogo">Fogo</span></p>
+          </div>
+          <div class="carta-face carta-verso">
+            <span class="num">Nº 038</span>
+            <h4>Ninetales</h4>
+            <p class="badges"><span class="badge tipo-fogo">Fogo</span></p>
+            <p>Dizem que vive mil anos.</p>
+            <a class="link-detalhes" href="pokemon-detalhes.html?n=038">Ver ficha completa →</a>
+          </div>
+        </div>
+      </article>
+      <article class="carta" id="p039" data-nome="jigglypuff" data-numero="039" data-tipos="normal fada">
+        <div class="carta-interna">
+          <div class="carta-face carta-frente">
+            <span class="num">#039</span>
+            <img src="./pokemons/39.png" alt="Jigglypuff" loading="lazy">
+            <h3>Jigglypuff</h3>
+            <p class="badges"><span class="badge tipo-normal">Normal</span> <span class="badge tipo-fada">Fada</span></p>
+          </div>
+          <div class="carta-face carta-verso">
+            <span class="num">Nº 039</span>
+            <h4>Jigglypuff</h4>
+            <p class="badges"><span class="badge tipo-normal">Normal</span> <span class="badge tipo-fada">Fada</span></p>
+            <p>Canta para fazer inimigos dormirem.</p>
+            <a class="link-detalhes" href="pokemon-detalhes.html?n=039">Ver ficha completa →</a>
+          </div>
+        </div>
+      </article>
+      <article class="carta" id="p040" data-nome="wigglytuff" data-numero="040" data-tipos="normal fada">
+        <div class="carta-interna">
+          <div class="carta-face carta-frente">
+            <span class="num">#040</span>
+            <img src="./pokemons/40.png" alt="Wigglytuff" loading="lazy">
+            <h3>Wigglytuff</h3>
+            <p class="badges"><span class="badge tipo-normal">Normal</span> <span class="badge tipo-fada">Fada</span></p>
+          </div>
+          <div class="carta-face carta-verso">
+            <span class="num">Nº 040</span>
+            <h4>Wigglytuff</h4>
+            <p class="badges"><span class="badge tipo-normal">Normal</span> <span class="badge tipo-fada">Fada</span></p>
+            <p>Corpo macio e elástico.</p>
+            <a class="link-detalhes" href="pokemon-detalhes.html?n=040">Ver ficha completa →</a>
+          </div>
+        </div>
+      </article>
+      <article class="carta" id="p041" data-nome="zubat" data-numero="041" data-tipos="veneno voador">
+        <div class="carta-interna">
+          <div class="carta-face carta-frente">
+            <span class="num">#041</span>
+            <img src="./pokemons/41.png" alt="Zubat" loading="lazy">
+            <h3>Zubat</h3>
+            <p class="badges"><span class="badge tipo-veneno">Veneno</span> <span class="badge tipo-voador">Voador</span></p>
+          </div>
+          <div class="carta-face carta-verso">
+            <span class="num">Nº 041</span>
+            <h4>Zubat</h4>
+            <p class="badges"><span class="badge tipo-veneno">Veneno</span> <span class="badge tipo-voador">Voador</span></p>
+            <p>Vive em cavernas escuras.</p>
+            <a class="link-detalhes" href="pokemon-detalhes.html?n=041">Ver ficha completa →</a>
+          </div>
+        </div>
+      </article>
+      <article class="carta" id="p042" data-nome="golbat" data-numero="042" data-tipos="veneno voador">
+        <div class="carta-interna">
+          <div class="carta-face carta-frente">
+            <span class="num">#042</span>
+            <img src="./pokemons/42.png" alt="Golbat" loading="lazy">
+            <h3>Golbat</h3>
+            <p class="badges"><span class="badge tipo-veneno">Veneno</span> <span class="badge tipo-voador">Voador</span></p>
+          </div>
+          <div class="carta-face carta-verso">
+            <span class="num">Nº 042</span>
+            <h4>Golbat</h4>
+            <p class="badges"><span class="badge tipo-veneno">Veneno</span> <span class="badge tipo-voador">Voador</span></p>
+            <p>Ataca sugando sangue.</p>
+            <a class="link-detalhes" href="pokemon-detalhes.html?n=042">Ver ficha completa →</a>
+          </div>
+        </div>
+      </article>
+      <article class="carta" id="p043" data-nome="oddish" data-numero="043" data-tipos="grama veneno">
+        <div class="carta-interna">
+          <div class="carta-face carta-frente">
+            <span class="num">#043</span>
+            <img src="./pokemons/43.png" alt="Oddish" loading="lazy">
+            <h3>Oddish</h3>
+            <p class="badges"><span class="badge tipo-grama">Grama</span> <span class="badge tipo-veneno">Veneno</span></p>
+          </div>
+          <div class="carta-face carta-verso">
+            <span class="num">Nº 043</span>
+            <h4>Oddish</h4>
+            <p class="badges"><span class="badge tipo-grama">Grama</span> <span class="badge tipo-veneno">Veneno</span></p>
+            <p>Sai à noite para se mover.</p>
+            <a class="link-detalhes" href="pokemon-detalhes.html?n=043">Ver ficha completa →</a>
+          </div>
+        </div>
+      </article>
+      <article class="carta" id="p044" data-nome="gloom" data-numero="044" data-tipos="grama veneno">
+        <div class="carta-interna">
+          <div class="carta-face carta-frente">
+            <span class="num">#044</span>
+            <img src="./pokemons/44.png" alt="Gloom" loading="lazy">
+            <h3>Gloom</h3>
+            <p class="badges"><span class="badge tipo-grama">Grama</span> <span class="badge tipo-veneno">Veneno</span></p>
+          </div>
+          <div class="carta-face carta-verso">
+            <span class="num">Nº 044</span>
+            <h4>Gloom</h4>
+            <p class="badges"><span class="badge tipo-grama">Grama</span> <span class="badge tipo-veneno">Veneno</span></p>
+            <p>Exala um cheiro terrível.</p>
+            <a class="link-detalhes" href="pokemon-detalhes.html?n=044">Ver ficha completa →</a>
+          </div>
+        </div>
+      </article>
+      <article class="carta" id="p045" data-nome="vileplume" data-numero="045" data-tipos="grama veneno">
+        <div class="carta-interna">
+          <div class="carta-face carta-frente">
+            <span class="num">#045</span>
+            <img src="./pokemons/45.png" alt="Vileplume" loading="lazy">
+            <h3>Vileplume</h3>
+            <p class="badges"><span class="badge tipo-grama">Grama</span> <span class="badge tipo-veneno">Veneno</span></p>
+          </div>
+          <div class="carta-face carta-verso">
+            <span class="num">Nº 045</span>
+            <h4>Vileplume</h4>
+            <p class="badges"><span class="badge tipo-grama">Grama</span> <span class="badge tipo-veneno">Veneno</span></p>
+            <p>Flor enorme libera pó tóxico.</p>
+            <a class="link-detalhes" href="pokemon-detalhes.html?n=045">Ver ficha completa →</a>
+          </div>
+        </div>
+      </article>
+      <article class="carta" id="p046" data-nome="paras" data-numero="046" data-tipos="inseto grama">
+        <div class="carta-interna">
+          <div class="carta-face carta-frente">
+            <span class="num">#046</span>
+            <img src="./pokemons/46.png" alt="Paras" loading="lazy">
+            <h3>Paras</h3>
+            <p class="badges"><span class="badge tipo-inseto">Inseto</span> <span class="badge tipo-grama">Grama</span></p>
+          </div>
+          <div class="carta-face carta-verso">
+            <span class="num">Nº 046</span>
+            <h4>Paras</h4>
+            <p class="badges"><span class="badge tipo-inseto">Inseto</span> <span class="badge tipo-grama">Grama</span></p>
+            <p>Cogumelos crescem em seu corpo.</p>
+            <a class="link-detalhes" href="pokemon-detalhes.html?n=046">Ver ficha completa →</a>
+          </div>
+        </div>
+      </article>
+      <article class="carta" id="p047" data-nome="parasect" data-numero="047" data-tipos="inseto grama">
+        <div class="carta-interna">
+          <div class="carta-face carta-frente">
+            <span class="num">#047</span>
+            <img src="./pokemons/47.png" alt="Parasect" loading="lazy">
+            <h3>Parasect</h3>
+            <p class="badges"><span class="badge tipo-inseto">Inseto</span> <span class="badge tipo-grama">Grama</span></p>
+          </div>
+          <div class="carta-face carta-verso">
+            <span class="num">Nº 047</span>
+            <h4>Parasect</h4>
+            <p class="badges"><span class="badge tipo-inseto">Inseto</span> <span class="badge tipo-grama">Grama</span></p>
+            <p>O fungo controla o Pokémon.</p>
+            <a class="link-detalhes" href="pokemon-detalhes.html?n=047">Ver ficha completa →</a>
+          </div>
+        </div>
+      </article>
+      <article class="carta" id="p048" data-nome="venonat" data-numero="048" data-tipos="inseto veneno">
+        <div class="carta-interna">
+          <div class="carta-face carta-frente">
+            <span class="num">#048</span>
+            <img src="./pokemons/48.png" alt="Venonat" loading="lazy">
+            <h3>Venonat</h3>
+            <p class="badges"><span class="badge tipo-inseto">Inseto</span> <span class="badge tipo-veneno">Veneno</span></p>
+          </div>
+          <div class="carta-face carta-verso">
+            <span class="num">Nº 048</span>
+            <h4>Venonat</h4>
+            <p class="badges"><span class="badge tipo-inseto">Inseto</span> <span class="badge tipo-veneno">Veneno</span></p>
+            <p>Olhos grandes para enxergar à noite.</p>
+            <a class="link-detalhes" href="pokemon-detalhes.html?n=048">Ver ficha completa →</a>
+          </div>
+        </div>
+      </article>
+      <article class="carta" id="p049" data-nome="venomoth" data-numero="049" data-tipos="inseto veneno">
+        <div class="carta-interna">
+          <div class="carta-face carta-frente">
+            <span class="num">#049</span>
+            <img src="./pokemons/49.png" alt="Venomoth" loading="lazy">
+            <h3>Venomoth</h3>
+            <p class="badges"><span class="badge tipo-inseto">Inseto</span> <span class="badge tipo-veneno">Veneno</span></p>
+          </div>
+          <div class="carta-face carta-verso">
+            <span class="num">Nº 049</span>
+            <h4>Venomoth</h4>
+            <p class="badges"><span class="badge tipo-inseto">Inseto</span> <span class="badge tipo-veneno">Veneno</span></p>
+            <p>Suas asas liberam pó venenoso.</p>
+            <a class="link-detalhes" href="pokemon-detalhes.html?n=049">Ver ficha completa →</a>
+          </div>
+        </div>
+      </article>
+      <article class="carta" id="p050" data-nome="diglett" data-numero="050" data-tipos="terra">
+        <div class="carta-interna">
+          <div class="carta-face carta-frente">
+            <span class="num">#050</span>
+            <img src="./pokemons/50.png" alt="Diglett" loading="lazy">
+            <h3>Diglett</h3>
+            <p class="badges"><span class="badge tipo-terra">Terra</span></p>
+          </div>
+          <div class="carta-face carta-verso">
+            <span class="num">Nº 050</span>
+            <h4>Diglett</h4>
+            <p class="badges"><span class="badge tipo-terra">Terra</span></p>
+            <p>Vive no subsolo.</p>
+            <a class="link-detalhes" href="pokemon-detalhes.html?n=050">Ver ficha completa →</a>
+          </div>
+        </div>
+      </article>
+      <article class="carta" id="p051" data-nome="dugtrio" data-numero="051" data-tipos="terra">
+        <div class="carta-interna">
+          <div class="carta-face carta-frente">
+            <span class="num">#051</span>
+            <img src="./pokemons/51.png" alt="Dugtrio" loading="lazy">
+            <h3>Dugtrio</h3>
+            <p class="badges"><span class="badge tipo-terra">Terra</span></p>
+          </div>
+          <div class="carta-face carta-verso">
+            <span class="num">Nº 051</span>
+            <h4>Dugtrio</h4>
+            <p class="badges"><span class="badge tipo-terra">Terra</span></p>
+            <p>Três Diglett unidos.</p>
+            <a class="link-detalhes" href="pokemon-detalhes.html?n=051">Ver ficha completa →</a>
+          </div>
+        </div>
+      </article>
+      <article class="carta" id="p052" data-nome="meowth" data-numero="052" data-tipos="normal">
+        <div class="carta-interna">
+          <div class="carta-face carta-frente">
+            <span class="num">#052</span>
+            <img src="./pokemons/52.png" alt="Meowth" loading="lazy">
+            <h3>Meowth</h3>
+            <p class="badges"><span class="badge tipo-normal">Normal</span></p>
+          </div>
+          <div class="carta-face carta-verso">
+            <span class="num">Nº 052</span>
+            <h4>Meowth</h4>
+            <p class="badges"><span class="badge tipo-normal">Normal</span></p>
+            <p>Adora objetos brilhantes.</p>
+            <a class="link-detalhes" href="pokemon-detalhes.html?n=052">Ver ficha completa →</a>
+          </div>
+        </div>
+      </article>
+      <article class="carta" id="p053" data-nome="persian" data-numero="053" data-tipos="normal">
+        <div class="carta-interna">
+          <div class="carta-face carta-frente">
+            <span class="num">#053</span>
+            <img src="./pokemons/53.png" alt="Persian" loading="lazy">
+            <h3>Persian</h3>
+            <p class="badges"><span class="badge tipo-normal">Normal</span></p>
+          </div>
+          <div class="carta-face carta-verso">
+            <span class="num">Nº 053</span>
+            <h4>Persian</h4>
+            <p class="badges"><span class="badge tipo-normal">Normal</span></p>
+            <p>Elegante e perigoso.</p>
+            <a class="link-detalhes" href="pokemon-detalhes.html?n=053">Ver ficha completa →</a>
+          </div>
+        </div>
+      </article>
+      <article class="carta" id="p054" data-nome="psyduck" data-numero="054" data-tipos="agua">
+        <div class="carta-interna">
+          <div class="carta-face carta-frente">
+            <span class="num">#054</span>
+            <img src="./pokemons/54.png" alt="Psyduck" loading="lazy">
+            <h3>Psyduck</h3>
+            <p class="badges"><span class="badge tipo-agua">Água</span></p>
+          </div>
+          <div class="carta-face carta-verso">
+            <span class="num">Nº 054</span>
+            <h4>Psyduck</h4>
+            <p class="badges"><span class="badge tipo-agua">Água</span></p>
+            <p>Sofre de dores de cabeça constantes.</p>
+            <a class="link-detalhes" href="pokemon-detalhes.html?n=054">Ver ficha completa →</a>
+          </div>
+        </div>
+      </article>
+      <article class="carta" id="p055" data-nome="golduck" data-numero="055" data-tipos="agua">
+        <div class="carta-interna">
+          <div class="carta-face carta-frente">
+            <span class="num">#055</span>
+            <img src="./pokemons/55.png" alt="Golduck" loading="lazy">
+            <h3>Golduck</h3>
+            <p class="badges"><span class="badge tipo-agua">Água</span></p>
+          </div>
+          <div class="carta-face carta-verso">
+            <span class="num">Nº 055</span>
+            <h4>Golduck</h4>
+            <p class="badges"><span class="badge tipo-agua">Água</span></p>
+            <p>Nadador extremamente rápido.</p>
+            <a class="link-detalhes" href="pokemon-detalhes.html?n=055">Ver ficha completa →</a>
+          </div>
+        </div>
+      </article>
+      <article class="carta" id="p056" data-nome="mankey" data-numero="056" data-tipos="lutador">
+        <div class="carta-interna">
+          <div class="carta-face carta-frente">
+            <span class="num">#056</span>
+            <img src="./pokemons/56.png" alt="Mankey" loading="lazy">
+            <h3>Mankey</h3>
+            <p class="badges"><span class="badge tipo-lutador">Lutador</span></p>
+          </div>
+          <div class="carta-face carta-verso">
+            <span class="num">Nº 056</span>
+            <h4>Mankey</h4>
+            <p class="badges"><span class="badge tipo-lutador">Lutador</span></p>
+            <p>Extremamente agressivo e vive irritado.</p>
+            <a class="link-detalhes" href="pokemon-detalhes.html?n=056">Ver ficha completa →</a>
+          </div>
+        </div>
+      </article>
+      <article class="carta" id="p057" data-nome="primeape" data-numero="057" data-tipos="lutador">
+        <div class="carta-interna">
+          <div class="carta-face carta-frente">
+            <span class="num">#057</span>
+            <img src="./pokemons/57.png" alt="Primeape" loading="lazy">
+            <h3>Primeape</h3>
+            <p class="badges"><span class="badge tipo-lutador">Lutador</span></p>
+          </div>
+          <div class="carta-face carta-verso">
+            <span class="num">Nº 057</span>
+            <h4>Primeape</h4>
+            <p class="badges"><span class="badge tipo-lutador">Lutador</span></p>
+            <p>Fica furioso facilmente e nunca desiste de lutar.</p>
+            <a class="link-detalhes" href="pokemon-detalhes.html?n=057">Ver ficha completa →</a>
+          </div>
+        </div>
+      </article>
+      <article class="carta" id="p058" data-nome="growlithe" data-numero="058" data-tipos="fogo">
+        <div class="carta-interna">
+          <div class="carta-face carta-frente">
+            <span class="num">#058</span>
+            <img src="./pokemons/58.png" alt="Growlithe" loading="lazy">
+            <h3>Growlithe</h3>
+            <p class="badges"><span class="badge tipo-fogo">Fogo</span></p>
+          </div>
+          <div class="carta-face carta-verso">
+            <span class="num">Nº 058</span>
+            <h4>Growlithe</h4>
+            <p class="badges"><span class="badge tipo-fogo">Fogo</span></p>
+            <p>Leal e protetor, muito amigável com humanos.</p>
+            <a class="link-detalhes" href="pokemon-detalhes.html?n=058">Ver ficha completa →</a>
+          </div>
+        </div>
+      </article>
+      <article class="carta" id="p059" data-nome="arcanine" data-numero="059" data-tipos="fogo">
+        <div class="carta-interna">
+          <div class="carta-face carta-frente">
+            <span class="num">#059</span>
+            <img src="./pokemons/59.png" alt="Arcanine" loading="lazy">
+            <h3>Arcanine</h3>
+            <p class="badges"><span class="badge tipo-fogo">Fogo</span></p>
+          </div>
+          <div class="carta-face carta-verso">
+            <span class="num">Nº 059</span>
+            <h4>Arcanine</h4>
+            <p class="badges"><span class="badge tipo-fogo">Fogo</span></p>
+            <p>Conhecido por sua velocidade e nobreza.</p>
+            <a class="link-detalhes" href="pokemon-detalhes.html?n=059">Ver ficha completa →</a>
+          </div>
+        </div>
+      </article>
+      <article class="carta" id="p060" data-nome="poliwag" data-numero="060" data-tipos="agua">
+        <div class="carta-interna">
+          <div class="carta-face carta-frente">
+            <span class="num">#060</span>
+            <img src="./pokemons/60.png" alt="Poliwag" loading="lazy">
+            <h3>Poliwag</h3>
+            <p class="badges"><span class="badge tipo-agua">Água</span></p>
+          </div>
+          <div class="carta-face carta-verso">
+            <span class="num">Nº 060</span>
+            <h4>Poliwag</h4>
+            <p class="badges"><span class="badge tipo-agua">Água</span></p>
+            <p>Seu padrão espiral indica seus órgãos internos.</p>
+            <a class="link-detalhes" href="pokemon-detalhes.html?n=060">Ver ficha completa →</a>
+          </div>
+        </div>
+      </article>
+      <article class="carta" id="p061" data-nome="poliwhirl" data-numero="061" data-tipos="agua">
+        <div class="carta-interna">
+          <div class="carta-face carta-frente">
+            <span class="num">#061</span>
+            <img src="./pokemons/61.png" alt="Poliwhirl" loading="lazy">
+            <h3>Poliwhirl</h3>
+            <p class="badges"><span class="badge tipo-agua">Água</span></p>
+          </div>
+          <div class="carta-face carta-verso">
+            <span class="num">Nº 061</span>
+            <h4>Poliwhirl</h4>
+            <p class="badges"><span class="badge tipo-agua">Água</span></p>
+            <p>Usa sua pele úmida para respirar fora d’água.</p>
+            <a class="link-detalhes" href="pokemon-detalhes.html?n=061">Ver ficha completa →</a>
+          </div>
+        </div>
+      </article>
+      <article class="carta" id="p062" data-nome="poliwrath" data-numero="062" data-tipos="agua lutador">
+        <div class="carta-interna">
+          <div class="carta-face carta-frente">
+            <span class="num">#062</span>
+            <img src="./pokemons/62.png" alt="Poliwrath" loading="lazy">
+            <h3>Poliwrath</h3>
+            <p class="badges"><span class="badge tipo-agua">Água</span> <span class="badge tipo-lutador">Lutador</span></p>
+          </div>
+          <div class="carta-face carta-verso">
+            <span class="num">Nº 062</span>
+            <h4>Poliwrath</h4>
+            <p class="badges"><span class="badge tipo-agua">Água</span> <span class="badge tipo-lutador">Lutador</span></p>
+            <p>Corpo musculoso excelente para nadar.</p>
+            <a class="link-detalhes" href="pokemon-detalhes.html?n=062">Ver ficha completa →</a>
+          </div>
+        </div>
+      </article>
+      <article class="carta" id="p063" data-nome="abra" data-numero="063" data-tipos="psiquico">
+        <div class="carta-interna">
+          <div class="carta-face carta-frente">
+            <span class="num">#063</span>
+            <img src="./pokemons/63.png" alt="Abra" loading="lazy">
+            <h3>Abra</h3>
+            <p class="badges"><span class="badge tipo-psiquico">Psíquico</span></p>
+          </div>
+          <div class="carta-face carta-verso">
+            <span class="num">Nº 063</span>
+            <h4>Abra</h4>
+            <p class="badges"><span class="badge tipo-psiquico">Psíquico</span></p>
+            <p>Dorme 18 horas por dia e usa teletransporte.</p>
+            <a class="link-detalhes" href="pokemon-detalhes.html?n=063">Ver ficha completa →</a>
+          </div>
+        </div>
+      </article>
+      <article class="carta" id="p064" data-nome="kadabra" data-numero="064" data-tipos="psiquico">
+        <div class="carta-interna">
+          <div class="carta-face carta-frente">
+            <span class="num">#064</span>
+            <img src="./pokemons/64.png" alt="Kadabra" loading="lazy">
+            <h3>Kadabra</h3>
+            <p class="badges"><span class="badge tipo-psiquico">Psíquico</span></p>
+          </div>
+          <div class="carta-face carta-verso">
+            <span class="num">Nº 064</span>
+            <h4>Kadabra</h4>
+            <p class="badges"><span class="badge tipo-psiquico">Psíquico</span></p>
+            <p>Emite ondas mentais poderosas.</p>
+            <a class="link-detalhes" href="pokemon-detalhes.html?n=064">Ver ficha completa →</a>
+          </div>
+        </div>
+      </article>
+      <article class="carta" id="p065" data-nome="alakazam" data-numero="065" data-tipos="psiquico">
+        <div class="carta-interna">
+          <div class="carta-face carta-frente">
+            <span class="num">#065</span>
+            <img src="./pokemons/65.png" alt="Alakazam" loading="lazy">
+            <h3>Alakazam</h3>
+            <p class="badges"><span class="badge tipo-psiquico">Psíquico</span></p>
+          </div>
+          <div class="carta-face carta-verso">
+            <span class="num">Nº 065</span>
+            <h4>Alakazam</h4>
+            <p class="badges"><span class="badge tipo-psiquico">Psíquico</span></p>
+            <p>QI extremamente alto.</p>
+            <a class="link-detalhes" href="pokemon-detalhes.html?n=065">Ver ficha completa →</a>
+          </div>
+        </div>
+      </article>
+      <article class="carta" id="p066" data-nome="machop" data-numero="066" data-tipos="lutador">
+        <div class="carta-interna">
+          <div class="carta-face carta-frente">
+            <span class="num">#066</span>
+            <img src="./pokemons/66.png" alt="Machop" loading="lazy">
+            <h3>Machop</h3>
+            <p class="badges"><span class="badge tipo-lutador">Lutador</span></p>
+          </div>
+          <div class="carta-face carta-verso">
+            <span class="num">Nº 066</span>
+            <h4>Machop</h4>
+            <p class="badges"><span class="badge tipo-lutador">Lutador</span></p>
+            <p>Treina constantemente para ficar mais forte.</p>
+            <a class="link-detalhes" href="pokemon-detalhes.html?n=066">Ver ficha completa →</a>
+          </div>
+        </div>
+      </article>
+      <article class="carta" id="p067" data-nome="machoke" data-numero="067" data-tipos="lutador">
+        <div class="carta-interna">
+          <div class="carta-face carta-frente">
+            <span class="num">#067</span>
+            <img src="./pokemons/67.png" alt="Machoke" loading="lazy">
+            <h3>Machoke</h3>
+            <p class="badges"><span class="badge tipo-lutador">Lutador</span></p>
+          </div>
+          <div class="carta-face carta-verso">
+            <span class="num">Nº 067</span>
+            <h4>Machoke</h4>
+            <p class="badges"><span class="badge tipo-lutador">Lutador</span></p>
+            <p>Usa um cinto para conter sua força.</p>
+            <a class="link-detalhes" href="pokemon-detalhes.html?n=067">Ver ficha completa →</a>
+          </div>
+        </div>
+      </article>
+      <article class="carta" id="p068" data-nome="machamp" data-numero="068" data-tipos="lutador">
+        <div class="carta-interna">
+          <div class="carta-face carta-frente">
+            <span class="num">#068</span>
+            <img src="./pokemons/68.png" alt="Machamp" loading="lazy">
+            <h3>Machamp</h3>
+            <p class="badges"><span class="badge tipo-lutador">Lutador</span></p>
+          </div>
+          <div class="carta-face carta-verso">
+            <span class="num">Nº 068</span>
+            <h4>Machamp</h4>
+            <p class="badges"><span class="badge tipo-lutador">Lutador</span></p>
+            <p>Possui quatro braços super poderosos.</p>
+            <a class="link-detalhes" href="pokemon-detalhes.html?n=068">Ver ficha completa →</a>
+          </div>
+        </div>
+      </article>
+      <article class="carta" id="p069" data-nome="bellsprout" data-numero="069" data-tipos="grama veneno">
+        <div class="carta-interna">
+          <div class="carta-face carta-frente">
+            <span class="num">#069</span>
+            <img src="./pokemons/69.png" alt="Bellsprout" loading="lazy">
+            <h3>Bellsprout</h3>
+            <p class="badges"><span class="badge tipo-grama">Grama</span> <span class="badge tipo-veneno">Veneno</span></p>
+          </div>
+          <div class="carta-face carta-verso">
+            <span class="num">Nº 069</span>
+            <h4>Bellsprout</h4>
+            <p class="badges"><span class="badge tipo-grama">Grama</span> <span class="badge tipo-veneno">Veneno</span></p>
+            <p>Corpo fino e flexível.</p>
+            <a class="link-detalhes" href="pokemon-detalhes.html?n=069">Ver ficha completa →</a>
+          </div>
+        </div>
+      </article>
+      <article class="carta" id="p070" data-nome="weepinbell" data-numero="070" data-tipos="grama veneno">
+        <div class="carta-interna">
+          <div class="carta-face carta-frente">
+            <span class="num">#070</span>
+            <img src="./pokemons/70.png" alt="Weepinbell" loading="lazy">
+            <h3>Weepinbell</h3>
+            <p class="badges"><span class="badge tipo-grama">Grama</span> <span class="badge tipo-veneno">Veneno</span></p>
+          </div>
+          <div class="carta-face carta-verso">
+            <span class="num">Nº 070</span>
+            <h4>Weepinbell</h4>
+            <p class="badges"><span class="badge tipo-grama">Grama</span> <span class="badge tipo-veneno">Veneno</span></p>
+            <p>Produz um líquido dissolvente.</p>
+            <a class="link-detalhes" href="pokemon-detalhes.html?n=070">Ver ficha completa →</a>
+          </div>
+        </div>
+      </article>
+      <article class="carta" id="p071" data-nome="victreebel" data-numero="071" data-tipos="grama veneno">
+        <div class="carta-interna">
+          <div class="carta-face carta-frente">
+            <span class="num">#071</span>
+            <img src="./pokemons/71.png" alt="Victreebel" loading="lazy">
+            <h3>Victreebel</h3>
+            <p class="badges"><span class="badge tipo-grama">Grama</span> <span class="badge tipo-veneno">Veneno</span></p>
+          </div>
+          <div class="carta-face carta-verso">
+            <span class="num">Nº 071</span>
+            <h4>Victreebel</h4>
+            <p class="badges"><span class="badge tipo-grama">Grama</span> <span class="badge tipo-veneno">Veneno</span></p>
+            <p>Captura presas com sua boca grande.</p>
+            <a class="link-detalhes" href="pokemon-detalhes.html?n=071">Ver ficha completa →</a>
+          </div>
+        </div>
+      </article>
+      <article class="carta" id="p072" data-nome="tentacool" data-numero="072" data-tipos="agua veneno">
+        <div class="carta-interna">
+          <div class="carta-face carta-frente">
+            <span class="num">#072</span>
+            <img src="./pokemons/72.png" alt="Tentacool" loading="lazy">
+            <h3>Tentacool</h3>
+            <p class="badges"><span class="badge tipo-agua">Água</span> <span class="badge tipo-veneno">Veneno</span></p>
+          </div>
+          <div class="carta-face carta-verso">
+            <span class="num">Nº 072</span>
+            <h4>Tentacool</h4>
+            <p class="badges"><span class="badge tipo-agua">Água</span> <span class="badge tipo-veneno">Veneno</span></p>
+            <p>Flutua nos mares usando seus tentáculos.</p>
+            <a class="link-detalhes" href="pokemon-detalhes.html?n=072">Ver ficha completa →</a>
+          </div>
+        </div>
+      </article>
+      <article class="carta" id="p073" data-nome="tentacruel" data-numero="073" data-tipos="agua veneno">
+        <div class="carta-interna">
+          <div class="carta-face carta-frente">
+            <span class="num">#073</span>
+            <img src="./pokemons/73.png" alt="Tentacruel" loading="lazy">
+            <h3>Tentacruel</h3>
+            <p class="badges"><span class="badge tipo-agua">Água</span> <span class="badge tipo-veneno">Veneno</span></p>
+          </div>
+          <div class="carta-face carta-verso">
+            <span class="num">Nº 073</span>
+            <h4>Tentacruel</h4>
+            <p class="badges"><span class="badge tipo-agua">Água</span> <span class="badge tipo-veneno">Veneno</span></p>
+            <p>Possui tentáculos altamente venenosos.</p>
+            <a class="link-detalhes" href="pokemon-detalhes.html?n=073">Ver ficha completa →</a>
+          </div>
+        </div>
+      </article>
+      <article class="carta" id="p074" data-nome="geodude" data-numero="074" data-tipos="pedra terra">
+        <div class="carta-interna">
+          <div class="carta-face carta-frente">
+            <span class="num">#074</span>
+            <img src="./pokemons/74.png" alt="Geodude" loading="lazy">
+            <h3>Geodude</h3>
+            <p class="badges"><span class="badge tipo-pedra">Pedra</span> <span class="badge tipo-terra">Terra</span></p>
+          </div>
+          <div class="carta-face carta-verso">
+            <span class="num">Nº 074</span>
+            <h4>Geodude</h4>
+            <p class="badges"><span class="badge tipo-pedra">Pedra</span> <span class="badge tipo-terra">Terra</span></p>
+            <p>Corpo duro como rocha.</p>
+            <a class="link-detalhes" href="pokemon-detalhes.html?n=074">Ver ficha completa →</a>
+          </div>
+        </div>
+      </article>
+      <article class="carta" id="p075" data-nome="graveler" data-numero="075" data-tipos="pedra terra">
+        <div class="carta-interna">
+          <div class="carta-face carta-frente">
+            <span class="num">#075</span>
+            <img src="./pokemons/75.png" alt="Graveler" loading="lazy">
+            <h3>Graveler</h3>
+            <p class="badges"><span class="badge tipo-pedra">Pedra</span> <span class="badge tipo-terra">Terra</span></p>
+          </div>
+          <div class="carta-face carta-verso">
+            <span class="num">Nº 075</span>
+            <h4>Graveler</h4>
+            <p class="badges"><span class="badge tipo-pedra">Pedra</span> <span class="badge tipo-terra">Terra</span></p>
+            <p>Rola montanhas abaixo para se mover.</p>
+            <a class="link-detalhes" href="pokemon-detalhes.html?n=075">Ver ficha completa →</a>
+          </div>
+        </div>
+      </article>
+      <article class="carta" id="p076" data-nome="golem" data-numero="076" data-tipos="pedra terra">
+        <div class="carta-interna">
+          <div class="carta-face carta-frente">
+            <span class="num">#076</span>
+            <img src="./pokemons/76.png" alt="Golem" loading="lazy">
+            <h3>Golem</h3>
+            <p class="badges"><span class="badge tipo-pedra">Pedra</span> <span class="badge tipo-terra">Terra</span></p>
+          </div>
+          <div class="carta-face carta-verso">
+            <span class="num">Nº 076</span>
+            <h4>Golem</h4>
+            <p class="badges"><span class="badge tipo-pedra">Pedra</span> <span class="badge tipo-terra">Terra</span></p>
+            <p>Explode ao se lançar contra inimigos.</p>
+            <a class="link-detalhes" href="pokemon-detalhes.html?n=076">Ver ficha completa →</a>
+          </div>
+        </div>
+      </article>
+      <article class="carta" id="p077" data-nome="ponyta" data-numero="077" data-tipos="fogo">
+        <div class="carta-interna">
+          <div class="carta-face carta-frente">
+            <span class="num">#077</span>
+            <img src="./pokemons/77.png" alt="Ponyta" loading="lazy">
+            <h3>Ponyta</h3>
+            <p class="badges"><span class="badge tipo-fogo">Fogo</span></p>
+          </div>
+          <div class="carta-face carta-verso">
+            <span class="num">Nº 077</span>
+            <h4>Ponyta</h4>
+            <p class="badges"><span class="badge tipo-fogo">Fogo</span></p>
+            <p>Corre rapidamente com crina em chamas.</p>
+            <a class="link-detalhes" href="pokemon-detalhes.html?n=077">Ver ficha completa →</a>
+          </div>
+        </div>
+      </article>
+      <article class="carta" id="p078" data-nome="rapidash" data-numero="078" data-tipos="fogo">
+        <div class="carta-interna">
+          <div class="carta-face carta-frente">
+            <span class="num">#078</span>
+            <img src="./pokemons/78.png" alt="Rapidash" loading="lazy">
+            <h3>Rapidash</h3>
+            <p class="badges"><span class="badge tipo-fogo">Fogo</span></p>
+          </div>
+          <div class="carta-face carta-verso">
+            <span class="num">Nº 078</span>
+            <h4>Rapidash</h4>
+            <p class="badges"><span class="badge tipo-fogo">Fogo</span></p>
+            <p>Alcança velocidades incríveis.</p>
+            <a class="link-detalhes" href="pokemon-detalhes.html?n=078">Ver ficha completa →</a>
+          </div>
+        </div>
+      </article>
+      <article class="carta" id="p079" data-nome="slowpoke" data-numero="079" data-tipos="agua psiquico">
+        <div class="carta-interna">
+          <div class="carta-face carta-frente">
+            <span class="num">#079</span>
+            <img src="./pokemons/79.png" alt="Slowpoke" loading="lazy">
+            <h3>Slowpoke</h3>
+            <p class="badges"><span class="badge tipo-agua">Água</span> <span class="badge tipo-psiquico">Psíquico</span></p>
+          </div>
+          <div class="carta-face carta-verso">
+            <span class="num">Nº 079</span>
+            <h4>Slowpoke</h4>
+            <p class="badges"><span class="badge tipo-agua">Água</span> <span class="badge tipo-psiquico">Psíquico</span></p>
+            <p>Lento e desatento.</p>
+            <a class="link-detalhes" href="pokemon-detalhes.html?n=079">Ver ficha completa →</a>
+          </div>
+        </div>
+      </article>
+      <article class="carta" id="p080" data-nome="slowbro" data-numero="080" data-tipos="agua psiquico">
+        <div class="carta-interna">
+          <div class="carta-face carta-frente">
+            <span class="num">#080</span>
+            <img src="./pokemons/80.png" alt="Slowbro" loading="lazy">
+            <h3>Slowbro</h3>
+            <p class="badges"><span class="badge tipo-agua">Água</span> <span class="badge tipo-psiquico">Psíquico</span></p>
+          </div>
+          <div class="carta-face carta-verso">
+            <span class="num">Nº 080</span>
+            <h4>Slowbro</h4>
+            <p class="badges"><span class="badge tipo-agua">Água</span> <span class="badge tipo-psiquico">Psíquico</span></p>
+            <p>Um Shellder mordeu sua cauda.</p>
+            <a class="link-detalhes" href="pokemon-detalhes.html?n=080">Ver ficha completa →</a>
+          </div>
+        </div>
+      </article>
+      <article class="carta" id="p081" data-nome="magnemite" data-numero="081" data-tipos="eletrico aco">
+        <div class="carta-interna">
+          <div class="carta-face carta-frente">
+            <span class="num">#081</span>
+            <img src="./pokemons/81.png" alt="Magnemite" loading="lazy">
+            <h3>Magnemite</h3>
+            <p class="badges"><span class="badge tipo-eletrico">Elétrico</span> <span class="badge tipo-aco">Aço</span></p>
+          </div>
+          <div class="carta-face carta-verso">
+            <span class="num">Nº 081</span>
+            <h4>Magnemite</h4>
+            <p class="badges"><span class="badge tipo-eletrico">Elétrico</span> <span class="badge tipo-aco">Aço</span></p>
+            <p>Usa magnetismo para flutuar.</p>
+            <a class="link-detalhes" href="pokemon-detalhes.html?n=081">Ver ficha completa →</a>
+          </div>
+        </div>
+      </article>
+      <article class="carta" id="p082" data-nome="magneton" data-numero="082" data-tipos="eletrico aco">
+        <div class="carta-interna">
+          <div class="carta-face carta-frente">
+            <span class="num">#082</span>
+            <img src="./pokemons/82.png" alt="Magneton" loading="lazy">
+            <h3>Magneton</h3>
+            <p class="badges"><span class="badge tipo-eletrico">Elétrico</span> <span class="badge tipo-aco">Aço</span></p>
+          </div>
+          <div class="carta-face carta-verso">
+            <span class="num">Nº 082</span>
+            <h4>Magneton</h4>
+            <p class="badges"><span class="badge tipo-eletrico">Elétrico</span> <span class="badge tipo-aco">Aço</span></p>
+            <p>Três Magnemite unidos.</p>
+            <a class="link-detalhes" href="pokemon-detalhes.html?n=082">Ver ficha completa →</a>
+          </div>
+        </div>
+      </article>
+      <article class="carta" id="p083" data-nome="farfetch’d" data-numero="083" data-tipos="normal voador">
+        <div class="carta-interna">
+          <div class="carta-face carta-frente">
+            <span class="num">#083</span>
+            <img src="./pokemons/83.png" alt="Farfetch’d" loading="lazy">
+            <h3>Farfetch’d</h3>
+            <p class="badges"><span class="badge tipo-normal">Normal</span> <span class="badge tipo-voador">Voador</span></p>
+          </div>
+          <div class="carta-face carta-verso">
+            <span class="num">Nº 083</span>
+            <h4>Farfetch’d</h4>
+            <p class="badges"><span class="badge tipo-normal">Normal</span> <span class="badge tipo-voador">Voador</span></p>
+            <p>Sempre carrega um alho-poró.</p>
+            <a class="link-detalhes" href="pokemon-detalhes.html?n=083">Ver ficha completa →</a>
+          </div>
+        </div>
+      </article>
+      <article class="carta" id="p084" data-nome="doduo" data-numero="084" data-tipos="normal voador">
+        <div class="carta-interna">
+          <div class="carta-face carta-frente">
+            <span class="num">#084</span>
+            <img src="./pokemons/84.png" alt="Doduo" loading="lazy">
+            <h3>Doduo</h3>
+            <p class="badges"><span class="badge tipo-normal">Normal</span> <span class="badge tipo-voador">Voador</span></p>
+          </div>
+          <div class="carta-face carta-verso">
+            <span class="num">Nº 084</span>
+            <h4>Doduo</h4>
+            <p class="badges"><span class="badge tipo-normal">Normal</span> <span class="badge tipo-voador">Voador</span></p>
+            <p>Possui duas cabeças independentes.</p>
+            <a class="link-detalhes" href="pokemon-detalhes.html?n=084">Ver ficha completa →</a>
+          </div>
+        </div>
+      </article>
+      <article class="carta" id="p085" data-nome="dodrio" data-numero="085" data-tipos="normal voador">
+        <div class="carta-interna">
+          <div class="carta-face carta-frente">
+            <span class="num">#085</span>
+            <img src="./pokemons/85.png" alt="Dodrio" loading="lazy">
+            <h3>Dodrio</h3>
+            <p class="badges"><span class="badge tipo-normal">Normal</span> <span class="badge tipo-voador">Voador</span></p>
+          </div>
+          <div class="carta-face carta-verso">
+            <span class="num">Nº 085</span>
+            <h4>Dodrio</h4>
+            <p class="badges"><span class="badge tipo-normal">Normal</span> <span class="badge tipo-voador">Voador</span></p>
+            <p>Corre extremamente rápido com três cabeças.</p>
+            <a class="link-detalhes" href="pokemon-detalhes.html?n=085">Ver ficha completa →</a>
+          </div>
+        </div>
+      </article>
+      <article class="carta" id="p086" data-nome="seel" data-numero="086" data-tipos="agua">
+        <div class="carta-interna">
+          <div class="carta-face carta-frente">
+            <span class="num">#086</span>
+            <img src="./pokemons/86.png" alt="Seel" loading="lazy">
+            <h3>Seel</h3>
+            <p class="badges"><span class="badge tipo-agua">Água</span></p>
+          </div>
+          <div class="carta-face carta-verso">
+            <span class="num">Nº 086</span>
+            <h4>Seel</h4>
+            <p class="badges"><span class="badge tipo-agua">Água</span></p>
+            <p>Adora águas geladas.</p>
+            <a class="link-detalhes" href="pokemon-detalhes.html?n=086">Ver ficha completa →</a>
+          </div>
+        </div>
+      </article>
+      <article class="carta" id="p087" data-nome="dewgong" data-numero="087" data-tipos="agua gelo">
+        <div class="carta-interna">
+          <div class="carta-face carta-frente">
+            <span class="num">#087</span>
+            <img src="./pokemons/87.png" alt="Dewgong" loading="lazy">
+            <h3>Dewgong</h3>
+            <p class="badges"><span class="badge tipo-agua">Água</span> <span class="badge tipo-gelo">Gelo</span></p>
+          </div>
+          <div class="carta-face carta-verso">
+            <span class="num">Nº 087</span>
+            <h4>Dewgong</h4>
+            <p class="badges"><span class="badge tipo-agua">Água</span> <span class="badge tipo-gelo">Gelo</span></p>
+            <p>Corpo elegante adaptado ao frio.</p>
+            <a class="link-detalhes" href="pokemon-detalhes.html?n=087">Ver ficha completa →</a>
+          </div>
+        </div>
+      </article>
+      <article class="carta" id="p088" data-nome="grimer" data-numero="088" data-tipos="veneno">
+        <div class="carta-interna">
+          <div class="carta-face carta-frente">
+            <span class="num">#088</span>
+            <img src="./pokemons/88.png" alt="Grimer" loading="lazy">
+            <h3>Grimer</h3>
+            <p class="badges"><span class="badge tipo-veneno">Veneno</span></p>
+          </div>
+          <div class="carta-face carta-verso">
+            <span class="num">Nº 088</span>
+            <h4>Grimer</h4>
+            <p class="badges"><span class="badge tipo-veneno">Veneno</span></p>
+            <p>Feito de lodo tóxico.</p>
+            <a class="link-detalhes" href="pokemon-detalhes.html?n=088">Ver ficha completa →</a>
+          </div>
+        </div>
+      </article>
+      <article class="carta" id="p089" data-nome="muk" data-numero="089" data-tipos="veneno">
+        <div class="carta-interna">
+          <div class="carta-face carta-frente">
+            <span class="num">#089</span>
+            <img src="./pokemons/89.png" alt="Muk" loading="lazy">
+            <h3>Muk</h3>
+            <p class="badges"><span class="badge tipo-veneno">Veneno</span></p>
+          </div>
+          <div class="carta-face carta-verso">
+            <span class="num">Nº 089</span>
+            <h4>Muk</h4>
+            <p class="badges"><span class="badge tipo-veneno">Veneno</span></p>
+            <p>Extremamente sujo e venenoso.</p>
+            <a class="link-detalhes" href="pokemon-detalhes.html?n=089">Ver ficha completa →</a>
+          </div>
+        </div>
+      </article>
+      <article class="carta" id="p090" data-nome="shellder" data-numero="090" data-tipos="agua">
+        <div class="carta-interna">
+          <div class="carta-face carta-frente">
+            <span class="num">#090</span>
+            <img src="./pokemons/90.png" alt="Shellder" loading="lazy">
+            <h3>Shellder</h3>
+            <p class="badges"><span class="badge tipo-agua">Água</span></p>
+          </div>
+          <div class="carta-face carta-verso">
+            <span class="num">Nº 090</span>
+            <h4>Shellder</h4>
+            <p class="badges"><span class="badge tipo-agua">Água</span></p>
+            <p>Concha dura que protege seu corpo.</p>
+            <a class="link-detalhes" href="pokemon-detalhes.html?n=090">Ver ficha completa →</a>
+          </div>
+        </div>
+      </article>
+      <article class="carta" id="p091" data-nome="cloyster" data-numero="091" data-tipos="agua gelo">
+        <div class="carta-interna">
+          <div class="carta-face carta-frente">
+            <span class="num">#091</span>
+            <img src="./pokemons/91.png" alt="Cloyster" loading="lazy">
+            <h3>Cloyster</h3>
+            <p class="badges"><span class="badge tipo-agua">Água</span> <span class="badge tipo-gelo">Gelo</span></p>
+          </div>
+          <div class="carta-face carta-verso">
+            <span class="num">Nº 091</span>
+            <h4>Cloyster</h4>
+            <p class="badges"><span class="badge tipo-agua">Água</span> <span class="badge tipo-gelo">Gelo</span></p>
+            <p>Possui uma concha extremamente resistente.</p>
+            <a class="link-detalhes" href="pokemon-detalhes.html?n=091">Ver ficha completa →</a>
+          </div>
+        </div>
+      </article>
+      <article class="carta" id="p092" data-nome="gastly" data-numero="092" data-tipos="fantasma veneno">
+        <div class="carta-interna">
+          <div class="carta-face carta-frente">
+            <span class="num">#092</span>
+            <img src="./pokemons/92.png" alt="Gastly" loading="lazy">
+            <h3>Gastly</h3>
+            <p class="badges"><span class="badge tipo-fantasma">Fantasma</span> <span class="badge tipo-veneno">Veneno</span></p>
+          </div>
+          <div class="carta-face carta-verso">
+            <span class="num">Nº 092</span>
+            <h4>Gastly</h4>
+            <p class="badges"><span class="badge tipo-fantasma">Fantasma</span> <span class="badge tipo-veneno">Veneno</span></p>
+            <p>Forma gasosa assustadora.</p>
+            <a class="link-detalhes" href="pokemon-detalhes.html?n=092">Ver ficha completa →</a>
+          </div>
+        </div>
+      </article>
+      <article class="carta" id="p093" data-nome="haunter" data-numero="093" data-tipos="fantasma veneno">
+        <div class="carta-interna">
+          <div class="carta-face carta-frente">
+            <span class="num">#093</span>
+            <img src="./pokemons/93.png" alt="Haunter" loading="lazy">
+            <h3>Haunter</h3>
+            <p class="badges"><span class="badge tipo-fantasma">Fantasma</span> <span class="badge tipo-veneno">Veneno</span></p>
+          </div>
+          <div class="carta-face carta-verso">
+            <span class="num">Nº 093</span>
+            <h4>Haunter</h4>
+            <p class="badges"><span class="badge tipo-fantasma">Fantasma</span> <span class="badge tipo-veneno">Veneno</span></p>
+            <p>Gosta de assustar pessoas.</p>
+            <a class="link-detalhes" href="pokemon-detalhes.html?n=093">Ver ficha completa →</a>
+          </div>
+        </div>
+      </article>
+      <article class="carta" id="p094" data-nome="gengar" data-numero="094" data-tipos="fantasma veneno">
+        <div class="carta-interna">
+          <div class="carta-face carta-frente">
+            <span class="num">#094</span>
+            <img src="./pokemons/94.png" alt="Gengar" loading="lazy">
+            <h3>Gengar</h3>
+            <p class="badges"><span class="badge tipo-fantasma">Fantasma</span> <span class="badge tipo-veneno">Veneno</span></p>
+          </div>
+          <div class="carta-face carta-verso">
+            <span class="num">Nº 094</span>
+            <h4>Gengar</h4>
+            <p class="badges"><span class="badge tipo-fantasma">Fantasma</span> <span class="badge tipo-veneno">Veneno</span></p>
+            <p>Se esconde nas sombras.</p>
+            <a class="link-detalhes" href="pokemon-detalhes.html?n=094">Ver ficha completa →</a>
+          </div>
+        </div>
+      </article>
+      <article class="carta" id="p095" data-nome="onix" data-numero="095" data-tipos="pedra terra">
+        <div class="carta-interna">
+          <div class="carta-face carta-frente">
+            <span class="num">#095</span>
+            <img src="./pokemons/95.png" alt="Onix" loading="lazy">
+            <h3>Onix</h3>
+            <p class="badges"><span class="badge tipo-pedra">Pedra</span> <span class="badge tipo-terra">Terra</span></p>
+          </div>
+          <div class="carta-face carta-verso">
+            <span class="num">Nº 095</span>
+            <h4>Onix</h4>
+            <p class="badges"><span class="badge tipo-pedra">Pedra</span> <span class="badge tipo-terra">Terra</span></p>
+            <p>Corpo longo feito de rochas.</p>
+            <a class="link-detalhes" href="pokemon-detalhes.html?n=095">Ver ficha completa →</a>
+          </div>
+        </div>
+      </article>
+      <article class="carta" id="p096" data-nome="drowzee" data-numero="096" data-tipos="psiquico">
+        <div class="carta-interna">
+          <div class="carta-face carta-frente">
+            <span class="num">#096</span>
+            <img src="./pokemons/96.png" alt="Drowzee" loading="lazy">
+            <h3>Drowzee</h3>
+            <p class="badges"><span class="badge tipo-psiquico">Psíquico</span></p>
+          </div>
+          <div class="carta-face carta-verso">
+            <span class="num">Nº 096</span>
+            <h4>Drowzee</h4>
+            <p class="badges"><span class="badge tipo-psiquico">Psíquico</span></p>
+            <p>Se alimenta de sonhos.</p>
+            <a class="link-detalhes" href="pokemon-detalhes.html?n=096">Ver ficha completa →</a>
+          </div>
+        </div>
+      </article>
+      <article class="carta" id="p097" data-nome="hypno" data-numero="097" data-tipos="psiquico">
+        <div class="carta-interna">
+          <div class="carta-face carta-frente">
+            <span class="num">#097</span>
+            <img src="./pokemons/97.png" alt="Hypno" loading="lazy">
+            <h3>Hypno</h3>
+            <p class="badges"><span class="badge tipo-psiquico">Psíquico</span></p>
+          </div>
+          <div class="carta-face carta-verso">
+            <span class="num">Nº 097</span>
+            <h4>Hypno</h4>
+            <p class="badges"><span class="badge tipo-psiquico">Psíquico</span></p>
+            <p>Usa hipnose para controlar inimigos.</p>
+            <a class="link-detalhes" href="pokemon-detalhes.html?n=097">Ver ficha completa →</a>
+          </div>
+        </div>
+      </article>
+      <article class="carta" id="p098" data-nome="krabby" data-numero="098" data-tipos="agua">
+        <div class="carta-interna">
+          <div class="carta-face carta-frente">
+            <span class="num">#098</span>
+            <img src="./pokemons/98.png" alt="Krabby" loading="lazy">
+            <h3>Krabby</h3>
+            <p class="badges"><span class="badge tipo-agua">Água</span></p>
+          </div>
+          <div class="carta-face carta-verso">
+            <span class="num">Nº 098</span>
+            <h4>Krabby</h4>
+            <p class="badges"><span class="badge tipo-agua">Água</span></p>
+            <p>Possui pinças poderosas.</p>
+            <a class="link-detalhes" href="pokemon-detalhes.html?n=098">Ver ficha completa →</a>
+          </div>
+        </div>
+      </article>
+      <article class="carta" id="p099" data-nome="kingler" data-numero="099" data-tipos="agua">
+        <div class="carta-interna">
+          <div class="carta-face carta-frente">
+            <span class="num">#099</span>
+            <img src="./pokemons/99.png" alt="Kingler" loading="lazy">
+            <h3>Kingler</h3>
+            <p class="badges"><span class="badge tipo-agua">Água</span></p>
+          </div>
+          <div class="carta-face carta-verso">
+            <span class="num">Nº 099</span>
+            <h4>Kingler</h4>
+            <p class="badges"><span class="badge tipo-agua">Água</span></p>
+            <p>Uma pinça é maior e mais forte.</p>
+            <a class="link-detalhes" href="pokemon-detalhes.html?n=099">Ver ficha completa →</a>
+          </div>
+        </div>
+      </article>
+      <article class="carta" id="p100" data-nome="voltorb" data-numero="100" data-tipos="eletrico">
+        <div class="carta-interna">
+          <div class="carta-face carta-frente">
+            <span class="num">#100</span>
+            <img src="./pokemons/100.png" alt="Voltorb" loading="lazy">
+            <h3>Voltorb</h3>
+            <p class="badges"><span class="badge tipo-eletrico">Elétrico</span></p>
+          </div>
+          <div class="carta-face carta-verso">
+            <span class="num">Nº 100</span>
+            <h4>Voltorb</h4>
+            <p class="badges"><span class="badge tipo-eletrico">Elétrico</span></p>
+            <p>Parece uma Pokébola.</p>
+            <a class="link-detalhes" href="pokemon-detalhes.html?n=100">Ver ficha completa →</a>
+          </div>
+        </div>
+      </article>
+      <article class="carta" id="p101" data-nome="electrode" data-numero="101" data-tipos="eletrico">
+        <div class="carta-interna">
+          <div class="carta-face carta-frente">
+            <span class="num">#101</span>
+            <img src="./pokemons/101.png" alt="Electrode" loading="lazy">
+            <h3>Electrode</h3>
+            <p class="badges"><span class="badge tipo-eletrico">Elétrico</span></p>
+          </div>
+          <div class="carta-face carta-verso">
+            <span class="num">Nº 101</span>
+            <h4>Electrode</h4>
+            <p class="badges"><span class="badge tipo-eletrico">Elétrico</span></p>
+            <p>Explode facilmente.</p>
+            <a class="link-detalhes" href="pokemon-detalhes.html?n=101">Ver ficha completa →</a>
+          </div>
+        </div>
+      </article>
+      <article class="carta" id="p102" data-nome="exeggcute" data-numero="102" data-tipos="grama psiquico">
+        <div class="carta-interna">
+          <div class="carta-face carta-frente">
+            <span class="num">#102</span>
+            <img src="./pokemons/102.png" alt="Exeggcute" loading="lazy">
+            <h3>Exeggcute</h3>
+            <p class="badges"><span class="badge tipo-grama">Grama</span> <span class="badge tipo-psiquico">Psíquico</span></p>
+          </div>
+          <div class="carta-face carta-verso">
+            <span class="num">Nº 102</span>
+            <h4>Exeggcute</h4>
+            <p class="badges"><span class="badge tipo-grama">Grama</span> <span class="badge tipo-psiquico">Psíquico</span></p>
+            <p>Grupo de ovos com consciência.</p>
+            <a class="link-detalhes" href="pokemon-detalhes.html?n=102">Ver ficha completa →</a>
+          </div>
+        </div>
+      </article>
+      <article class="carta" id="p103" data-nome="exeggutor" data-numero="103" data-tipos="grama psiquico">
+        <div class="carta-interna">
+          <div class="carta-face carta-frente">
+            <span class="num">#103</span>
+            <img src="./pokemons/103.png" alt="Exeggutor" loading="lazy">
+            <h3>Exeggutor</h3>
+            <p class="badges"><span class="badge tipo-grama">Grama</span> <span class="badge tipo-psiquico">Psíquico</span></p>
+          </div>
+          <div class="carta-face carta-verso">
+            <span class="num">Nº 103</span>
+            <h4>Exeggutor</h4>
+            <p class="badges"><span class="badge tipo-grama">Grama</span> <span class="badge tipo-psiquico">Psíquico</span></p>
+            <p>Cada cabeça tem personalidade própria.</p>
+            <a class="link-detalhes" href="pokemon-detalhes.html?n=103">Ver ficha completa →</a>
+          </div>
+        </div>
+      </article>
+      <article class="carta" id="p104" data-nome="cubone" data-numero="104" data-tipos="terra">
+        <div class="carta-interna">
+          <div class="carta-face carta-frente">
+            <span class="num">#104</span>
+            <img src="./pokemons/104.png" alt="Cubone" loading="lazy">
+            <h3>Cubone</h3>
+            <p class="badges"><span class="badge tipo-terra">Terra</span></p>
+          </div>
+          <div class="carta-face carta-verso">
+            <span class="num">Nº 104</span>
+            <h4>Cubone</h4>
+            <p class="badges"><span class="badge tipo-terra">Terra</span></p>
+            <p>Usa o crânio de sua mãe.</p>
+            <a class="link-detalhes" href="pokemon-detalhes.html?n=104">Ver ficha completa →</a>
+          </div>
+        </div>
+      </article>
+      <article class="carta" id="p105" data-nome="marowak" data-numero="105" data-tipos="terra">
+        <div class="carta-interna">
+          <div class="carta-face carta-frente">
+            <span class="num">#105</span>
+            <img src="./pokemons/105.png" alt="Marowak" loading="lazy">
+            <h3>Marowak</h3>
+            <p class="badges"><span class="badge tipo-terra">Terra</span></p>
+          </div>
+          <div class="carta-face carta-verso">
+            <span class="num">Nº 105</span>
+            <h4>Marowak</h4>
+            <p class="badges"><span class="badge tipo-terra">Terra</span></p>
+            <p>Luta com um osso como arma.</p>
+            <a class="link-detalhes" href="pokemon-detalhes.html?n=105">Ver ficha completa →</a>
+          </div>
+        </div>
+      </article>
+      <article class="carta" id="p106" data-nome="hitmonlee" data-numero="106" data-tipos="lutador">
+        <div class="carta-interna">
+          <div class="carta-face carta-frente">
+            <span class="num">#106</span>
+            <img src="./pokemons/106.png" alt="Hitmonlee" loading="lazy">
+            <h3>Hitmonlee</h3>
+            <p class="badges"><span class="badge tipo-lutador">Lutador</span></p>
+          </div>
+          <div class="carta-face carta-verso">
+            <span class="num">Nº 106</span>
+            <h4>Hitmonlee</h4>
+            <p class="badges"><span class="badge tipo-lutador">Lutador</span></p>
+            <p>Especialista em chutes.</p>
+            <a class="link-detalhes" href="pokemon-detalhes.html?n=106">Ver ficha completa →</a>
+          </div>
+        </div>
+      </article>
+      <article class="carta" id="p107" data-nome="hitmonchan" data-numero="107" data-tipos="lutador">
+        <div class="carta-interna">
+          <div class="carta-face carta-frente">
+            <span class="num">#107</span>
+            <img src="./pokemons/107.png" alt="Hitmonchan" loading="lazy">
+            <h3>Hitmonchan</h3>
+            <p class="badges"><span class="badge tipo-lutador">Lutador</span></p>
+          </div>
+          <div class="carta-face carta-verso">
+            <span class="num">Nº 107</span>
+            <h4>Hitmonchan</h4>
+            <p class="badges"><span class="badge tipo-lutador">Lutador</span></p>
+            <p>Especialista em socos.</p>
+            <a class="link-detalhes" href="pokemon-detalhes.html?n=107">Ver ficha completa →</a>
+          </div>
+        </div>
+      </article>
+      <article class="carta" id="p108" data-nome="lickitung" data-numero="108" data-tipos="normal">
+        <div class="carta-interna">
+          <div class="carta-face carta-frente">
+            <span class="num">#108</span>
+            <img src="./pokemons/108.png" alt="Lickitung" loading="lazy">
+            <h3>Lickitung</h3>
+            <p class="badges"><span class="badge tipo-normal">Normal</span></p>
+          </div>
+          <div class="carta-face carta-verso">
+            <span class="num">Nº 108</span>
+            <h4>Lickitung</h4>
+            <p class="badges"><span class="badge tipo-normal">Normal</span></p>
+            <p>Língua extremamente longa.</p>
+            <a class="link-detalhes" href="pokemon-detalhes.html?n=108">Ver ficha completa →</a>
+          </div>
+        </div>
+      </article>
+      <article class="carta" id="p109" data-nome="koffing" data-numero="109" data-tipos="veneno">
+        <div class="carta-interna">
+          <div class="carta-face carta-frente">
+            <span class="num">#109</span>
+            <img src="./pokemons/109.png" alt="Koffing" loading="lazy">
+            <h3>Koffing</h3>
+            <p class="badges"><span class="badge tipo-veneno">Veneno</span></p>
+          </div>
+          <div class="carta-face carta-verso">
+            <span class="num">Nº 109</span>
+            <h4>Koffing</h4>
+            <p class="badges"><span class="badge tipo-veneno">Veneno</span></p>
+            <p>Flutua liberando gases tóxicos.</p>
+            <a class="link-detalhes" href="pokemon-detalhes.html?n=109">Ver ficha completa →</a>
+          </div>
+        </div>
+      </article>
+      <article class="carta" id="p110" data-nome="weezing" data-numero="110" data-tipos="veneno">
+        <div class="carta-interna">
+          <div class="carta-face carta-frente">
+            <span class="num">#110</span>
+            <img src="./pokemons/110.png" alt="Weezing" loading="lazy">
+            <h3>Weezing</h3>
+            <p class="badges"><span class="badge tipo-veneno">Veneno</span></p>
+          </div>
+          <div class="carta-face carta-verso">
+            <span class="num">Nº 110</span>
+            <h4>Weezing</h4>
+            <p class="badges"><span class="badge tipo-veneno">Veneno</span></p>
+            <p>Dois corpos unidos cheios de gás.</p>
+            <a class="link-detalhes" href="pokemon-detalhes.html?n=110">Ver ficha completa →</a>
+          </div>
+        </div>
+      </article>
+      <article class="carta" id="p111" data-nome="rhyhorn" data-numero="111" data-tipos="terra pedra">
+        <div class="carta-interna">
+          <div class="carta-face carta-frente">
+            <span class="num">#111</span>
+            <img src="./pokemons/111.png" alt="Rhyhorn" loading="lazy">
+            <h3>Rhyhorn</h3>
+            <p class="badges"><span class="badge tipo-terra">Terra</span> <span class="badge tipo-pedra">Pedra</span></p>
+          </div>
+          <div class="carta-face carta-verso">
+            <span class="num">Nº 111</span>
+            <h4>Rhyhorn</h4>
+            <p class="badges"><span class="badge tipo-terra">Terra</span> <span class="badge tipo-pedra">Pedra</span></p>
+            <p>Corre em linha reta destruindo tudo.</p>
+            <a class="link-detalhes" href="pokemon-detalhes.html?n=111">Ver ficha completa →</a>
+          </div>
+        </div>
+      </article>
+      <article class="carta" id="p112" data-nome="rhydon" data-numero="112" data-tipos="terra pedra">
+        <div class="carta-interna">
+          <div class="carta-face carta-frente">
+            <span class="num">#112</span>
+            <img src="./pokemons/112.png" alt="Rhydon" loading="lazy">
+            <h3>Rhydon</h3>
+            <p class="badges"><span class="badge tipo-terra">Terra</span> <span class="badge tipo-pedra">Pedra</span></p>
+          </div>
+          <div class="carta-face carta-verso">
+            <span class="num">Nº 112</span>
+            <h4>Rhydon</h4>
+            <p class="badges"><span class="badge tipo-terra">Terra</span> <span class="badge tipo-pedra">Pedra</span></p>
+            <p>Mais inteligente e forte.</p>
+            <a class="link-detalhes" href="pokemon-detalhes.html?n=112">Ver ficha completa →</a>
+          </div>
+        </div>
+      </article>
+      <article class="carta" id="p113" data-nome="chansey" data-numero="113" data-tipos="normal">
+        <div class="carta-interna">
+          <div class="carta-face carta-frente">
+            <span class="num">#113</span>
+            <img src="./pokemons/113.png" alt="Chansey" loading="lazy">
+            <h3>Chansey</h3>
+            <p class="badges"><span class="badge tipo-normal">Normal</span></p>
+          </div>
+          <div class="carta-face carta-verso">
+            <span class="num">Nº 113</span>
+            <h4>Chansey</h4>
+            <p class="badges"><span class="badge tipo-normal">Normal</span></p>
+            <p>Carrega um ovo nutritivo.</p>
+            <a class="link-detalhes" href="pokemon-detalhes.html?n=113">Ver ficha completa →</a>
+          </div>
+        </div>
+      </article>
+      <article class="carta" id="p114" data-nome="tangela" data-numero="114" data-tipos="grama">
+        <div class="carta-interna">
+          <div class="carta-face carta-frente">
+            <span class="num">#114</span>
+            <img src="./pokemons/114.png" alt="Tangela" loading="lazy">
+            <h3>Tangela</h3>
+            <p class="badges"><span class="badge tipo-grama">Grama</span></p>
+          </div>
+          <div class="carta-face carta-verso">
+            <span class="num">Nº 114</span>
+            <h4>Tangela</h4>
+            <p class="badges"><span class="badge tipo-grama">Grama</span></p>
+            <p>Corpo coberto por vinhas.</p>
+            <a class="link-detalhes" href="pokemon-detalhes.html?n=114">Ver ficha completa →</a>
+          </div>
+        </div>
+      </article>
+      <article class="carta" id="p115" data-nome="kangaskhan" data-numero="115" data-tipos="normal">
+        <div class="carta-interna">
+          <div class="carta-face carta-frente">
+            <span class="num">#115</span>
+            <img src="./pokemons/115.png" alt="Kangaskhan" loading="lazy">
+            <h3>Kangaskhan</h3>
+            <p class="badges"><span class="badge tipo-normal">Normal</span></p>
+          </div>
+          <div class="carta-face carta-verso">
+            <span class="num">Nº 115</span>
+            <h4>Kangaskhan</h4>
+            <p class="badges"><span class="badge tipo-normal">Normal</span></p>
+            <p>Carrega seu filhote na bolsa.</p>
+            <a class="link-detalhes" href="pokemon-detalhes.html?n=115">Ver ficha completa →</a>
+          </div>
+        </div>
+      </article>
+      <article class="carta" id="p116" data-nome="horsea" data-numero="116" data-tipos="agua">
+        <div class="carta-interna">
+          <div class="carta-face carta-frente">
+            <span class="num">#116</span>
+            <img src="./pokemons/116.png" alt="Horsea" loading="lazy">
+            <h3>Horsea</h3>
+            <p class="badges"><span class="badge tipo-agua">Água</span></p>
+          </div>
+          <div class="carta-face carta-verso">
+            <span class="num">Nº 116</span>
+            <h4>Horsea</h4>
+            <p class="badges"><span class="badge tipo-agua">Água</span></p>
+            <p>Dispara tinta para se defender.</p>
+            <a class="link-detalhes" href="pokemon-detalhes.html?n=116">Ver ficha completa →</a>
+          </div>
+        </div>
+      </article>
+      <article class="carta" id="p117" data-nome="seadra" data-numero="117" data-tipos="agua">
+        <div class="carta-interna">
+          <div class="carta-face carta-frente">
+            <span class="num">#117</span>
+            <img src="./pokemons/117.png" alt="Seadra" loading="lazy">
+            <h3>Seadra</h3>
+            <p class="badges"><span class="badge tipo-agua">Água</span></p>
+          </div>
+          <div class="carta-face carta-verso">
+            <span class="num">Nº 117</span>
+            <h4>Seadra</h4>
+            <p class="badges"><span class="badge tipo-agua">Água</span></p>
+            <p>Possui espinhos venenosos.</p>
+            <a class="link-detalhes" href="pokemon-detalhes.html?n=117">Ver ficha completa →</a>
+          </div>
+        </div>
+      </article>
+      <article class="carta" id="p118" data-nome="goldeen" data-numero="118" data-tipos="agua">
+        <div class="carta-interna">
+          <div class="carta-face carta-frente">
+            <span class="num">#118</span>
+            <img src="./pokemons/118.png" alt="Goldeen" loading="lazy">
+            <h3>Goldeen</h3>
+            <p class="badges"><span class="badge tipo-agua">Água</span></p>
+          </div>
+          <div class="carta-face carta-verso">
+            <span class="num">Nº 118</span>
+            <h4>Goldeen</h4>
+            <p class="badges"><span class="badge tipo-agua">Água</span></p>
+            <p>Nada graciosamente.</p>
+            <a class="link-detalhes" href="pokemon-detalhes.html?n=118">Ver ficha completa →</a>
+          </div>
+        </div>
+      </article>
+      <article class="carta" id="p119" data-nome="seaking" data-numero="119" data-tipos="agua">
+        <div class="carta-interna">
+          <div class="carta-face carta-frente">
+            <span class="num">#119</span>
+            <img src="./pokemons/119.png" alt="Seaking" loading="lazy">
+            <h3>Seaking</h3>
+            <p class="badges"><span class="badge tipo-agua">Água</span></p>
+          </div>
+          <div class="carta-face carta-verso">
+            <span class="num">Nº 119</span>
+            <h4>Seaking</h4>
+            <p class="badges"><span class="badge tipo-agua">Água</span></p>
+            <p>Forte durante época de reprodução.</p>
+            <a class="link-detalhes" href="pokemon-detalhes.html?n=119">Ver ficha completa →</a>
+          </div>
+        </div>
+      </article>
+      <article class="carta" id="p120" data-nome="staryu" data-numero="120" data-tipos="agua">
+        <div class="carta-interna">
+          <div class="carta-face carta-frente">
+            <span class="num">#120</span>
+            <img src="./pokemons/120.png" alt="Staryu" loading="lazy">
+            <h3>Staryu</h3>
+            <p class="badges"><span class="badge tipo-agua">Água</span></p>
+          </div>
+          <div class="carta-face carta-verso">
+            <span class="num">Nº 120</span>
+            <h4>Staryu</h4>
+            <p class="badges"><span class="badge tipo-agua">Água</span></p>
+            <p>Regenera partes do corpo.</p>
+            <a class="link-detalhes" href="pokemon-detalhes.html?n=120">Ver ficha completa →</a>
+          </div>
+        </div>
+      </article>
+      <article class="carta" id="p121" data-nome="starmie" data-numero="121" data-tipos="agua psiquico">
+        <div class="carta-interna">
+          <div class="carta-face carta-frente">
+            <span class="num">#121</span>
+            <img src="./pokemons/121.png" alt="Starmie" loading="lazy">
+            <h3>Starmie</h3>
+            <p class="badges"><span class="badge tipo-agua">Água</span> <span class="badge tipo-psiquico">Psíquico</span></p>
+          </div>
+          <div class="carta-face carta-verso">
+            <span class="num">Nº 121</span>
+            <h4>Starmie</h4>
+            <p class="badges"><span class="badge tipo-agua">Água</span> <span class="badge tipo-psiquico">Psíquico</span></p>
+            <p>Núcleo central misterioso.</p>
+            <a class="link-detalhes" href="pokemon-detalhes.html?n=121">Ver ficha completa →</a>
+          </div>
+        </div>
+      </article>
+      <article class="carta" id="p122" data-nome="mr. mime" data-numero="122" data-tipos="psiquico fada">
+        <div class="carta-interna">
+          <div class="carta-face carta-frente">
+            <span class="num">#122</span>
+            <img src="./pokemons/122.png" alt="Mr. Mime" loading="lazy">
+            <h3>Mr. Mime</h3>
+            <p class="badges"><span class="badge tipo-psiquico">Psíquico</span> <span class="badge tipo-fada">Fada</span></p>
+          </div>
+          <div class="carta-face carta-verso">
+            <span class="num">Nº 122</span>
+            <h4>Mr. Mime</h4>
+            <p class="badges"><span class="badge tipo-psiquico">Psíquico</span> <span class="badge tipo-fada">Fada</span></p>
+            <p>Cria barreiras invisíveis.</p>
+            <a class="link-detalhes" href="pokemon-detalhes.html?n=122">Ver ficha completa →</a>
+          </div>
+        </div>
+      </article>
+      <article class="carta" id="p123" data-nome="scyther" data-numero="123" data-tipos="inseto voador">
+        <div class="carta-interna">
+          <div class="carta-face carta-frente">
+            <span class="num">#123</span>
+            <img src="./pokemons/123.png" alt="Scyther" loading="lazy">
+            <h3>Scyther</h3>
+            <p class="badges"><span class="badge tipo-inseto">Inseto</span> <span class="badge tipo-voador">Voador</span></p>
+          </div>
+          <div class="carta-face carta-verso">
+            <span class="num">Nº 123</span>
+            <h4>Scyther</h4>
+            <p class="badges"><span class="badge tipo-inseto">Inseto</span> <span class="badge tipo-voador">Voador</span></p>
+            <p>Movimentos extremamente rápidos.</p>
+            <a class="link-detalhes" href="pokemon-detalhes.html?n=123">Ver ficha completa →</a>
+          </div>
+        </div>
+      </article>
+      <article class="carta" id="p124" data-nome="jynx" data-numero="124" data-tipos="gelo psiquico">
+        <div class="carta-interna">
+          <div class="carta-face carta-frente">
+            <span class="num">#124</span>
+            <img src="./pokemons/124.png" alt="Jynx" loading="lazy">
+            <h3>Jynx</h3>
+            <p class="badges"><span class="badge tipo-gelo">Gelo</span> <span class="badge tipo-psiquico">Psíquico</span></p>
+          </div>
+          <div class="carta-face carta-verso">
+            <span class="num">Nº 124</span>
+            <h4>Jynx</h4>
+            <p class="badges"><span class="badge tipo-gelo">Gelo</span> <span class="badge tipo-psiquico">Psíquico</span></p>
+            <p>Se comunica por dança.</p>
+            <a class="link-detalhes" href="pokemon-detalhes.html?n=124">Ver ficha completa →</a>
+          </div>
+        </div>
+      </article>
+      <article class="carta" id="p125" data-nome="electabuzz" data-numero="125" data-tipos="eletrico">
+        <div class="carta-interna">
+          <div class="carta-face carta-frente">
+            <span class="num">#125</span>
+            <img src="./pokemons/125.png" alt="Electabuzz" loading="lazy">
+            <h3>Electabuzz</h3>
+            <p class="badges"><span class="badge tipo-eletrico">Elétrico</span></p>
+          </div>
+          <div class="carta-face carta-verso">
+            <span class="num">Nº 125</span>
+            <h4>Electabuzz</h4>
+            <p class="badges"><span class="badge tipo-eletrico">Elétrico</span></p>
+            <p>Corpo cheio de energia elétrica.</p>
+            <a class="link-detalhes" href="pokemon-detalhes.html?n=125">Ver ficha completa →</a>
+          </div>
+        </div>
+      </article>
+      <article class="carta" id="p126" data-nome="magmar" data-numero="126" data-tipos="fogo">
+        <div class="carta-interna">
+          <div class="carta-face carta-frente">
+            <span class="num">#126</span>
+            <img src="./pokemons/126.png" alt="Magmar" loading="lazy">
+            <h3>Magmar</h3>
+            <p class="badges"><span class="badge tipo-fogo">Fogo</span></p>
+          </div>
+          <div class="carta-face carta-verso">
+            <span class="num">Nº 126</span>
+            <h4>Magmar</h4>
+            <p class="badges"><span class="badge tipo-fogo">Fogo</span></p>
+            <p>Vive em vulcões.</p>
+            <a class="link-detalhes" href="pokemon-detalhes.html?n=126">Ver ficha completa →</a>
+          </div>
+        </div>
+      </article>
+      <article class="carta" id="p127" data-nome="pinsir" data-numero="127" data-tipos="inseto">
+        <div class="carta-interna">
+          <div class="carta-face carta-frente">
+            <span class="num">#127</span>
+            <img src="./pokemons/127.png" alt="Pinsir" loading="lazy">
+            <h3>Pinsir</h3>
+            <p class="badges"><span class="badge tipo-inseto">Inseto</span></p>
+          </div>
+          <div class="carta-face carta-verso">
+            <span class="num">Nº 127</span>
+            <h4>Pinsir</h4>
+            <p class="badges"><span class="badge tipo-inseto">Inseto</span></p>
+            <p>Usa suas pinças para esmagar inimigos.</p>
+            <a class="link-detalhes" href="pokemon-detalhes.html?n=127">Ver ficha completa →</a>
+          </div>
+        </div>
+      </article>
+      <article class="carta" id="p128" data-nome="tauros" data-numero="128" data-tipos="normal">
+        <div class="carta-interna">
+          <div class="carta-face carta-frente">
+            <span class="num">#128</span>
+            <img src="./pokemons/128.png" alt="Tauros" loading="lazy">
+            <h3>Tauros</h3>
+            <p class="badges"><span class="badge tipo-normal">Normal</span></p>
+          </div>
+          <div class="carta-face carta-verso">
+            <span class="num">Nº 128</span>
+            <h4>Tauros</h4>
+            <p class="badges"><span class="badge tipo-normal">Normal</span></p>
+            <p>Muito agressivo.</p>
+            <a class="link-detalhes" href="pokemon-detalhes.html?n=128">Ver ficha completa →</a>
+          </div>
+        </div>
+      </article>
+      <article class="carta" id="p129" data-nome="magikarp" data-numero="129" data-tipos="agua">
+        <div class="carta-interna">
+          <div class="carta-face carta-frente">
+            <span class="num">#129</span>
+            <img src="./pokemons/129.png" alt="Magikarp" loading="lazy">
+            <h3>Magikarp</h3>
+            <p class="badges"><span class="badge tipo-agua">Água</span></p>
+          </div>
+          <div class="carta-face carta-verso">
+            <span class="num">Nº 129</span>
+            <h4>Magikarp</h4>
+            <p class="badges"><span class="badge tipo-agua">Água</span></p>
+            <p>Extremamente fraco, mas resistente.</p>
+            <a class="link-detalhes" href="pokemon-detalhes.html?n=129">Ver ficha completa →</a>
+          </div>
+        </div>
+      </article>
+      <article class="carta" id="p130" data-nome="gyarados" data-numero="130" data-tipos="agua voador">
+        <div class="carta-interna">
+          <div class="carta-face carta-frente">
+            <span class="num">#130</span>
+            <img src="./pokemons/130.png" alt="Gyarados" loading="lazy">
+            <h3>Gyarados</h3>
+            <p class="badges"><span class="badge tipo-agua">Água</span> <span class="badge tipo-voador">Voador</span></p>
+          </div>
+          <div class="carta-face carta-verso">
+            <span class="num">Nº 130</span>
+            <h4>Gyarados</h4>
+            <p class="badges"><span class="badge tipo-agua">Água</span> <span class="badge tipo-voador">Voador</span></p>
+            <p>Violento e destrutivo.</p>
+            <a class="link-detalhes" href="pokemon-detalhes.html?n=130">Ver ficha completa →</a>
+          </div>
+        </div>
+      </article>
+      <article class="carta" id="p131" data-nome="lapras" data-numero="131" data-tipos="agua gelo">
+        <div class="carta-interna">
+          <div class="carta-face carta-frente">
+            <span class="num">#131</span>
+            <img src="./pokemons/131.png" alt="Lapras" loading="lazy">
+            <h3>Lapras</h3>
+            <p class="badges"><span class="badge tipo-agua">Água</span> <span class="badge tipo-gelo">Gelo</span></p>
+          </div>
+          <div class="carta-face carta-verso">
+            <span class="num">Nº 131</span>
+            <h4>Lapras</h4>
+            <p class="badges"><span class="badge tipo-agua">Água</span> <span class="badge tipo-gelo">Gelo</span></p>
+            <p>Transporta pessoas pelo mar.</p>
+            <a class="link-detalhes" href="pokemon-detalhes.html?n=131">Ver ficha completa →</a>
+          </div>
+        </div>
+      </article>
+      <article class="carta" id="p132" data-nome="ditto" data-numero="132" data-tipos="normal">
+        <div class="carta-interna">
+          <div class="carta-face carta-frente">
+            <span class="num">#132</span>
+            <img src="./pokemons/132.png" alt="Ditto" loading="lazy">
+            <h3>Ditto</h3>
+            <p class="badges"><span class="badge tipo-normal">Normal</span></p>
+          </div>
+          <div class="carta-face carta-verso">
+            <span class="num">Nº 132</span>
+            <h4>Ditto</h4>
+            <p class="badges"><span class="badge tipo-normal">Normal</span></p>
+            <p>Pode se transformar em qualquer coisa.</p>
+            <a class="link-detalhes" href="pokemon-detalhes.html?n=132">Ver ficha completa →</a>
+          </div>
+        </div>
+      </article>
+      <article class="carta" id="p133" data-nome="eevee" data-numero="133" data-tipos="normal">
+        <div class="carta-interna">
+          <div class="carta-face carta-frente">
+            <span class="num">#133</span>
+            <img src="./pokemons/133.png" alt="Eevee" loading="lazy">
+            <h3>Eevee</h3>
+            <p class="badges"><span class="badge tipo-normal">Normal</span></p>
+          </div>
+          <div class="carta-face carta-verso">
+            <span class="num">Nº 133</span>
+            <h4>Eevee</h4>
+            <p class="badges"><span class="badge tipo-normal">Normal</span></p>
+            <p>Possui DNA instável.</p>
+            <a class="link-detalhes" href="pokemon-detalhes.html?n=133">Ver ficha completa →</a>
+          </div>
+        </div>
+      </article>
+      <article class="carta" id="p134" data-nome="vaporeon" data-numero="134" data-tipos="agua">
+        <div class="carta-interna">
+          <div class="carta-face carta-frente">
+            <span class="num">#134</span>
+            <img src="./pokemons/134.png" alt="Vaporeon" loading="lazy">
+            <h3>Vaporeon</h3>
+            <p class="badges"><span class="badge tipo-agua">Água</span></p>
+          </div>
+          <div class="carta-face carta-verso">
+            <span class="num">Nº 134</span>
+            <h4>Vaporeon</h4>
+            <p class="badges"><span class="badge tipo-agua">Água</span></p>
+            <p>Adapta-se à vida aquática.</p>
+            <a class="link-detalhes" href="pokemon-detalhes.html?n=134">Ver ficha completa →</a>
+          </div>
+        </div>
+      </article>
+      <article class="carta" id="p135" data-nome="jolteon" data-numero="135" data-tipos="eletrico">
+        <div class="carta-interna">
+          <div class="carta-face carta-frente">
+            <span class="num">#135</span>
+            <img src="./pokemons/135.png" alt="Jolteon" loading="lazy">
+            <h3>Jolteon</h3>
+            <p class="badges"><span class="badge tipo-eletrico">Elétrico</span></p>
+          </div>
+          <div class="carta-face carta-verso">
+            <span class="num">Nº 135</span>
+            <h4>Jolteon</h4>
+            <p class="badges"><span class="badge tipo-eletrico">Elétrico</span></p>
+            <p>Carrega eletricidade estática.</p>
+            <a class="link-detalhes" href="pokemon-detalhes.html?n=135">Ver ficha completa →</a>
+          </div>
+        </div>
+      </article>
+      <article class="carta" id="p136" data-nome="flareon" data-numero="136" data-tipos="fogo">
+        <div class="carta-interna">
+          <div class="carta-face carta-frente">
+            <span class="num">#136</span>
+            <img src="./pokemons/136.png" alt="Flareon" loading="lazy">
+            <h3>Flareon</h3>
+            <p class="badges"><span class="badge tipo-fogo">Fogo</span></p>
+          </div>
+          <div class="carta-face carta-verso">
+            <span class="num">Nº 136</span>
+            <h4>Flareon</h4>
+            <p class="badges"><span class="badge tipo-fogo">Fogo</span></p>
+            <p>Armazena calor intenso.</p>
+            <a class="link-detalhes" href="pokemon-detalhes.html?n=136">Ver ficha completa →</a>
+          </div>
+        </div>
+      </article>
+      <article class="carta" id="p137" data-nome="porygon" data-numero="137" data-tipos="normal">
+        <div class="carta-interna">
+          <div class="carta-face carta-frente">
+            <span class="num">#137</span>
+            <img src="./pokemons/137.png" alt="Porygon" loading="lazy">
+            <h3>Porygon</h3>
+            <p class="badges"><span class="badge tipo-normal">Normal</span></p>
+          </div>
+          <div class="carta-face carta-verso">
+            <span class="num">Nº 137</span>
+            <h4>Porygon</h4>
+            <p class="badges"><span class="badge tipo-normal">Normal</span></p>
+            <p>Criado por programação.</p>
+            <a class="link-detalhes" href="pokemon-detalhes.html?n=137">Ver ficha completa →</a>
+          </div>
+        </div>
+      </article>
+      <article class="carta" id="p138" data-nome="omanyte" data-numero="138" data-tipos="pedra agua">
+        <div class="carta-interna">
+          <div class="carta-face carta-frente">
+            <span class="num">#138</span>
+            <img src="./pokemons/138.png" alt="Omanyte" loading="lazy">
+            <h3>Omanyte</h3>
+            <p class="badges"><span class="badge tipo-pedra">Pedra</span> <span class="badge tipo-agua">Água</span></p>
+          </div>
+          <div class="carta-face carta-verso">
+            <span class="num">Nº 138</span>
+            <h4>Omanyte</h4>
+            <p class="badges"><span class="badge tipo-pedra">Pedra</span> <span class="badge tipo-agua">Água</span></p>
+            <p>Revivido de fósseis.</p>
+            <a class="link-detalhes" href="pokemon-detalhes.html?n=138">Ver ficha completa →</a>
+          </div>
+        </div>
+      </article>
+      <article class="carta" id="p139" data-nome="omastar" data-numero="139" data-tipos="pedra agua">
+        <div class="carta-interna">
+          <div class="carta-face carta-frente">
+            <span class="num">#139</span>
+            <img src="./pokemons/139.png" alt="Omastar" loading="lazy">
+            <h3>Omastar</h3>
+            <p class="badges"><span class="badge tipo-pedra">Pedra</span> <span class="badge tipo-agua">Água</span></p>
+          </div>
+          <div class="carta-face carta-verso">
+            <span class="num">Nº 139</span>
+            <h4>Omastar</h4>
+            <p class="badges"><span class="badge tipo-pedra">Pedra</span> <span class="badge tipo-agua">Água</span></p>
+            <p>Possui tentáculos poderosos.</p>
+            <a class="link-detalhes" href="pokemon-detalhes.html?n=139">Ver ficha completa →</a>
+          </div>
+        </div>
+      </article>
+      <article class="carta" id="p140" data-nome="kabuto" data-numero="140" data-tipos="pedra agua">
+        <div class="carta-interna">
+          <div class="carta-face carta-frente">
+            <span class="num">#140</span>
+            <img src="./pokemons/140.png" alt="Kabuto" loading="lazy">
+            <h3>Kabuto</h3>
+            <p class="badges"><span class="badge tipo-pedra">Pedra</span> <span class="badge tipo-agua">Água</span></p>
+          </div>
+          <div class="carta-face carta-verso">
+            <span class="num">Nº 140</span>
+            <h4>Kabuto</h4>
+            <p class="badges"><span class="badge tipo-pedra">Pedra</span> <span class="badge tipo-agua">Água</span></p>
+            <p>Pokémon pré-histórico.</p>
+            <a class="link-detalhes" href="pokemon-detalhes.html?n=140">Ver ficha completa →</a>
+          </div>
+        </div>
+      </article>
+      <article class="carta" id="p141" data-nome="kabutops" data-numero="141" data-tipos="pedra agua">
+        <div class="carta-interna">
+          <div class="carta-face carta-frente">
+            <span class="num">#141</span>
+            <img src="./pokemons/141.png" alt="Kabutops" loading="lazy">
+            <h3>Kabutops</h3>
+            <p class="badges"><span class="badge tipo-pedra">Pedra</span> <span class="badge tipo-agua">Água</span></p>
+          </div>
+          <div class="carta-face carta-verso">
+            <span class="num">Nº 141</span>
+            <h4>Kabutops</h4>
+            <p class="badges"><span class="badge tipo-pedra">Pedra</span> <span class="badge tipo-agua">Água</span></p>
+            <p>Predador veloz.</p>
+            <a class="link-detalhes" href="pokemon-detalhes.html?n=141">Ver ficha completa →</a>
+          </div>
+        </div>
+      </article>
+      <article class="carta" id="p142" data-nome="aerodactyl" data-numero="142" data-tipos="pedra voador">
+        <div class="carta-interna">
+          <div class="carta-face carta-frente">
+            <span class="num">#142</span>
+            <img src="./pokemons/142.png" alt="Aerodactyl" loading="lazy">
+            <h3>Aerodactyl</h3>
+            <p class="badges"><span class="badge tipo-pedra">Pedra</span> <span class="badge tipo-voador">Voador</span></p>
+          </div>
+          <div class="carta-face carta-verso">
+            <span class="num">Nº 142</span>
+            <h4>Aerodactyl</h4>
+            <p class="badges"><span class="badge tipo-pedra">Pedra</span> <span class="badge tipo-voador">Voador</span></p>
+            <p>Voava nos céus antigos.</p>
+            <a class="link-detalhes" href="pokemon-detalhes.html?n=142">Ver ficha completa →</a>
+          </div>
+        </div>
+      </article>
+      <article class="carta" id="p143" data-nome="snorlax" data-numero="143" data-tipos="normal">
+        <div class="carta-interna">
+          <div class="carta-face carta-frente">
+            <span class="num">#143</span>
+            <img src="./pokemons/143.png" alt="Snorlax" loading="lazy">
+            <h3>Snorlax</h3>
+            <p class="badges"><span class="badge tipo-normal">Normal</span></p>
+          </div>
+          <div class="carta-face carta-verso">
+            <span class="num">Nº 143</span>
+            <h4>Snorlax</h4>
+            <p class="badges"><span class="badge tipo-normal">Normal</span></p>
+            <p>Dorme e come o tempo todo.</p>
+            <a class="link-detalhes" href="pokemon-detalhes.html?n=143">Ver ficha completa →</a>
+          </div>
+        </div>
+      </article>
+      <article class="carta" id="p144" data-nome="articuno" data-numero="144" data-tipos="gelo voador">
+        <div class="carta-interna">
+          <div class="carta-face carta-frente">
+            <span class="num">#144</span>
+            <img src="./pokemons/144.png" alt="Articuno" loading="lazy">
+            <h3>Articuno</h3>
+            <p class="badges"><span class="badge tipo-gelo">Gelo</span> <span class="badge tipo-voador">Voador</span></p>
+          </div>
+          <div class="carta-face carta-verso">
+            <span class="num">Nº 144</span>
+            <h4>Articuno</h4>
+            <p class="badges"><span class="badge tipo-gelo">Gelo</span> <span class="badge tipo-voador">Voador</span></p>
+            <p>Ave lendária do gelo.</p>
+            <a class="link-detalhes" href="pokemon-detalhes.html?n=144">Ver ficha completa →</a>
+          </div>
+        </div>
+      </article>
+      <article class="carta" id="p145" data-nome="zapdos" data-numero="145" data-tipos="eletrico voador">
+        <div class="carta-interna">
+          <div class="carta-face carta-frente">
+            <span class="num">#145</span>
+            <img src="./pokemons/145.png" alt="Zapdos" loading="lazy">
+            <h3>Zapdos</h3>
+            <p class="badges"><span class="badge tipo-eletrico">Elétrico</span> <span class="badge tipo-voador">Voador</span></p>
+          </div>
+          <div class="carta-face carta-verso">
+            <span class="num">Nº 145</span>
+            <h4>Zapdos</h4>
+            <p class="badges"><span class="badge tipo-eletrico">Elétrico</span> <span class="badge tipo-voador">Voador</span></p>
+            <p>Ave lendária do trovão.</p>
+            <a class="link-detalhes" href="pokemon-detalhes.html?n=145">Ver ficha completa →</a>
+          </div>
+        </div>
+      </article>
+      <article class="carta" id="p146" data-nome="moltres" data-numero="146" data-tipos="fogo voador">
+        <div class="carta-interna">
+          <div class="carta-face carta-frente">
+            <span class="num">#146</span>
+            <img src="./pokemons/146.png" alt="Moltres" loading="lazy">
+            <h3>Moltres</h3>
+            <p class="badges"><span class="badge tipo-fogo">Fogo</span> <span class="badge tipo-voador">Voador</span></p>
+          </div>
+          <div class="carta-face carta-verso">
+            <span class="num">Nº 146</span>
+            <h4>Moltres</h4>
+            <p class="badges"><span class="badge tipo-fogo">Fogo</span> <span class="badge tipo-voador">Voador</span></p>
+            <p>Ave lendária do fogo.</p>
+            <a class="link-detalhes" href="pokemon-detalhes.html?n=146">Ver ficha completa →</a>
+          </div>
+        </div>
+      </article>
+      <article class="carta" id="p147" data-nome="dratini" data-numero="147" data-tipos="dragao">
+        <div class="carta-interna">
+          <div class="carta-face carta-frente">
+            <span class="num">#147</span>
+            <img src="./pokemons/147.png" alt="Dratini" loading="lazy">
+            <h3>Dratini</h3>
+            <p class="badges"><span class="badge tipo-dragao">Dragão</span></p>
+          </div>
+          <div class="carta-face carta-verso">
+            <span class="num">Nº 147</span>
+            <h4>Dratini</h4>
+            <p class="badges"><span class="badge tipo-dragao">Dragão</span></p>
+            <p>Pokémon raro e misterioso.</p>
+            <a class="link-detalhes" href="pokemon-detalhes.html?n=147">Ver ficha completa →</a>
+          </div>
+        </div>
+      </article>
+      <article class="carta" id="p148" data-nome="dragonair" data-numero="148" data-tipos="dragao">
+        <div class="carta-interna">
+          <div class="carta-face carta-frente">
+            <span class="num">#148</span>
+            <img src="./pokemons/148.png" alt="Dragonair" loading="lazy">
+            <h3>Dragonair</h3>
+            <p class="badges"><span class="badge tipo-dragao">Dragão</span></p>
+          </div>
+          <div class="carta-face carta-verso">
+            <span class="num">Nº 148</span>
+            <h4>Dragonair</h4>
+            <p class="badges"><span class="badge tipo-dragao">Dragão</span></p>
+            <p>Controla o clima.</p>
+            <a class="link-detalhes" href="pokemon-detalhes.html?n=148">Ver ficha completa →</a>
+          </div>
+        </div>
+      </article>
+      <article class="carta" id="p149" data-nome="dragonite" data-numero="149" data-tipos="dragao voador">
+        <div class="carta-interna">
+          <div class="carta-face carta-frente">
+            <span class="num">#149</span>
+            <img src="./pokemons/149.png" alt="Dragonite" loading="lazy">
+            <h3>Dragonite</h3>
+            <p class="badges"><span class="badge tipo-dragao">Dragão</span> <span class="badge tipo-voador">Voador</span></p>
+          </div>
+          <div class="carta-face carta-verso">
+            <span class="num">Nº 149</span>
+            <h4>Dragonite</h4>
+            <p class="badges"><span class="badge tipo-dragao">Dragão</span> <span class="badge tipo-voador">Voador</span></p>
+            <p>Extremamente poderoso e gentil.</p>
+            <a class="link-detalhes" href="pokemon-detalhes.html?n=149">Ver ficha completa →</a>
+          </div>
+        </div>
+      </article>
+      <article class="carta" id="p150" data-nome="mewtwo" data-numero="150" data-tipos="psiquico">
+        <div class="carta-interna">
+          <div class="carta-face carta-frente">
+            <span class="num">#150</span>
+            <img src="./pokemons/150.png" alt="Mewtwo" loading="lazy">
+            <h3>Mewtwo</h3>
+            <p class="badges"><span class="badge tipo-psiquico">Psíquico</span></p>
+          </div>
+          <div class="carta-face carta-verso">
+            <span class="num">Nº 150</span>
+            <h4>Mewtwo</h4>
+            <p class="badges"><span class="badge tipo-psiquico">Psíquico</span></p>
+            <p>Pokémon criado por engenharia genética.</p>
+            <a class="link-detalhes" href="pokemon-detalhes.html?n=150">Ver ficha completa →</a>
+          </div>
+        </div>
+      </article>
+      <article class="carta" id="p151" data-nome="mew" data-numero="151" data-tipos="psiquico">
+        <div class="carta-interna">
+          <div class="carta-face carta-frente">
+            <span class="num">#151</span>
+            <img src="./pokemons/151.png" alt="Mew" loading="lazy">
+            <h3>Mew</h3>
+            <p class="badges"><span class="badge tipo-psiquico">Psíquico</span></p>
+          </div>
+          <div class="carta-face carta-verso">
+            <span class="num">Nº 151</span>
+            <h4>Mew</h4>
+            <p class="badges"><span class="badge tipo-psiquico">Psíquico</span></p>
+            <p>Contém o DNA de todos os Pokémon.</p>
+            <a class="link-detalhes" href="pokemon-detalhes.html?n=151">Ver ficha completa →</a>
+          </div>
+        </div>
+      </article>      </div>
+
+      <p class="sub" style="margin-top:28px;">
+        Não encontrou o que procurava? Confira também as
+        <a href="tms.html">TM's de FireRed</a> ou volte para a
+        <a href="kantodex.html">página inicial</a>.
+      </p>
+    </section>
+
+    <footer>
+      <b>Pietro Santana 2026 &copy;</b> · Pokédex Kanto — dados de referência da Geração I
+    </footer>
+  </main>
+
+  <a href="#" class="topo-flutuante" id="botaoTopo" aria-label="Voltar ao topo">↑</a>
+
+  <script>
+    const campoBusca   = document.getElementById('busca');
+    const chips        = document.querySelectorAll('#chips .chip');
+    const cartas       = document.querySelectorAll('.carta');
+    const contador      = document.getElementById('contador');
+    let tipoAtivo = 'todos';
+
+    function aplicarFiltro(){
+      const termo = campoBusca.value.trim().toLowerCase();
+      let visiveis = 0;
+
+      cartas.forEach(carta => {
+        const nome  = carta.dataset.nome;
+        const numero = carta.dataset.numero;
+        const tipos = carta.dataset.tipos.split(' ');
+        const combinaNome = nome.includes(termo) || numero.includes(termo);
+        const combinaTipo = tipoAtivo === 'todos' || tipos.includes(tipoAtivo);
+
+        if (combinaNome && combinaTipo){
+          carta.classList.remove('oculto');
+          visiveis++;
+        } else {
+          carta.classList.add('oculto');
+        }
+      });
+
+      contador.textContent = `Exibindo ${visiveis} de 151 Pokémon`;
+    }
+
+    campoBusca.addEventListener('input', aplicarFiltro);
+
+    chips.forEach(chip => {
+      chip.addEventListener('click', () => {
+        chips.forEach(c => c.classList.remove('selecionado'));
+        chip.classList.add('selecionado');
+        tipoAtivo = chip.dataset.tipo;
+        aplicarFiltro();
+      });
+    });
+
+    // mostra e ativa o botão "voltar ao topo"
+    const botaoTopo = document.getElementById('botaoTopo');
+    window.addEventListener('scroll', () => {
+      botaoTopo.classList.toggle('visivel', window.scrollY > 400);
+    });
+    botaoTopo.addEventListener('click', (e) => {
+      e.preventDefault();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  </script>
+</body>
+</html>
