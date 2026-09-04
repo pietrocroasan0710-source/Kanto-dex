@@ -921,3 +921,143 @@ a:focus-visible, .chip:focus-visible, .botao:focus-visible, input:focus-visible{
   .estrelas{ font-size: 28px; }
   .grade-pokemon{ grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); }
 }
+
+/* ==========================================================================
+   MONTADOR DE TIMES — estilos específicos da página time.html(apenas para essa pagina) 
+   obs: algumas coisas nelas sao diferentes da demais por isso atenção ao modfificar =)
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Rubik:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap');
+
+    :root {
+      --red: #e3350d;
+      --red-dark: #a82508;
+      --ink: #1b1b1f;
+      --green: #eaf7e4;
+      --green-dark: #d7ebce;
+      --blue: #8fb0ff;
+      --yellow: #ffcb05;
+      --paper: #fffdf8;
+      --muted: #59605b;
+      --line: #1b1b1f;
+      --shadow: 4px 4px 0 var(--line);
+      --pixel: 'Press Start 2P', monospace;
+      --body: 'Rubik', system-ui, sans-serif;
+      --mono: 'Space Mono', monospace;
+    }
+    
+    .hero { display: flex; align-items: flex-end; justify-content: space-between; gap: 24px; }
+    h2, h3 { font-family: var(--pixel); }
+    .hero h2 { max-width: 750px; margin: 0; color: var(--red-dark); font-size: clamp(20px, 3.4vw, 31px); line-height: 1.5; text-shadow: 2px 2px var(--line); }
+    .intro { max-width: 680px; margin: 12px 0 0; font-size: 16px; color: #3e3e46; }
+    .nota-topo {
+      min-width: 185px; padding: 16px; text-align: center; background: var(--paper);
+      border: 3px solid var(--line); border-radius: 16px; box-shadow: var(--shadow);
+    }
+    .nota-topo small { display: block; font: 9px var(--mono); text-transform: uppercase; }
+    .nota-topo strong { color: var(--red); font: 31px var(--pixel); }
+    .nota-topo span { font: 12px var(--mono); }
+    .barra-acoes { display: flex; justify-content: space-between; align-items: center; gap: 14px; margin: 26px 0 18px; }
+    .salvo { margin: 0; color: #3e3e46; font: 11px var(--mono); }
+    .acoes { display: flex; gap: 8px; flex-wrap: wrap; }
+
+    .painel { padding: 18px; background: #ffffff9c; border: 3px solid var(--line); border-radius: 16px; box-shadow: var(--shadow); }
+    .cabecalho-secao { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; border-bottom: 3px solid var(--line); padding-bottom: 10px; margin-bottom: 14px; }
+    .cabecalho-secao h3 { margin: 0; color: #0f3d1e; font-size: 16px; }
+    .cabecalho-secao p { margin: 5px 0 0; color: var(--muted); font: 11px var(--mono); }
+    .cabecalho-secao > span { color: var(--muted); font: 10px var(--mono); text-align: right; }
+    .slots { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 10px; }
+    .slot {
+      min-height: 218px; display: flex; flex-direction: column; align-items: center; justify-content: center;
+      padding: 9px; text-align: center; background: #eff9e9; border: 3px dashed var(--line); border-radius: 13px;
+    }
+    .slot.cheio { border-style: solid; background: var(--paper); }
+    .slot-num { align-self: flex-start; padding: 2px 5px; color: #3e3e46; border: 2px solid var(--line); border-radius: 5px; font: 9px var(--mono); }
+    .slot img { width: 88px; height: 88px; object-fit: contain; image-rendering: pixelated; }
+    .slot .sprite-fallback { display: grid; place-items: center; width: 88px; height: 88px; border-radius: 50%; background: var(--green-dark); font: 20px var(--pixel); }
+    .slot .nome { margin: 0 0 4px; font-weight: 800; }
+    .slot .numero { margin: 0; color: var(--muted); font: 10px var(--mono); }
+    .slot .vazio { margin: 13px 0 0; color: var(--muted); font: 11px var(--mono); }
+    .mais { width: 43px; height: 43px; display: grid; place-items: center; border: 3px solid #0f3d1e; border-radius: 50%; color: #0f3d1e; font-size: 29px; line-height: 1; }
+    .tipos { display: flex; justify-content: center; flex-wrap: wrap; gap: 4px; margin: 5px 0 8px; }
+    .tipo { padding: 3px 7px; color: #fff; border: 1px solid #0005; border-radius: 999px; background: #777; font: 9px var(--mono); text-transform: uppercase; }
+    .tipo-Fogo { background: #f08030; } .tipo-Água { background: #4f86f7; } .tipo-Grama { background: #5fbd4e; }
+    .tipo-Elétrico { color: #453900; background: #e8c420; } .tipo-Psíquico { background: #f85888; }
+    .tipo-Normal { background: #a8a878; } .tipo-Terra { color: #402c00; background: #d9a441; }
+    .tipo-Gelo { color: #073737; background: #63c6c6; } .tipo-Pedra { background: #b8a038; }
+    .tipo-Lutador { background: #c03028; } .tipo-Voador { background: #a890f0; }
+    .tipo-Veneno { background: #a040a0; } .tipo-Fantasma { background: #705898; }
+    .tipo-Inseto { background: #9db515; } .tipo-Dragão { background: #7038f8; }
+    .acoes-slot { display: flex; gap: 5px; flex-wrap: wrap; justify-content: center; }
+    .feedback { min-height: 22px; margin: 13px 0 0; color: #0f3d1e; font: 11px var(--mono); }
+    .feedback.erro { color: #9e1e0c; }
+
+    .colunas { display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(290px, .8fr); gap: 18px; margin-top: 18px; align-items: start; }
+    .busca { display: flex; align-items: center; gap: 8px; padding: 9px 12px; background: var(--paper); border: 3px solid var(--line); border-radius: 9px; }
+    .busca input { width: 100%; border: 0; outline: 0; color: var(--ink); background: transparent; font-size: 15px; }
+    .filtros { display: flex; flex-wrap: wrap; gap: 6px; margin: 11px 0; }
+    .filtro { padding: 6px 9px; border: 2px solid var(--line); border-radius: 999px; color: var(--ink); background: var(--paper); font: 10px var(--mono); }
+    .filtro.ativo { color: var(--yellow); background: var(--ink); }
+    .contagem { margin: 0 0 11px; color: #0f3d1e; font: 11px var(--mono); }
+    .lista { display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 9px; max-height: 680px; overflow: auto; padding: 2px; }
+    .pokemon {
+      min-height: 175px; display: flex; flex-direction: column; align-items: center; padding: 7px;
+      border: 3px solid var(--line); border-radius: 12px; background: var(--paper); box-shadow: 3px 3px 0 var(--line);
+      transition: transform .12s ease, background .12s ease, opacity .12s ease;
+    }
+    .pokemon:hover { transform: translate(-2px, -2px); background: #fff5bd; }
+    .pokemon.selecionado { background: #d6eecb; }
+    .pokemon.indisponivel { opacity: .52; }
+    .pokemon img { width: 78px; height: 78px; object-fit: contain; image-rendering: pixelated; }
+    .pokemon .dex { align-self: flex-start; color: var(--muted); font: 10px var(--mono); }
+    .pokemon strong { font-size: 13px; }
+    .pokemon .tipos { margin-top: auto; }
+
+    .analise { position: sticky; top: 145px; }
+    .card-nota { display: flex; align-items: center; gap: 13px; padding: 13px; color: #fff; background: var(--ink); border: 3px solid var(--line); border-radius: 13px; }
+    .anel { width: 78px; height: 78px; display: grid; place-items: center; flex: 0 0 auto; border: 8px solid var(--yellow); border-radius: 50%; background: #303035; }
+    .anel strong { font: 20px var(--pixel); } .anel small { font: 10px var(--mono); }
+    .card-nota h4 { margin: 0 0 4px; color: var(--yellow); font: 11px var(--pixel); }
+    .card-nota p { margin: 0; font-size: 12px; line-height: 1.4; }
+    .metricas { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; margin: 15px 0; }
+    .metrica { padding: 9px; background: var(--paper); border: 2px solid var(--line); border-radius: 8px; }
+    .metrica strong { display: block; color: var(--red); font: 16px var(--pixel); }
+    .metrica span { color: var(--muted); font: 9px var(--mono); }
+    .analise h4 { margin: 17px 0 8px; color: #0f3d1e; font: 11px var(--pixel); }
+    .cobertura { display: grid; gap: 6px; }
+    .linha-cobertura { display: grid; grid-template-columns: 67px 1fr 18px; gap: 7px; align-items: center; font: 10px var(--mono); }
+    .preenchimento { height: 100%; background: var(--blue); }
+    .alertas { margin: 0; padding: 0; list-style: none; color: var(--muted); font-size: 12px; }
+    .alertas li { padding: 7px 0; border-bottom: 1px dashed #7778; }
+    .alertas strong { color: var(--red-dark); }
+    .referencia { margin-top: 18px; }
+    .referencia-lista { display: grid; grid-template-columns: repeat(6, 1fr); gap: 8px; }
+    .ref-card { padding: 7px; text-align: center; background: var(--paper); border: 2px solid var(--line); border-radius: 9px; }
+    .ref-card img { width: 68px; height: 68px; object-fit: contain; image-rendering: pixelated; }
+    .ref-card strong, .ref-card small { display: block; } .ref-card strong { font-size: 12px; } .ref-card small { color: var(--muted); font: 9px var(--mono); }
+    .comparacao { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; align-items: center; margin-top: 15px; padding-top: 15px; border-top: 2px dashed #0f3d1e66; }
+    .comparacao-valores { display: flex; justify-content: space-between; font: 10px var(--mono); }
+    .comparacao-valores strong { color: var(--red); font: 24px var(--pixel); }
+    .barra-comparacao { height: 16px; overflow: hidden; margin-top: 8px; border: 3px solid var(--line); border-radius: 999px; background: #fff; }
+    .barra-comparacao div { height: 100%; background: var(--red); transition: width .35s ease; }
+    .mensagem-final { margin: 0; color: var(--muted); font-size: 13px; }
+    .rodape { margin: 26px 0 0; text-align: center; color: var(--muted); font: 11px var(--mono); }
+    .sem-resultado { padding: 24px; text-align: center; color: var(--muted); border: 2px dashed #0f3d1e; }
+
+    @media (max-width: 900px) {
+      .hero { align-items: stretch; flex-direction: column; }
+      .nota-topo { align-self: flex-start; }
+      .slots { grid-template-columns: repeat(3, 1fr); }
+      .colunas { grid-template-columns: 1fr; }
+      .analise { position: static; }
+    }
+    @media (max-width: 560px) {
+      .hero h2 { font-size: 21px; }
+      .intro { font-size: 14px; }
+      .barra-acoes, .cabecalho-secao { flex-direction: column; align-items: flex-start; }
+      .cabecalho-secao > span { text-align: left; }
+      .slots { grid-template-columns: repeat(2, 1fr); }
+      .slot { min-height: 196px; }
+      .referencia-lista { grid-template-columns: repeat(3, 1fr); }
+      .comparacao { grid-template-columns: 1fr; }
+    }

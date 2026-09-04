@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Kantodex — Montador de Times</title>
+  <link rel="stylesheet" href="index.css">
+</head>
+<body>
+  <header class="topo-app">
+    <div class="topo-row">
+      <div class="lente" title="Lente"></div>
+        <p class="titulo-site">TIME</p>
+    </div>
+    <div class="faixa">
+      <div class="barra">
+        <nav>
+            <a href="./kantodex.html">KANTODEX</a>
+            <a href="./pokemons.html">POKÉMONS</a>
+            <a href="./tms.html">TM'S</a>
+            <a href="./mapa.html">MAPA</a>
+            <a href="./avalie.html">AVALIE</a>
+            </nav>
+        </div>
+    </div>
+  </header>
+
+  <main class="tela" id="montador">
+    <section class="hero">
+      <div>
+        <p class="eyebrow">FireRed · preparação de jornada</p>
+        <h2>Monte a equipe que vai atravessar Kanto.</h2>
+        <p class="intro">Escolha seis parceiros, descubra as brechas antes da próxima rota e compare seu plano com um time clássico de campanha.</p>
+      </div>
+      <div class="nota-topo" aria-live="polite"><small>pontuação atual</small><strong id="notaTopo">0</strong><span>/100</span></div>
+    </section>
+
+    <div class="barra-acoes">
+      <p class="salvo">Sua equipe e seus filtros ficam salvos neste aparelho.</p>
+      <div class="acoes">
+        <button class="botao azul" id="carregar">Carregar recomendada</button>
+        <button class="botao vermelho" id="resetar">Resetar equipe</button>
+      </div>
+    </div>
+
+    <section class="painel">
+      <div class="cabecalho-secao">
+        <div><h3>Sua equipe</h3><p id="contadorEquipe">0 de 6 espaços preenchidos</p></div>
+        <span id="statusEquipe">O próximo clique ocupa o primeiro espaço livre</span>
+      </div>
+      <div class="slots" id="slots"></div>
+      <p class="feedback" id="feedback" aria-live="polite">Escolha um Pokémon abaixo para começar.</p>
+    </section>
+
+    <div class="colunas">
+      <section class="painel">
+        <div class="cabecalho-secao"><div><h3>Escolha seus parceiros</h3><p>Pool de Kanto com capturas, evoluções, fósseis e lendários.</p></div></div>
+        <label class="busca"><span aria-hidden="true">⌕</span><input id="busca" type="search" placeholder="Buscar por nome ou número..." autocomplete="off"></label>
+        <div class="filtros" id="filtros" aria-label="Filtrar por tipo"></div>
+        <p class="contagem" id="contagem"></p>
+        <div class="lista" id="lista"></div>
+      </section>
+
+      <aside class="painel analise" id="analise">
+        <div class="cabecalho-secao"><div><h3>Leitura da equipe</h3><p>Uma bússola, não uma sentença.</p></div></div>
+        <div class="card-nota">
+          <div class="anel"><div><strong id="nota">0</strong><small>/100</small></div></div>
+          <div><h4 id="tituloNota">Primeiros passos</h4><p id="textoNota">Comece escolhendo um parceiro para acender a tela de análise.</p></div>
+        </div>
+        <div class="metricas">
+          <div class="metrica"><strong id="metricaCompletude">0/6</strong><span>completude</span></div>
+          <div class="metrica"><strong id="metricaTipos">0</strong><span>tipos na equipe</span></div>
+          <div class="metrica"><strong id="metricaMedia">—</strong><span>média de base</span></div>
+          <div class="metrica"><strong id="metricaPapeis">—</strong><span>papéis cobertos</span></div>
+        </div>
+        <h4>COBERTURA DE TIPOS</h4>
+        <div class="cobertura" id="cobertura"></div>
+        <h4>FORÇAS E ALERTAS</h4>
+        <ul class="alertas" id="alertas"></ul>
+      </aside>
+    </div>
+
+    <section class="painel referencia" id="referencia">
+      <div class="cabecalho-secao">
+        <div><h3>Referência de campanha</h3><p>Um sexteto clássico para comparar escolhas, não para copiar.</p></div>
+        <button class="botao pequeno" id="usarReferencia">Usar esta equipe</button>
+      </div>
+      <div class="referencia-lista" id="referenciaLista"></div>
+      <div class="comparacao">
+        <div>
+          <div class="comparacao-valores"><span>SUA EQUIPE<br><strong id="notaComparacao">0</strong>/100</span><span>REFERÊNCIA<br><strong id="notaReferencia">0</strong>/100</span></div>
+          <div class="barra-comparacao"><div id="barraComparacao" style="width:0%"></div></div>
+        </div>
+        <p class="mensagem-final" id="mensagemFinal">O placar ainda é parcial porque a aventura precisa de seis parceiros.</p>
+      </div>
+    </section>
+    <p class="rodape">Kantodex · feito para quem ainda escolhe o parceiro pensando na próxima rota.</p>
+  </main>
+  <script>
+    const pokemon = [
+      [1, 'Bulbasaur', ['Grama', 'Veneno'], 'Suporte', 318], [3, 'Venusaur', ['Grama', 'Veneno'], 'Suporte', 525],
+      [4, 'Charmander', ['Fogo'], 'Atacante', 309], [6, 'Charizard', ['Fogo', 'Voador'], 'Atacante', 534],
+      [7, 'Squirtle', ['Água'], 'Tanque', 314], [9, 'Blastoise', ['Água'], 'Tanque', 530],
+      [12, 'Butterfree', ['Inseto', 'Voador'], 'Suporte', 395], [15, 'Beedrill', ['Inseto', 'Veneno'], 'Atacante', 395],
+      [18, 'Pidgeot', ['Normal', 'Voador'], 'Atacante', 469], [25, 'Pikachu', ['Elétrico'], 'Atacante', 320],
+      [26, 'Raichu', ['Elétrico'], 'Atacante', 485], [28, 'Sandslash', ['Terra'], 'Tanque', 450],
+      [31, 'Nidoqueen', ['Veneno', 'Terra'], 'Tanque', 505], [34, 'Nidoking', ['Veneno', 'Terra'], 'Atacante', 505],
+      [38, 'Ninetales', ['Fogo'], 'Atacante', 505], [40, 'Wigglytuff', ['Normal'], 'Suporte', 435],
+      [42, 'Golbat', ['Veneno', 'Voador'], 'Atacante', 455], [45, 'Vileplume', ['Grama', 'Veneno'], 'Suporte', 480],
+      [51, 'Dugtrio', ['Terra'], 'Atacante', 405], [55, 'Golduck', ['Água'], 'Atacante', 500],
+      [59, 'Arcanine', ['Fogo'], 'Atacante', 555], [62, 'Poliwrath', ['Água', 'Lutador'], 'Tanque', 510],
+      [65, 'Alakazam', ['Psíquico'], 'Atacante', 500], [68, 'Machamp', ['Lutador'], 'Atacante', 505],
+      [76, 'Golem', ['Pedra', 'Terra'], 'Tanque', 495], [80, 'Slowbro', ['Água', 'Psíquico'], 'Tanque', 490],
+      [82, 'Magneton', ['Elétrico', 'Aço'], 'Atacante', 465], [87, 'Dewgong', ['Água', 'Gelo'], 'Tanque', 475],
+      [91, 'Cloyster', ['Água', 'Gelo'], 'Tanque', 525], [94, 'Gengar', ['Fantasma', 'Veneno'], 'Atacante', 500],
+      [97, 'Hypno', ['Psíquico'], 'Suporte', 483], [101, 'Electrode', ['Elétrico'], 'Atacante', 480],
+      [103, 'Exeggutor', ['Grama', 'Psíquico'], 'Suporte', 530], [105, 'Marowak', ['Terra'], 'Tanque', 425],
+      [110, 'Weezing', ['Veneno'], 'Tanque', 490], [115, 'Kangaskhan', ['Normal'], 'Tanque', 490],
+      [121, 'Starmie', ['Água', 'Psíquico'], 'Atacante', 520], [123, 'Scyther', ['Inseto', 'Voador'], 'Atacante', 500],
+      [124, 'Jynx', ['Gelo', 'Psíquico'], 'Atacante', 455], [127, 'Pinsir', ['Inseto'], 'Atacante', 500],
+      [128, 'Tauros', ['Normal'], 'Atacante', 490], [130, 'Gyarados', ['Água', 'Voador'], 'Atacante', 540],
+      [131, 'Lapras', ['Água', 'Gelo'], 'Tanque', 535], [134, 'Vaporeon', ['Água'], 'Tanque', 525],
+      [135, 'Jolteon', ['Elétrico'], 'Atacante', 525], [136, 'Flareon', ['Fogo'], 'Atacante', 525],
+      [139, 'Omastar', ['Pedra', 'Água'], 'Tanque', 495], [141, 'Kabutops', ['Pedra', 'Água'], 'Atacante', 495],
+      [142, 'Aerodactyl', ['Pedra', 'Voador'], 'Atacante', 515], [143, 'Snorlax', ['Normal'], 'Tanque', 540],
+      [144, 'Articuno', ['Gelo', 'Voador'], 'Atacante', 580], [145, 'Zapdos', ['Elétrico', 'Voador'], 'Atacante', 580],
+      [146, 'Moltres', ['Fogo', 'Voador'], 'Atacante', 580], [149, 'Dragonite', ['Dragão', 'Voador'], 'Atacante', 600],
+      [150, 'Mewtwo', ['Psíquico'], 'Atacante', 680]
+    ].map(([id, name, types, role, stats]) => ({ id, name, types, role, stats }));
+
+    const referenciaIds = [6, 34, 131, 135, 65, 143];
+    const tiposFiltro = ['Todos', 'Fogo', 'Água', 'Grama', 'Elétrico', 'Psíquico', 'Normal', 'Terra', 'Gelo', 'Pedra'];
+    const fraquezas = {
+      Normal: ['Lutador'], Fogo: ['Água', 'Terra', 'Pedra'], Água: ['Elétrico', 'Grama'],
+      Elétrico: ['Terra'], Grama: ['Fogo', 'Gelo', 'Veneno', 'Voador', 'Inseto'],
+      Gelo: ['Fogo', 'Lutador', 'Pedra', 'Aço'], Lutador: ['Voador', 'Psíquico'],
+      Veneno: ['Terra', 'Psíquico'], Terra: ['Água', 'Grama', 'Gelo'],
+      Voador: ['Elétrico', 'Gelo', 'Pedra'], Psíquico: ['Inseto', 'Fantasma', 'Sombrio'],
+      Inseto: ['Fogo', 'Voador', 'Pedra'], Pedra: ['Água', 'Grama', 'Lutador', 'Terra', 'Aço'],
+      Fantasma: ['Fantasma', 'Sombrio'], Dragão: ['Gelo', 'Dragão'], Aço: ['Fogo', 'Lutador', 'Terra']
+    };
+    const porId = new Map(pokemon.map(item => [item.id, item]));
+    const recomendado = referenciaIds.map(id => porId.get(id));
+    let equipe = ler('kantodex-time', [null, null, null, null, null, null]);
+    if (!Array.isArray(equipe) || equipe.length !== 6) equipe = [null, null, null, null, null, null];
+    let filtro = ler('kantodex-filtro', 'Todos');
+    let busca = ler('kantodex-busca', '');
+    let substituindo = null;
+
+    const $ = id => document.getElementById(id);
+    const sprite = id => `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/${id}.gif`;
+    function ler(chave, padrao) { try { return JSON.parse(localStorage.getItem(chave)) ?? padrao; } catch { return padrao; } }
+    function salvar() {
+      localStorage.setItem('kantodex-time', JSON.stringify(equipe));
+      localStorage.setItem('kantodex-filtro', JSON.stringify(filtro));
+      localStorage.setItem('kantodex-busca', JSON.stringify(busca));
+    }
+    function tiposHtml(tipos) { return tipos.map(tipo => `<span class="tipo tipo-${tipo}">${tipo}</span>`).join(''); }
+    function imagem(p, classe = '') { return `<img class="${classe}" src="${sprite(p.id)}" alt="Sprite de ${p.name}" loading="lazy" onerror="this.replaceWith(document.createTextNode('${p.name[0]}'))">`; }
+    function escolhidos() { return equipe.map(id => porId.get(id)).filter(Boolean); }
+    function pontuar(time) {
+      if (!time.length) return 0;
+      const tipos = new Set(time.flatMap(p => p.types)).size;
+      const papeis = new Set(time.map(p => p.role)).size;
+      const media = time.reduce((s, p) => s + p.stats, 0) / time.length;
+      return Math.min(100, Math.round((time.length / 6) * 38 + (tipos / 10) * 22 + (media / 600) * 25 + (papeis / 4) * 15));
+    }
+    function fraquezasTime(time) {
+      const contagem = new Map();
+      time.forEach(p => new Set(p.types.flatMap(t => fraquezas[t] || [])).forEach(tipo => contagem.set(tipo, (contagem.get(tipo) || 0) + 1)));
+      return [...contagem.entries()].sort((a, b) => b[1] - a[1]);
+    }
+    function notaTexto(nota, quantidade) {
+      if (!quantidade) return ['Primeiros passos', 'Comece escolhendo um parceiro para acender a tela de análise.'];
+      if (quantidade < 6) return ['Base em construção', `Faltam ${6 - quantidade} escolhas para fechar a leitura.`];
+      if (nota >= 84) return ['Muito bem!', 'Equipe pronta para atravessar Kanto com respostas para quase todo encontro.'];
+      if (nota >= 68) return ['Bom caminho', 'Uma equipe consistente, com espaço para lapidar algumas coberturas.'];
+      return ['Ajuste o plano', 'Há boas ideias aqui, mas alguns buracos de cobertura ainda aparecem no mapa.'];
+    }
+
+    function desenharFiltros() {
+      $('filtros').innerHTML = tiposFiltro.map(tipo => `<button class="filtro ${filtro === tipo ? 'ativo' : ''}" data-filtro="${tipo}">${tipo}</button>`).join('');
+      document.querySelectorAll('[data-filtro]').forEach(btn => btn.onclick = () => { filtro = btn.dataset.filtro; salvar(); desenhar(); });
+    }
+    function desenharSlots() {
+      $('slots').innerHTML = equipe.map((id, index) => {
+        const p = porId.get(id);
+        if (!p) return `<div class="slot"><span class="slot-num">ESPAÇO ${index + 1}</span><div class="mais">+</div><p class="vazio">Aguardando parceiro</p></div>`;
+        return `<div class="slot cheio"><span class="slot-num">ESPAÇO ${index + 1}</span>${imagem(p)}<p class="numero">Nº ${String(p.id).padStart(3, '0')}</p><p class="nome">${p.name}</p><div class="tipos">${tiposHtml(p.types)}</div><div class="acoes-slot"><button class="botao pequeno" data-trocar="${index}">Trocar</button><button class="botao pequeno vermelho" data-remover="${index}">Remover</button></div></div>`;
+      }).join('');
+      document.querySelectorAll('[data-trocar]').forEach(btn => btn.onclick = () => {
+        substituindo = Number(btn.dataset.trocar);
+        $('feedback').textContent = `Escolha um substituto para o espaço ${substituindo + 1}.`;
+        $('busca').focus();
+      });
+      document.querySelectorAll('[data-remover]').forEach(btn => btn.onclick = () => {
+        const index = Number(btn.dataset.remover);
+        const removido = porId.get(equipe[index]);
+        equipe[index] = null; substituindo = null; salvar(); mensagem(`${removido?.name || 'Pokémon'} saiu da equipe. O espaço ficou livre.`); desenhar();
+      });
+    }
+    function desenharLista() {
+      const termo = busca.trim().toLocaleLowerCase('pt-BR');
+      const filtrados = pokemon.filter(p => (!termo || p.name.toLocaleLowerCase('pt-BR').includes(termo) || String(p.id).padStart(3, '0').includes(termo)) && (filtro === 'Todos' || p.types.includes(filtro)));
+      $('contagem').textContent = `${filtrados.length} Pokémon encontrados · clique para adicionar`;
+      $('lista').innerHTML = filtrados.length ? filtrados.map(p => {
+        const selecionado = equipe.includes(p.id);
+        return `<button class="pokemon ${selecionado ? 'selecionado' : ''} ${selecionado ? 'indisponivel' : ''}" data-pokemon="${p.id}" ${selecionado ? 'aria-label="Pokémon já escolhido"' : ''}><span class="dex">Nº ${String(p.id).padStart(3, '0')}</span>${imagem(p)}<strong>${p.name}</strong><div class="tipos">${tiposHtml(p.types)}</div></button>`;
+      }).join('') : '<div class="sem-resultado">Nenhum parceiro encontrado.<br>Limpe a busca para ver as opções.</div>';
+      document.querySelectorAll('[data-pokemon]').forEach(btn => btn.onclick = () => adicionar(Number(btn.dataset.pokemon)));
+    }
+    function desenharAnalise() {
+      const time = escolhidos();
+      const nota = pontuar(time);
+      const tipos = [...new Set(time.flatMap(p => p.types))];
+      const papeis = new Set(time.map(p => p.role)).size;
+      const media = time.length ? Math.round(time.reduce((s, p) => s + p.stats, 0) / time.length) : '—';
+      const [titulo, texto] = notaTexto(nota, time.length);
+      $('notaTopo').textContent = nota; $('nota').textContent = nota; $('notaComparacao').textContent = nota;
+      $('tituloNota').textContent = titulo; $('textoNota').textContent = texto;
+      $('contadorEquipe').textContent = `${time.length} de 6 espaços preenchidos`;
+      $('statusEquipe').textContent = time.length === 6 ? 'Equipe completa' : 'O próximo clique ocupa o primeiro espaço livre';
+      $('metricaCompletude').textContent = `${time.length}/6`; $('metricaTipos').textContent = tipos.length;
+      $('metricaMedia').textContent = media; $('metricaPapeis').textContent = papeis || '—';
+      const cobertura = new Map(); time.flatMap(p => p.types).forEach(tipo => cobertura.set(tipo, (cobertura.get(tipo) || 0) + 1));
+      $('cobertura').innerHTML = cobertura.size ? [...cobertura.entries()].map(([tipo, qtd]) => `<div class="linha-cobertura"><span>${tipo}</span><div class="barra"><div class="preenchimento" style="width:${Math.min(100, qtd * 46 + 12)}%"></div></div><strong>${qtd}</strong></div>`).join('') : '<span class="salvo">Ainda sem tipos para mapear.</span>';
+      const alertas = fraquezasTime(time);
+      $('alertas').innerHTML = `<li>${tipos.length >= 5 ? 'Boa variedade de tipos cria respostas diferentes.' : 'Adicionar tipos diferentes amplia suas respostas.'}</li><li>${papeis >= 3 ? `${papeis} papéis ativos: ataque, resistência e suporte.` : 'Inclua um tanque ou suporte para proteger seus atacantes.'}</li>${alertas.length ? `<li><strong>Fraquezas:</strong> ${alertas.slice(0, 3).map(([tipo, qtd]) => `${tipo} (${qtd})`).join(' · ')}</li>` : ''}`;
+      const notaRef = pontuar(recomendado);
+      $('notaReferencia').textContent = notaRef; $('barraComparacao').style.width = `${nota}%`;
+      $('mensagemFinal').textContent = time.length === 6 ? (nota >= notaRef ? 'Seu plano já alcança ou supera a referência em equilíbrio geral.' : 'A referência leva vantagem em cobertura e consistência, mas seu plano pode ter identidade própria.') : 'O placar ainda é parcial porque a aventura precisa de seis parceiros.';
+    }
+    function desenharReferencia() { $('referenciaLista').innerHTML = recomendado.map(p => `<div class="ref-card">${imagem(p)}<strong>${p.name}</strong><small>Nº ${String(p.id).padStart(3, '0')}</small></div>`).join(''); }
+    function mensagem(texto, erro = false) { $('feedback').textContent = texto; $('feedback').className = `feedback${erro ? ' erro' : ''}`; }
+    function adicionar(id) {
+      if (equipe.includes(id) && !(substituindo !== null && equipe[substituindo] === id)) return mensagem(`${porId.get(id).name} já está na sua equipe. Escolha outra espécie.`, true);
+      if (substituindo !== null) { equipe[substituindo] = id; mensagem(`${porId.get(id).name} entrou no espaço ${substituindo + 1}. Equipe atualizada.`); substituindo = null; }
+      else { const vazio = equipe.findIndex(item => item === null); if (vazio < 0) return mensagem('Os seis espaços já estão ocupados. Use Trocar para substituir um Pokémon.', true); equipe[vazio] = id; mensagem(`${porId.get(id).name} foi adicionado ao espaço ${vazio + 1}.`); }
+      salvar(); desenhar();
+    }
+    function desenhar() { desenharFiltros(); desenharSlots(); desenharLista(); desenharAnalise(); desenharReferencia(); }
+    $('busca').value = busca;
+    $('busca').oninput = event => { busca = event.target.value; salvar(); desenharLista(); };
+    $('resetar').onclick = () => { if (!confirm('Resetar sua equipe? Os seis espaços serão liberados.')) return; equipe = [null, null, null, null, null, null]; substituindo = null; salvar(); mensagem('Equipe resetada. O próximo parceiro está esperando.'); desenhar(); };
+    $('carregar').onclick = $('usarReferencia').onclick = () => { if (!confirm('Carregar a equipe recomendada? Sua equipe atual será substituída.')) return; equipe = [...referenciaIds]; substituindo = null; salvar(); mensagem('Equipe recomendada carregada. Compare os dois caminhos.'); desenhar(); };
+    desenhar();
+
+  </script>
+</body>
+</html>
